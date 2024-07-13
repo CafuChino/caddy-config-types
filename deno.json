@@ -1,0 +1,6 @@
+{
+  "tasks": {
+    "start": "deno run --allow-net --allow-write --allow-env ./src/index.ts",
+    "cleanAllJS": "find . -name \"*.js\" -type f -delete"
+  }
+}
