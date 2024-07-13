@@ -16,7 +16,7 @@ export default async function GeneratorStruct(
   // Check if the interface is already defined
   if (ctx.interfaceSet.has(interfaceName)) {
     // If it is, return
-    return `  ${wrapKeyIfNeeded(key)}: ${interfaceName};\n`;
+    return `  ${wrapKeyIfNeeded(key)}?: ${interfaceName};\n`;
   }
 
   let interfaceResult = "";
@@ -37,7 +37,7 @@ export default async function GeneratorStruct(
     // add type alias to any record
     interfaceResult += `export type ${interfaceName} = Record<string, any>;\n`;
     ctx.interfaceMap.set(interfaceName, interfaceResult);
-    return `  ${wrapKeyIfNeeded(key)}: ${interfaceName};\n`;
+    return `  ${wrapKeyIfNeeded(key)}?: ${interfaceName};\n`;
   }
   // Add fields
   for (const field of s.struct_fields) {

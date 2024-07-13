@@ -23,7 +23,7 @@ export default async function GeneratorModuleMap(
     );
     return `  ${wrapKeyIfNeeded(
       key
-    )}: Record<string, any>; // namespace not found: ${module_namespace}\n`;
+    )}?: Record<string, any>; // namespace not found: ${module_namespace}\n`;
   }
   const namespaceInterfaceName = getNameSpaceInterfaceName(
     module_namespace || key
@@ -35,7 +35,7 @@ export default async function GeneratorModuleMap(
 
   let result = "";
   result += changeDocStringToJsDoc(s.doc);
-  result += `  ${wrapKeyIfNeeded(key)}: ${namespaceInterfaceName};\n`;
+  result += `  ${wrapKeyIfNeeded(key)}?: ${namespaceInterfaceName};\n`;
 
   let interfaceResult = "";
   interfaceResult += `export interface ${namespaceInterfaceName} {\n`;
