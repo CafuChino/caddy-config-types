@@ -6,13 +6,17 @@
  * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
 export type IGithubComCaddyserverCaddyV2Duration = number;
 
+
+
 export interface ITls {
   use_server_identity?: boolean;
   client_certificate_file?: string;
   client_certificate_key_file?: string;
   root_ca_pem_files?: Array<string>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * HTTPLoader can load Caddy configs over HTTP(S).
@@ -23,32 +27,34 @@ export interface ITls {
  * over the HTTP server (but can still trust its response), you can override
  * the Content-Type header by setting the `adapter` property in this config. */
 export interface IGithubComCaddyserverCaddyV2CaddyconfigHttpLoader {
-  /**
-   * The method for the request. Default: GET */
+/**
+ * The method for the request. Default: GET */
   method?: string;
-  /**
-   * The URL of the request. */
+/**
+ * The URL of the request. */
   url?: string;
-  /**
-   * A Header represents the key-value pairs in an HTTP header.
-   * The keys should be in canonical form, as returned by
-   * CanonicalHeaderKey. */
+/**
+ * A Header represents the key-value pairs in an HTTP header.
+ * The keys should be in canonical form, as returned by
+ * CanonicalHeaderKey. */
   header?: Record<string, Array<string>>;
-  /**
-   * Maximum time allowed for a complete connection and request.
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * Maximum time allowed for a complete connection and request.
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   timeout?: IGithubComCaddyserverCaddyV2Duration;
-  /**
-   * The name of the config adapter to use, if any. Only needed
-   * if the HTTP response is not a JSON config and if the server's
-   * Content-Type header is missing or incorrect. */
+/**
+ * The name of the config adapter to use, if any. Only needed
+ * if the HTTP response is not a JSON config and if the server's
+ * Content-Type header is missing or incorrect. */
   adapter?: string;
   tls?: ITls;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 export interface IGithubComHeavyHorstCertmagicNatsNats {
   hosts?: string;
@@ -56,17 +62,21 @@ export interface IGithubComHeavyHorstCertmagicNatsNats {
   creds?: string;
   inbox_prefix?: string;
   connection_name?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * FileStorage is a certmagic.Storage wrapper for certmagic.FileStorage. */
 export interface IGithubComCaddyserverCaddyV2ModulesFilestorageFileStorage {
-  /**
-   * The base path to the folder used for storage. */
+/**
+ * The base path to the folder used for storage. */
   root?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * RedisStorage contain Redis client, and plugin option */
@@ -82,57 +92,65 @@ export interface IGithubComGamalanCaddyTlsredisRedisStorage {
   aes_key?: string;
   tls_enabled?: boolean;
   tls_insecure?: boolean;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * A highly available storage module that integrates with HashiCorp Vault. */
 export interface IGithubComGerolfVentCaddyVaultStorageVaultStorage {
   addresses?: Array<string>;
-  /**
-   * Local path to read the access token from. Updates on that file will be
-   * detected and automatically read. (As fallback the the environment
-   * variable "VAULT_TOKEN" will be used, but it will only be read once on
-   * startup.) */
+/**
+ * Local path to read the access token from. Updates on that file will be
+ * detected and automatically read. (As fallback the the environment
+ * variable "VAULT_TOKEN" will be used, but it will only be read once on
+ * startup.) */
   token_path?: string;
-  /**
-   * Path of the KVv2 mount to use. (Default is "kv".) */
+/**
+ * Path of the KVv2 mount to use. (Default is "kv".) */
   secrets_mount_path?: string;
-  /**
-   * Path in the KVv2 mount to use. (Default is "caddy".) */
+/**
+ * Path in the KVv2 mount to use. (Default is "caddy".) */
   secrets_path_prefix?: string;
-  /**
-   * Limit of connection retries after which to fail a request. (Default is 3.) */
+/**
+ * Limit of connection retries after which to fail a request. (Default is 3.) */
   max_retries?: number;
-  /**
-   * Timeout for locks (in seconds). (Default is 60.) */
+/**
+ * Timeout for locks (in seconds). (Default is 60.) */
   lock_timeout?: number;
-  /**
-   * Interval for checking lock status (in seconds). (Default is 5.) */
+/**
+ * Interval for checking lock status (in seconds). (Default is 5.) */
   lock_check_interval?: number;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * CaddyStorageGCS implements a caddy storage backend for Google Cloud Storage. */
 export interface IGithubComGrafanaCertmagicGcsCaddyStorageGcs {
-  /**
-   * BucketName is the name of the storage bucket. */
-  "bucket-name"?: string;
-  /**
-   * EncryptionKeySet is the path of a json tink encryption keyset */
-  "encryption-key-set"?: string;
-  [key: string]: any;
+/**
+ * BucketName is the name of the storage bucket. */
+  'bucket-name'?: string;
+/**
+ * EncryptionKeySet is the path of a json tink encryption keyset */
+  'encryption-key-set'?: string;
+[key: string]: any;
 }
+
+
 
 /**
  * Storage is the impelementation of certmagic.Storage interface for Caddy with encryption/decryption layer
  * using [SOPS](https://github.com/getsops/sops). The module accepts any Caddy storage module as the backend. */
 export interface IGithubComMohammed90CaddyEncryptedStorageStorage {
-  backend: IStorage;
+  backend?: IStorage;
   encryption?: Array<unknown>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * ConsulStorage allows to store certificates and other TLS resources
@@ -144,11 +162,13 @@ export interface IGithubComPteichCaddyTlsconsulConsulStorage {
   timeout?: number;
   prefix?: string;
   value_prefix?: string;
-  aes_key?: Array<unknown>;
+  aes_key?: Array<number>;
   tls_enabled?: boolean;
   tls_insecure?: boolean;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Storage implements certmagic.Storage to facilitate
@@ -156,38 +176,40 @@ export interface IGithubComPteichCaddyTlsconsulConsulStorage {
  * Also implements certmagic.Locker to facilitate locking
  * and unlocking of cert data during storage */
 export interface IGithubComSilinternationalCertmagicStorageDynamodbV3Storage {
-  /**
-   * Table - [required] DynamoDB table name */
+/**
+ * Table - [required] DynamoDB table name */
   table?: string;
-  /**
-   * AwsEndpoint - [optional] provide an override for DynamoDB service.
-   * By default it'll use the standard production DynamoDB endpoints.
-   * Useful for testing with a local DynamoDB instance. */
+/**
+ * AwsEndpoint - [optional] provide an override for DynamoDB service.
+ * By default it'll use the standard production DynamoDB endpoints.
+ * Useful for testing with a local DynamoDB instance. */
   aws_endpoint?: string;
-  /**
-   * AwsRegion - [optional] region using DynamoDB in.
-   * Useful for testing with a local DynamoDB instance. */
+/**
+ * AwsRegion - [optional] region using DynamoDB in.
+ * Useful for testing with a local DynamoDB instance. */
   aws_region?: string;
-  /**
-   * AwsDisableSSL - [optional] disable SSL for DynamoDB connections. Default: false
-   * Only useful for local testing, do not use outside of local testing. */
+/**
+ * AwsDisableSSL - [optional] disable SSL for DynamoDB connections. Default: false
+ * Only useful for local testing, do not use outside of local testing. */
   aws_disable_ssl?: boolean;
-  /**
-   * LockTimeout - [optional] how long to wait for a lock to be created. Default: 5 minutes
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * LockTimeout - [optional] how long to wait for a lock to be created. Default: 5 minutes
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   lock_timeout?: IGithubComCaddyserverCaddyV2Duration;
-  /**
-   * LockPollingInterval - [optional] how often to check for lock released. Default: 5 seconds
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * LockPollingInterval - [optional] how often to check for lock released. Default: 5 seconds
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   lock_polling_interval?: IGithubComCaddyserverCaddyV2Duration;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 export interface IGithubComSs098CertmagicS3S3 {
   host?: string;
@@ -195,8 +217,10 @@ export interface IGithubComSs098CertmagicS3S3 {
   access_id?: string;
   secret_key?: string;
   prefix?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 export type IEnvRedis = Record<string, any>;
 
@@ -206,16 +230,18 @@ export type IEnvRedis = Record<string, any>;
  * largest representable duration to approximately 290 years. */
 export type ITimeDuration = number;
 
+
+
 export interface IGithubComYroc92PostgresStoragePostgresStorage {
-  /**
-   * A Duration represents the elapsed time between two instants
-   * as an int64 nanosecond count. The representation limits the
-   * largest representable duration to approximately 290 years. */
+/**
+ * A Duration represents the elapsed time between two instants
+ * as an int64 nanosecond count. The representation limits the
+ * largest representable duration to approximately 290 years. */
   query_timeout?: ITimeDuration;
-  /**
-   * A Duration represents the elapsed time between two instants
-   * as an int64 nanosecond count. The representation limits the
-   * largest representable duration to approximately 290 years. */
+/**
+ * A Duration represents the elapsed time between two instants
+ * as an int64 nanosecond count. The representation limits the
+ * largest representable duration to approximately 290 years. */
   lock_timeout?: ITimeDuration;
   host?: string;
   port?: string;
@@ -224,82 +250,78 @@ export interface IGithubComYroc92PostgresStoragePostgresStorage {
   dbname?: string;
   sslmode?: string;
   connection_string?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 export interface IGithubComZhangjiayinCaddyMysqlStorageMysqlStorage {
-  /**
-   * A Duration represents the elapsed time between two instants
-   * as an int64 nanosecond count. The representation limits the
-   * largest representable duration to approximately 290 years. */
+/**
+ * A Duration represents the elapsed time between two instants
+ * as an int64 nanosecond count. The representation limits the
+ * largest representable duration to approximately 290 years. */
   query_timeout?: ITimeDuration;
-  /**
-   * A Duration represents the elapsed time between two instants
-   * as an int64 nanosecond count. The representation limits the
-   * largest representable duration to approximately 290 years. */
+/**
+ * A Duration represents the elapsed time between two instants
+ * as an int64 nanosecond count. The representation limits the
+ * largest representable duration to approximately 290 years. */
   lock_timeout?: ITimeDuration;
   dsn?: string;
-  [key: string]: any;
+[key: string]: any;
 }
 
-export type IStorage =
-  | IGithubComHeavyHorstCertmagicNatsNats
-  | IGithubComCaddyserverCaddyV2ModulesFilestorageFileStorage
-  | IGithubComGamalanCaddyTlsredisRedisStorage
-  | IGithubComGerolfVentCaddyVaultStorageVaultStorage
-  | IGithubComGrafanaCertmagicGcsCaddyStorageGcs
-  | IGithubComMohammed90CaddyEncryptedStorageStorage
-  | IGithubComPteichCaddyTlsconsulConsulStorage
-  | IGithubComSilinternationalCertmagicStorageDynamodbV3Storage
-  | IGithubComSs098CertmagicS3S3
-  | IEnvRedis
-  | IGithubComYroc92PostgresStoragePostgresStorage
-  | IGithubComZhangjiayinCaddyMysqlStorageMysqlStorage;
+
+
+export type IStorage = IGithubComHeavyHorstCertmagicNatsNats | IGithubComCaddyserverCaddyV2ModulesFilestorageFileStorage | IGithubComGamalanCaddyTlsredisRedisStorage | IGithubComGerolfVentCaddyVaultStorageVaultStorage | IGithubComGrafanaCertmagicGcsCaddyStorageGcs | IGithubComMohammed90CaddyEncryptedStorageStorage | IGithubComPteichCaddyTlsconsulConsulStorage | IGithubComSilinternationalCertmagicStorageDynamodbV3Storage | IGithubComSs098CertmagicS3S3 | IEnvRedis | IGithubComYroc92PostgresStoragePostgresStorage | IGithubComZhangjiayinCaddyMysqlStorageMysqlStorage;
+
 
 /**
  * StorageLoader is a dynamic configuration loader that reads the configuration from a Caddy storage. If
  * the storage is not configured, the default storage is used, which may be the file-system if none is configured
  * If the `key` is not configured, the default key is `config/caddy.json`. */
 export interface IGithubComMohammed90CaddyStorageLoaderStorageLoader {
-  /**
-   * StorageRaw is a storage module that defines how/where Caddy
-   * stores assets (such as TLS certificates). The default storage
-   * module is `caddy.storage.file_system` (the local file system),
-   * and the default path
-   * [depends on the OS and environment](/docs/conventions#data-directory). */
+/**
+ * StorageRaw is a storage module that defines how/where Caddy
+ * stores assets (such as TLS certificates). The default storage
+ * module is `caddy.storage.file_system` (the local file system),
+ * and the default path
+ * [depends on the OS and environment](/docs/conventions#data-directory). */
   storage?: IStorage;
-  /**
-   * The storage key at which the configuration is to be found */
+/**
+ * The storage key at which the configuration is to be found */
   key?: string;
-  /**
-   * The adapter to use to convert the storage's contents to Caddy JSON. */
+/**
+ * The adapter to use to convert the storage's contents to Caddy JSON. */
   adapter?: string;
-  [key: string]: any;
+[key: string]: any;
 }
 
-export type IConfigLoaders =
-  | IGithubComCaddyserverCaddyV2CaddyconfigHttpLoader
-  | IGithubComMohammed90CaddyStorageLoaderStorageLoader;
+
+
+export type IConfigLoaders = IGithubComCaddyserverCaddyV2CaddyconfigHttpLoader | IGithubComMohammed90CaddyStorageLoaderStorageLoader;
+
 
 /**
  * Options pertaining to configuration management.
  * ConfigSettings configures the management of configuration. */
 export interface IGithubComCaddyserverCaddyV2ConfigSettings {
-  /**
-   * Whether to keep a copy of the active config on disk. Default is true.
-   * Note that "pulled" dynamic configs (using the neighboring "load" module)
-   * are not persisted; only configs that are pushed to Caddy get persisted. */
+/**
+ * Whether to keep a copy of the active config on disk. Default is true.
+ * Note that "pulled" dynamic configs (using the neighboring "load" module)
+ * are not persisted; only configs that are pushed to Caddy get persisted. */
   persist?: boolean;
-  /**
-   * Loads a configuration to use. This is helpful if your configs are
-   * managed elsewhere, and you want Caddy to pull its config dynamically
-   * when it starts. The pulled config completely replaces the current
-   * one, just like any other config load. It is an error if a pulled
-   * config is configured to pull another config.
-   * EXPERIMENTAL: Subject to change. */
+/**
+ * Loads a configuration to use. This is helpful if your configs are
+ * managed elsewhere, and you want Caddy to pull its config dynamically
+ * when it starts. The pulled config completely replaces the current
+ * one, just like any other config load. It is an error if a pulled
+ * config is configured to pull another config.
+ * EXPERIMENTAL: Subject to change. */
   load?: IConfigLoaders;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Options that establish this server's identity. Identity refers to
@@ -313,8 +335,10 @@ export interface IGithubComCaddyserverCaddyV2ConfigSettings {
 export interface IGithubComCaddyserverCaddyV2IdentityConfig {
   identifiers?: Array<string>;
   issuers?: Array<unknown>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Limits what the associated identities are allowed to do.
@@ -324,8 +348,10 @@ export interface IGithubComCaddyserverCaddyV2IdentityConfig {
 export interface IGithubComCaddyserverCaddyV2AdminPermissions {
   paths?: Array<string>;
   methods?: Array<string>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * List of access controls for this secure admin endpoint.
@@ -337,8 +363,10 @@ export interface IGithubComCaddyserverCaddyV2AdminPermissions {
 export interface IGithubComCaddyserverCaddyV2AdminAccess {
   public_keys?: Array<string>;
   permissions?: Array<IGithubComCaddyserverCaddyV2AdminPermissions>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Options pertaining to remote administration. By default, remote
@@ -354,61 +382,68 @@ export interface IGithubComCaddyserverCaddyV2AdminAccess {
  * on remote administration). See the admin/identity config struct.
  * EXPERIMENTAL: Subject to change. */
 export interface IGithubComCaddyserverCaddyV2RemoteAdmin {
-  /**
-   * The address on which to start the secure listener.
-   * Default: :2021 */
+/**
+ * The address on which to start the secure listener.
+ * Default: :2021 */
   listen?: string;
   access_control?: Array<IGithubComCaddyserverCaddyV2AdminAccess>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * AdminConfig configures Caddy's API endpoint, which is used
  * to manage Caddy while it is running. */
 export interface IGithubComCaddyserverCaddyV2AdminConfig {
-  /**
-   * If true, the admin endpoint will be completely disabled.
-   * Note that this makes any runtime changes to the config
-   * impossible, since the interface to do so is through the
-   * admin endpoint. */
+/**
+ * If true, the admin endpoint will be completely disabled.
+ * Note that this makes any runtime changes to the config
+ * impossible, since the interface to do so is through the
+ * admin endpoint. */
   disabled?: boolean;
-  /**
-   * The address to which the admin endpoint's listener should
-   * bind itself. Can be any single network address that can be
-   * parsed by Caddy. Default: localhost:2019 */
+/**
+ * The address to which the admin endpoint's listener should
+ * bind itself. Can be any single network address that can be
+ * parsed by Caddy. Default: localhost:2019 */
   listen?: string;
-  /**
-   * If true, CORS headers will be emitted, and requests to the
-   * API will be rejected if their `Host` and `Origin` headers
-   * do not match the expected value(s). Use `origins` to
-   * customize which origins/hosts are allowed. If `origins` is
-   * not set, the listen address is the only value allowed by
-   * default. Enforced only on local (plaintext) endpoint. */
+/**
+ * If true, CORS headers will be emitted, and requests to the
+ * API will be rejected if their `Host` and `Origin` headers
+ * do not match the expected value(s). Use `origins` to
+ * customize which origins/hosts are allowed. If `origins` is
+ * not set, the listen address is the only value allowed by
+ * default. Enforced only on local (plaintext) endpoint. */
   enforce_origin?: boolean;
   origins?: Array<string>;
   config?: IGithubComCaddyserverCaddyV2ConfigSettings;
   identity?: IGithubComCaddyserverCaddyV2IdentityConfig;
   remote?: IGithubComCaddyserverCaddyV2RemoteAdmin;
-  [key: string]: any;
+[key: string]: any;
 }
 
-/**
+
+
+  /**
    * DiscardWriter discards all writes.
 
    */
 export type IGithubComCaddyserverCaddyV2DiscardWriter = Record<string, any>;
 
-/**
+
+  /**
    * StderrWriter writes logs to standard error.
 
    */
 export type IGithubComCaddyserverCaddyV2StderrWriter = Record<string, any>;
 
-/**
+
+  /**
    * StdoutWriter writes logs to standard out.
 
    */
 export type IGithubComCaddyserverCaddyV2StdoutWriter = Record<string, any>;
+
 
 /**
  * FileWriter can write logs to files. By default, log files
@@ -416,56 +451,60 @@ export type IGithubComCaddyserverCaddyV2StdoutWriter = Record<string, any>;
  * files get deleted, to ensure that the process does not
  * exhaust disk space. */
 export interface IGithubComCaddyserverCaddyV2ModulesLoggingFileWriter {
-  /**
-   * Filename is the name of the file to write. */
+/**
+ * Filename is the name of the file to write. */
   filename?: string;
-  /**
-   * Roll toggles log rolling or rotation, which is
-   * enabled by default. */
+/**
+ * Roll toggles log rolling or rotation, which is
+ * enabled by default. */
   roll?: boolean;
-  /**
-   * When a log file reaches approximately this size,
-   * it will be rotated. */
+/**
+ * When a log file reaches approximately this size,
+ * it will be rotated. */
   roll_size_mb?: number;
-  /**
-   * Whether to compress rolled files. Default: true */
+/**
+ * Whether to compress rolled files. Default: true */
   roll_gzip?: boolean;
-  /**
-   * Whether to use local timestamps in rolled filenames.
-   * Default: false */
+/**
+ * Whether to use local timestamps in rolled filenames.
+ * Default: false */
   roll_local_time?: boolean;
-  /**
-   * The maximum number of rolled log files to keep.
-   * Default: 10 */
+/**
+ * The maximum number of rolled log files to keep.
+ * Default: 10 */
   roll_keep?: number;
-  /**
-   * How many days to keep rolled log files. Default: 90 */
+/**
+ * How many days to keep rolled log files. Default: 90 */
   roll_keep_days?: number;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * NetWriter implements a log writer that outputs to a network socket. If
  * the socket goes down, it will dump logs to stderr while it attempts to
  * reconnect. */
 export interface IGithubComCaddyserverCaddyV2ModulesLoggingNetWriter {
-  /**
-   * The address of the network socket to which to connect. */
+/**
+ * The address of the network socket to which to connect. */
   address?: string;
-  /**
-   * The timeout to wait while connecting to the socket.
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * The timeout to wait while connecting to the socket.
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   dial_timeout?: IGithubComCaddyserverCaddyV2Duration;
-  /**
-   * If enabled, allow connections errors when first opening the
-   * writer. The error and subsequent log entries will be reported
-   * to stderr instead until a connection can be re-established. */
+/**
+ * If enabled, allow connections errors when first opening the
+ * writer. The error and subsequent log entries will be reported
+ * to stderr instead until a connection can be re-established. */
   soft_start?: boolean;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 export interface IGithubComNeodymeLabsInfluxLogInfluxLog {
   host?: string;
@@ -474,17 +513,17 @@ export interface IGithubComNeodymeLabsInfluxLogInfluxLog {
   bucket?: string;
   measurement?: string;
   tags?: Record<string, string>;
-  [key: string]: any;
+[key: string]: any;
 }
 
-/**
+
+
+  /**
    * Writer is a influxdb client to write time series data
 
    */
-export type IGithubComSillygodCdpCacheExtendsInfluxlogWriter = Record<
-  string,
-  any
->;
+export type IGithubComSillygodCdpCacheExtendsInfluxlogWriter = Record<string, any>;
+
 
 /**
  * GraphiteLog is a Caddy logger used to send server activity to a Graphite
@@ -512,31 +551,26 @@ export type IGithubComSillygodCdpCacheExtendsInfluxlogWriter = Record<
  * 	.DirName
  * 	.FileName */
 export interface IGithubComYbizeulCaddyLoggerGraphiteGraphiteLog {
-  /**
-   * IP address or host name of the graphite server */
+/**
+ * IP address or host name of the graphite server */
   server?: string;
-  /**
-   * Port number to be used (usually 2003) */
+/**
+ * Port number to be used (usually 2003) */
   port?: number;
-  /**
-   * Metrics Path, can be templated */
+/**
+ * Metrics Path, can be templated */
   path?: string;
-  /**
-   * Value to be sent, can be templated */
+/**
+ * Value to be sent, can be templated */
   value?: string;
   methods?: Array<string>;
-  [key: string]: any;
+[key: string]: any;
 }
 
-export type IWriters =
-  | IGithubComCaddyserverCaddyV2DiscardWriter
-  | IGithubComCaddyserverCaddyV2StderrWriter
-  | IGithubComCaddyserverCaddyV2StdoutWriter
-  | IGithubComCaddyserverCaddyV2ModulesLoggingFileWriter
-  | IGithubComCaddyserverCaddyV2ModulesLoggingNetWriter
-  | IGithubComNeodymeLabsInfluxLogInfluxLog
-  | IGithubComSillygodCdpCacheExtendsInfluxlogWriter
-  | IGithubComYbizeulCaddyLoggerGraphiteGraphiteLog;
+
+
+export type IWriters = IGithubComCaddyserverCaddyV2DiscardWriter | IGithubComCaddyserverCaddyV2StderrWriter | IGithubComCaddyserverCaddyV2StdoutWriter | IGithubComCaddyserverCaddyV2ModulesLoggingFileWriter | IGithubComCaddyserverCaddyV2ModulesLoggingNetWriter | IGithubComNeodymeLabsInfluxLogInfluxLog | IGithubComSillygodCdpCacheExtendsInfluxlogWriter | IGithubComYbizeulCaddyLoggerGraphiteGraphiteLog;
+
 
 /**
  * Sink is the destination for all unstructured logs emitted
@@ -550,11 +584,13 @@ export type IWriters =
  * Caddy will use the standard logger. This is also known as
  * the "sink" logger. */
 export interface IGithubComCaddyserverCaddyV2StandardLibLog {
-  /**
-   * The module that writes out log entries for the sink. */
+/**
+ * The module that writes out log entries for the sink. */
   writer?: IWriters;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * AppendEncoder can be used to add fields to all log entries
@@ -564,10 +600,12 @@ export interface IGithubComCaddyserverCaddyV2StandardLibLog {
  * instance that is producing the log entries, possibly via
  * an environment variable. */
 export interface IGithubComCaddyserverCaddyV2ModulesLoggingAppendEncoder {
-  wrap: IEncoders;
+  wrap?: IEncoders;
   fields?: Record<string, unknown>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * ConsoleEncoder encodes log entries that are mostly human-readable. */
@@ -579,36 +617,40 @@ export interface IGithubComCaddyserverCaddyV2ModulesLoggingConsoleEncoder {
   caller_key?: string;
   stacktrace_key?: string;
   line_ending?: string;
-  /**
-   * Recognized values are: unix_seconds_float, unix_milli_float, unix_nano, iso8601, rfc3339, rfc3339_nano, wall, wall_milli, wall_nano, common_log.
-   * The value may also be custom format per the Go `time` package layout specification, as described [here](https://pkg.go.dev/time#pkg-constants). */
+/**
+ * Recognized values are: unix_seconds_float, unix_milli_float, unix_nano, iso8601, rfc3339, rfc3339_nano, wall, wall_milli, wall_nano, common_log.
+ * The value may also be custom format per the Go `time` package layout specification, as described [here](https://pkg.go.dev/time#pkg-constants). */
   time_format?: string;
   time_local?: boolean;
-  /**
-   * Recognized values are: s/second/seconds, ns/nano/nanos, ms/milli/millis, string.
-   * Empty and unrecognized value default to seconds. */
+/**
+ * Recognized values are: s/second/seconds, ns/nano/nanos, ms/milli/millis, string.
+ * Empty and unrecognized value default to seconds. */
   duration_format?: string;
-  /**
-   * Recognized values are: lower, upper, color.
-   * Empty and unrecognized value default to lower. */
+/**
+ * Recognized values are: lower, upper, color.
+ * Empty and unrecognized value default to lower. */
   level_format?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * A list of actions to apply to the cookies. */
 export interface IGithubComCaddyserverCaddyV2ModulesLoggingCookieFilterAction {
-  /**
-   * `replace` to replace the value of the cookie, `hash` to replace it with the 4 initial bytes of the SHA-256 of its content or `delete` to remove it entirely. */
+/**
+ * `replace` to replace the value of the cookie, `hash` to replace it with the 4 initial bytes of the SHA-256 of its content or `delete` to remove it entirely. */
   type?: string;
-  /**
-   * The name of the cookie. */
+/**
+ * The name of the cookie. */
   name?: string;
-  /**
-   * The value to use as replacement if the action is `replace`. */
+/**
+ * The value to use as replacement if the action is `replace`. */
   value?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * CookieFilter is a Caddy log field filter that filters
@@ -620,20 +662,20 @@ export interface IGithubComCaddyserverCaddyV2ModulesLoggingCookieFilterAction {
  * will be applied. */
 export interface IGithubComCaddyserverCaddyV2ModulesLoggingCookieFilter {
   actions?: Array<IGithubComCaddyserverCaddyV2ModulesLoggingCookieFilterAction>;
-  [key: string]: any;
+[key: string]: any;
 }
 
-/**
+
+
+  /**
    * DeleteFilter is a Caddy log field filter that
 deletes the field.
 
    */
-export type IGithubComCaddyserverCaddyV2ModulesLoggingDeleteFilter = Record<
-  string,
-  any
->;
+export type IGithubComCaddyserverCaddyV2ModulesLoggingDeleteFilter = Record<string, any>;
 
-/**
+
+  /**
    * HashFilter is a Caddy log field filter that
 replaces the field with the initial 4 bytes
 of the SHA-256 hash of the content. Operates
@@ -641,10 +683,8 @@ on string fields, or on arrays of strings
 where each string is hashed.
 
    */
-export type IGithubComCaddyserverCaddyV2ModulesLoggingHashFilter = Record<
-  string,
-  any
->;
+export type IGithubComCaddyserverCaddyV2ModulesLoggingHashFilter = Record<string, any>;
+
 
 /**
  * IPMaskFilter is a Caddy log field filter that
@@ -653,29 +693,33 @@ export type IGithubComCaddyserverCaddyV2ModulesLoggingHashFilter = Record<
  * list of IP addresses, where all of the values
  * will be masked. */
 export interface IGithubComCaddyserverCaddyV2ModulesLoggingIpMaskFilter {
-  /**
-   * The IPv4 mask, as an subnet size CIDR. */
+/**
+ * The IPv4 mask, as an subnet size CIDR. */
   ipv4_cidr?: number;
-  /**
-   * The IPv6 mask, as an subnet size CIDR. */
+/**
+ * The IPv6 mask, as an subnet size CIDR. */
   ipv6_cidr?: number;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * A list of actions to apply to the query parameters of the URL. */
 export interface IGithubComCaddyserverCaddyV2ModulesLoggingQueryFilterAction {
-  /**
-   * `replace` to replace the value(s) associated with the parameter(s), `hash` to replace them with the 4 initial bytes of the SHA-256 of their content or `delete` to remove them entirely. */
+/**
+ * `replace` to replace the value(s) associated with the parameter(s), `hash` to replace them with the 4 initial bytes of the SHA-256 of their content or `delete` to remove them entirely. */
   type?: string;
-  /**
-   * The name of the query parameter. */
+/**
+ * The name of the query parameter. */
   parameter?: string;
-  /**
-   * The value to use as replacement if the action is `replace`. */
+/**
+ * The value to use as replacement if the action is `replace`. */
   value?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * QueryFilter is a Caddy log field filter that filters
@@ -686,8 +730,10 @@ export interface IGithubComCaddyserverCaddyV2ModulesLoggingQueryFilterAction {
  * such as OAuth access tokens, session IDs, magic link tokens, etc. */
 export interface IGithubComCaddyserverCaddyV2ModulesLoggingQueryFilter {
   actions?: Array<IGithubComCaddyserverCaddyV2ModulesLoggingQueryFilterAction>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * RegexpFilter is a Caddy log field filter that
@@ -696,57 +742,64 @@ export interface IGithubComCaddyserverCaddyV2ModulesLoggingQueryFilter {
  * array of strings, each of them will have the
  * regexp replacement applied. */
 export interface IGithubComCaddyserverCaddyV2ModulesLoggingRegexpFilter {
-  /**
-   * The regular expression pattern defining what to replace. */
+/**
+ * The regular expression pattern defining what to replace. */
   regexp?: string;
-  /**
-   * The value to use as replacement */
+/**
+ * The value to use as replacement */
   value?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * RenameFilter is a Caddy log field filter that
  * renames the field's key with the indicated name. */
 export interface IGithubComCaddyserverCaddyV2ModulesLoggingRenameFilter {
   name?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * ReplaceFilter is a Caddy log field filter that
  * replaces the field with the indicated string. */
 export interface IGithubComCaddyserverCaddyV2ModulesLoggingReplaceFilter {
   value?: string;
-  [key: string]: any;
+[key: string]: any;
 }
 
-/**
+
+
+  /**
    * BasicAuthFilter is a Caddy log field filter that replaces the a base64 encoded authorization
 header with just the user name.
 
    */
-export type IGithubComUeffelCaddyBasicAuthFilterBasicAuthFilter = Record<
-  string,
-  any
->;
+export type IGithubComUeffelCaddyBasicAuthFilterBasicAuthFilter = Record<string, any>;
 
-/**
+
+  /**
    * TLSCipherFilter is Caddy log field filter that replaces the numeric TLS cipher_suite value with
 the string representation.
 
    */
 export type IGithubComUeffelCaddyTlsFormatTlsCipherFilter = Record<string, any>;
 
+
 /**
  * TLSVersionFilter is a Caddy log field filter that replaces the numeric TLS version with the
  * string version and optionally adds a prefix. */
 export interface IGithubComUeffelCaddyTlsFormatTlsVersionFilter {
-  /**
-   * Prefix is a constant string that will be added before the replaced version string. */
+/**
+ * Prefix is a constant string that will be added before the replaced version string. */
   prefix?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 export interface IFilter {
   cookie?: IGithubComCaddyserverCaddyV2ModulesLoggingCookieFilter;
@@ -763,26 +816,29 @@ export interface IFilter {
   [key: string]: any;
 }
 
+
 /**
  * FilterEncoder can filter (manipulate) fields on
  * log entries before they are actually encoded by
  * an underlying encoder. */
 export interface IGithubComCaddyserverCaddyV2ModulesLoggingFilterEncoder {
-  wrap: IEncoders;
-  /**
-   * A map of field names to their filters. Note that this
-   * is not a module map; the keys are field names.
-   * Nested fields can be referenced by representing a
-   * layer of nesting with `>`. In other words, for an
-   * object like `{"a":{"b":0}}`, the inner field can
-   * be referenced as `a>b`.
-   * The following fields are fundamental to the log and
-   * cannot be filtered because they are added by the
-   * underlying logging library as special cases: ts,
-   * level, logger, and msg. */
-  fields: IFilter;
-  [key: string]: any;
+  wrap?: IEncoders;
+/**
+ * A map of field names to their filters. Note that this
+ * is not a module map; the keys are field names.
+ * Nested fields can be referenced by representing a
+ * layer of nesting with `>`. In other words, for an
+ * object like `{"a":{"b":0}}`, the inner field can
+ * be referenced as `a>b`.
+ * The following fields are fundamental to the log and
+ * cannot be filtered because they are added by the
+ * underlying logging library as special cases: ts,
+ * level, logger, and msg. */
+  fields?: IFilter;
+[key: string]: any;
 }
+
+
 
 /**
  * JSONEncoder encodes entries as JSON. */
@@ -794,21 +850,23 @@ export interface IGithubComCaddyserverCaddyV2ModulesLoggingJsonEncoder {
   caller_key?: string;
   stacktrace_key?: string;
   line_ending?: string;
-  /**
-   * Recognized values are: unix_seconds_float, unix_milli_float, unix_nano, iso8601, rfc3339, rfc3339_nano, wall, wall_milli, wall_nano, common_log.
-   * The value may also be custom format per the Go `time` package layout specification, as described [here](https://pkg.go.dev/time#pkg-constants). */
+/**
+ * Recognized values are: unix_seconds_float, unix_milli_float, unix_nano, iso8601, rfc3339, rfc3339_nano, wall, wall_milli, wall_nano, common_log.
+ * The value may also be custom format per the Go `time` package layout specification, as described [here](https://pkg.go.dev/time#pkg-constants). */
   time_format?: string;
   time_local?: boolean;
-  /**
-   * Recognized values are: s/second/seconds, ns/nano/nanos, ms/milli/millis, string.
-   * Empty and unrecognized value default to seconds. */
+/**
+ * Recognized values are: s/second/seconds, ns/nano/nanos, ms/milli/millis, string.
+ * Empty and unrecognized value default to seconds. */
   duration_format?: string;
-  /**
-   * Recognized values are: lower, upper, color.
-   * Empty and unrecognized value default to lower. */
+/**
+ * Recognized values are: lower, upper, color.
+ * Empty and unrecognized value default to lower. */
   level_format?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * LogfmtEncoder encodes log entries as logfmt:
@@ -829,8 +887,10 @@ export interface IGithubComCaddyserverCaddyV2ModulesLoggingLogfmtEncoder {
   time_format?: string;
   duration_format?: string;
   level_format?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * SingleFieldEncoder writes a log entry that consists entirely
@@ -839,9 +899,11 @@ export interface IGithubComCaddyserverCaddyV2ModulesLoggingLogfmtEncoder {
  * single field in the structured log entry. */
 export interface IGithubComCaddyserverCaddyV2ModulesLoggingSingleFieldEncoder {
   field?: string;
-  fallback: IEncoders;
-  [key: string]: any;
+  fallback?: IEncoders;
+[key: string]: any;
 }
+
+
 
 export interface IGithubComCaddyserverTransformEncoderCompat {
   message_key?: string;
@@ -856,8 +918,10 @@ export interface IGithubComCaddyserverTransformEncoderCompat {
   level_format?: string;
   template?: string;
   placeholder?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * TransformEncoder allows the user to provide custom template for log prints. The
@@ -876,8 +940,10 @@ export interface IGithubComCaddyserverTransformEncoderTransformEncoder {
   level_format?: string;
   template?: string;
   placeholder?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 export interface IGithubComFirecowCaddyElasticEncoderElasticEncoder {
   message_key?: string;
@@ -890,19 +956,13 @@ export interface IGithubComFirecowCaddyElasticEncoderElasticEncoder {
   time_format?: string;
   duration_format?: string;
   level_format?: string;
-  [key: string]: any;
+[key: string]: any;
 }
 
-export type IEncoders =
-  | IGithubComCaddyserverCaddyV2ModulesLoggingAppendEncoder
-  | IGithubComCaddyserverCaddyV2ModulesLoggingConsoleEncoder
-  | IGithubComCaddyserverCaddyV2ModulesLoggingFilterEncoder
-  | IGithubComCaddyserverCaddyV2ModulesLoggingJsonEncoder
-  | IGithubComCaddyserverCaddyV2ModulesLoggingLogfmtEncoder
-  | IGithubComCaddyserverCaddyV2ModulesLoggingSingleFieldEncoder
-  | IGithubComCaddyserverTransformEncoderCompat
-  | IGithubComCaddyserverTransformEncoderTransformEncoder
-  | IGithubComFirecowCaddyElasticEncoderElasticEncoder;
+
+
+export type IEncoders = IGithubComCaddyserverCaddyV2ModulesLoggingAppendEncoder | IGithubComCaddyserverCaddyV2ModulesLoggingConsoleEncoder | IGithubComCaddyserverCaddyV2ModulesLoggingFilterEncoder | IGithubComCaddyserverCaddyV2ModulesLoggingJsonEncoder | IGithubComCaddyserverCaddyV2ModulesLoggingLogfmtEncoder | IGithubComCaddyserverCaddyV2ModulesLoggingSingleFieldEncoder | IGithubComCaddyserverTransformEncoderCompat | IGithubComCaddyserverTransformEncoderTransformEncoder | IGithubComFirecowCaddyElasticEncoderElasticEncoder;
+
 
 /**
  * Sampling configures log entry sampling. If enabled,
@@ -911,23 +971,25 @@ export type IEncoders =
  * servers.
  * LogSampling configures log entry sampling. */
 export interface IGithubComCaddyserverCaddyV2LogSampling {
-  /**
-   * The window over which to conduct sampling.
-   * A Duration represents the elapsed time between two instants
-   * as an int64 nanosecond count. The representation limits the
-   * largest representable duration to approximately 290 years. */
+/**
+ * The window over which to conduct sampling.
+ * A Duration represents the elapsed time between two instants
+ * as an int64 nanosecond count. The representation limits the
+ * largest representable duration to approximately 290 years. */
   interval?: ITimeDuration;
-  /**
-   * Log this many entries within a given level and
-   * message for each interval. */
+/**
+ * Log this many entries within a given level and
+ * message for each interval. */
   first?: number;
-  /**
-   * If more entries with the same level and message
-   * are seen during the same interval, keep one in
-   * this many entries until the end of the interval. */
+/**
+ * If more entries with the same level and message
+ * are seen during the same interval, keep one in
+ * this many entries until the end of the interval. */
   thereafter?: number;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Logs are your logs, keyed by an arbitrary name of your
@@ -943,19 +1005,21 @@ export interface IGithubComCaddyserverCaddyV2LogSampling {
  * exclusive, and longer namespaces have priority. If neither
  * are populated, all logs are emitted. */
 export interface IGithubComCaddyserverCaddyV2CustomLog {
-  writer: IWriters;
-  /**
-   * The encoder is how the log entries are formatted or encoded. */
+  writer?: IWriters;
+/**
+ * The encoder is how the log entries are formatted or encoded. */
   encoder?: IEncoders;
-  /**
-   * Level is the minimum level to emit, and is inclusive.
-   * Possible levels: DEBUG, INFO, WARN, ERROR, PANIC, and FATAL */
+/**
+ * Level is the minimum level to emit, and is inclusive.
+ * Possible levels: DEBUG, INFO, WARN, ERROR, PANIC, and FATAL */
   level?: string;
   sampling?: IGithubComCaddyserverCaddyV2LogSampling;
   include?: Array<string>;
   exclude?: Array<string>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Logging facilitates logging within Caddy. The default log is
@@ -979,47 +1043,53 @@ export interface IGithubComCaddyserverCaddyV2CustomLog {
 export interface IGithubComCaddyserverCaddyV2Logging {
   sink?: IGithubComCaddyserverCaddyV2StandardLibLog;
   logs?: Record<string, IGithubComCaddyserverCaddyV2CustomLog>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Cmd is the module configuration */
 export interface IGithubComAbiosoftCaddyExecCmd {
-  /**
-   * The command to run. */
+/**
+ * The command to run. */
   command?: string;
   args?: Array<string>;
-  /**
-   * The directory to run the command from.
-   * Defaults to current directory. */
+/**
+ * The directory to run the command from.
+ * Defaults to current directory. */
   directory?: string;
-  /**
-   * If the command should run in the foreground.
-   * By default, commands run in the background and doesn't
-   * affect Caddy.
-   * Setting this makes the command run in the foreground.
-   * Note that failure of a startup command running in the
-   * foreground may prevent Caddy from starting. */
+/**
+ * If the command should run in the foreground.
+ * By default, commands run in the background and doesn't
+ * affect Caddy.
+ * Setting this makes the command run in the foreground.
+ * Note that failure of a startup command running in the
+ * foreground may prevent Caddy from starting. */
   foreground?: boolean;
-  /**
-   * Timeout for the command. The command will be killed
-   * after timeout has elapsed if it is still running.
-   * Defaults to 10s. */
+/**
+ * Timeout for the command. The command will be killed
+ * after timeout has elapsed if it is still running.
+ * Defaults to 10s. */
   timeout?: string;
   at?: Array<string>;
-  log: IWriters;
-  err_log: IWriters;
-  [key: string]: any;
+  log?: IWriters;
+  err_log?: IWriters;
+[key: string]: any;
 }
+
+
 
 /**
  * App is top level module that runs shell commands. */
 export interface IGithubComAbiosoftCaddyExecApp {
   commands?: Array<IGithubComAbiosoftCaddyExecCmd>;
-  [key: string]: any;
+[key: string]: any;
 }
 
-/**
+
+
+  /**
    * reconnect is a module that provides an additional "reconnect" network type
 that can be used to reconnect to a [network address] if the initial
 connection fails. Caddy will bind to the address as soon as it is available.
@@ -1053,56 +1123,63 @@ might not work as intended.
    */
 export type IGithubComAnapayaCaddyReconnectReconnect = Record<string, any>;
 
+
 /**
  * RedirectStdout is the file where Command stdout is written. Use "stdout" to redirect to caddy stdout. */
 export interface IGithubComBaldinofCaddySupervisorOutputTarget {
-  /**
-   * Type is how the output should be redirected
-   * Valid values:
-   *   - **null**: discard outputs
-   *   - **stdout**: redirect output to caddy process stdout
-   *   - **stderr**: redirect output to caddy process stderr
-   *   - **file**: redirect output to a file, if selected File field is required */
+/**
+ * Type is how the output should be redirected
+ * Valid values:
+ *   - **null**: discard outputs
+ *   - **stdout**: redirect output to caddy process stdout
+ *   - **stderr**: redirect output to caddy process stderr
+ *   - **file**: redirect output to a file, if selected File field is required */
   type?: string;
-  /**
-   * File is the file where outputs should be written. This is used only when Type is "file". */
+/**
+ * File is the file where outputs should be written. This is used only when Type is "file". */
   file?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Definition is the configuration for process to supervise */
 export interface IGithubComBaldinofCaddySupervisorDefinition {
   command?: Array<string>;
-  /**
-   * Replicas control how many instances of Command should run. */
+/**
+ * Replicas control how many instances of Command should run. */
   replicas?: number;
-  /**
-   * Dir defines the working directory the command should be executed in.
-   * Supports template.
-   * Default: current working dir */
+/**
+ * Dir defines the working directory the command should be executed in.
+ * Supports template.
+ * Default: current working dir */
   dir?: string;
   env?: Record<string, string>;
   redirect_stdout?: IGithubComBaldinofCaddySupervisorOutputTarget;
-  redirect_stderr: IGithubComBaldinofCaddySupervisorOutputTarget;
-  /**
-   * RestartPolicy define under which conditions the command should be restarted after exit.
-   * Valid values:
-   *  - **never**: do not restart the command
-   *  - **on_failure**: restart if exit code is not 0
-   *  - **always**: always restart
-   * RestartPolicy determines when a supervised process should be restarted */
+  redirect_stderr?: IGithubComBaldinofCaddySupervisorOutputTarget;
+/**
+ * RestartPolicy define under which conditions the command should be restarted after exit.
+ * Valid values:
+ *  - **never**: do not restart the command
+ *  - **on_failure**: restart if exit code is not 0
+ *  - **always**: always restart
+ * RestartPolicy determines when a supervised process should be restarted */
   restart_policy?: string;
-  /**
-   * TerminationGracePeriod defines the amount of time to wait for Command graceful termination before killing it. Ex: 10s */
+/**
+ * TerminationGracePeriod defines the amount of time to wait for Command graceful termination before killing it. Ex: 10s */
   termination_grace_period?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 export interface IGithubComBaldinofCaddySupervisorApp {
   supervise?: Array<IGithubComBaldinofCaddySupervisorDefinition>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Subscriptions bind handlers to one or more events
@@ -1114,8 +1191,10 @@ export interface IGithubComCaddyserverCaddyV2ModulesCaddyeventsSubscription {
   events?: Array<string>;
   modules?: Array<string>;
   handlers?: Array<unknown>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * App implements a global eventing system within Caddy.
@@ -1154,8 +1233,10 @@ export interface IGithubComCaddyserverCaddyV2ModulesCaddyeventsSubscription {
  * subject to change. Pay attention to release notes. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddyeventsApp {
   subscriptions?: Array<IGithubComCaddyserverCaddyV2ModulesCaddyeventsSubscription>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Routes describes how this server will handle requests.
@@ -1172,23 +1253,25 @@ export interface IGithubComCaddyserverCaddyV2ModulesCaddyeventsApp {
  * parameters which customize the handling of HTTP requests
  * in a highly flexible and performant manner. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddyhttpRoute {
-  /**
-   * Group is an optional name for a group to which this
-   * route belongs. Grouping a route makes it mutually
-   * exclusive with others in its group; if a route belongs
-   * to a group, only the first matching route in that group
-   * will be executed. */
+/**
+ * Group is an optional name for a group to which this
+ * route belongs. Grouping a route makes it mutually
+ * exclusive with others in its group; if a route belongs
+ * to a group, only the first matching route in that group
+ * will be executed. */
   group?: string;
-  /**
-   * RawMatcherSets is a group of matcher sets
-   * in their raw, JSON form. */
+/**
+ * RawMatcherSets is a group of matcher sets
+ * in their raw, JSON form. */
   match?: Array<unknown>;
   handle?: Array<unknown>;
-  /**
-   * If true, no more routes will be executed after this one. */
+/**
+ * If true, no more routes will be executed after this one. */
   terminal?: boolean;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Errors is how this server will handle errors returned from any
@@ -1200,20 +1283,24 @@ export interface IGithubComCaddyserverCaddyV2ModulesCaddyhttpRoute {
  * HTTPErrorConfig determines how to handle errors
  * from the HTTP handlers. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddyhttpHttpErrorConfig {
-  /**
-   * RouteList is a list of server routes that can
-   * create a middleware chain. */
+/**
+ * RouteList is a list of server routes that can
+ * create a middleware chain. */
   routes?: Array<IGithubComCaddyserverCaddyV2ModulesCaddyhttpRoute>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * MatchLocalIP matches based on the IP address of the interface
  * receiving the connection. Specific IPs or CIDR ranges can be specified. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsMatchLocalIp {
   ranges?: Array<string>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * MatchRemoteIP matches based on the remote IP of the
@@ -1223,8 +1310,10 @@ export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsMatchLocalIp {
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsMatchRemoteIp {
   ranges?: Array<string>;
   not_ranges?: Array<string>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 export interface IHandshakeMatch {
   local_ip?: IGithubComCaddyserverCaddyV2ModulesCaddytlsMatchLocalIp;
@@ -1234,22 +1323,22 @@ export interface IHandshakeMatch {
   [key: string]: any;
 }
 
-/**
+
+  /**
    * The certificate must have one of these serial numbers.
 
 
 bigInt is a big.Int type that interops with JSON encodings as a string.
    */
-export type IGithubComCaddyserverCaddyV2ModulesCaddytlsBigInt = Record<
-  string,
-  any
->;
+export type IGithubComCaddyserverCaddyV2ModulesCaddytlsBigInt = Record<string, any>;
+
 
 /**
  * The certificate must use this public key algorithm.
  * PublicKeyAlgorithm is a JSON-unmarshalable wrapper type. */
-export type IGithubComCaddyserverCaddyV2ModulesCaddytlsPublicKeyAlgorithm =
-  number;
+export type IGithubComCaddyserverCaddyV2ModulesCaddytlsPublicKeyAlgorithm = number;
+
+
 
 /**
  * How to choose a certificate if more than one matched
@@ -1261,21 +1350,25 @@ export type IGithubComCaddyserverCaddyV2ModulesCaddytlsPublicKeyAlgorithm =
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsCustomCertSelectionPolicy {
   serial_number?: Array<IGithubComCaddyserverCaddyV2ModulesCaddytlsBigInt>;
   subject_organization?: Array<string>;
-  /**
-   * The certificate must use this public key algorithm.
-   * PublicKeyAlgorithm is a JSON-unmarshalable wrapper type. */
+/**
+ * The certificate must use this public key algorithm.
+ * PublicKeyAlgorithm is a JSON-unmarshalable wrapper type. */
   public_key_algorithm?: IGithubComCaddyserverCaddyV2ModulesCaddytlsPublicKeyAlgorithm;
   any_tag?: Array<string>;
   all_tags?: Array<string>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * FileCAPool generates trusted root certificates pool from the designated DER and PEM file */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsFileCaPool {
   pem_files?: Array<string>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Customize the TLS connection knobs to used during the HTTP call
@@ -1283,39 +1376,41 @@ export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsFileCaPool {
  * transport/client.
  * copied from with minor modifications: modules/caddyhttp/reverseproxy/httptransport.go */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsTlsConfig {
-  ca: ISource;
-  /**
-   * If true, TLS verification of server certificates will be disabled.
-   * This is insecure and may be removed in the future. Do not use this
-   * option except in testing or local development environments. */
+  ca?: ISource;
+/**
+ * If true, TLS verification of server certificates will be disabled.
+ * This is insecure and may be removed in the future. Do not use this
+ * option except in testing or local development environments. */
   insecure_skip_verify?: boolean;
-  /**
-   * The duration to allow a TLS handshake to a server. Default: No timeout.
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * The duration to allow a TLS handshake to a server. Default: No timeout.
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   handshake_timeout?: IGithubComCaddyserverCaddyV2Duration;
-  /**
-   * The server name used when verifying the certificate received in the TLS
-   * handshake. By default, this will use the upstream address' host part.
-   * You only need to override this if your upstream address does not match the
-   * certificate the upstream is likely to use. For example if the upstream
-   * address is an IP address, then you would need to configure this to the
-   * hostname being served by the upstream server. Currently, this does not
-   * support placeholders because the TLS config is not provisioned on each
-   * connection, so a static value must be used. */
+/**
+ * The server name used when verifying the certificate received in the TLS
+ * handshake. By default, this will use the upstream address' host part.
+ * You only need to override this if your upstream address does not match the
+ * certificate the upstream is likely to use. For example if the upstream
+ * address is an IP address, then you would need to configure this to the
+ * hostname being served by the upstream server. Currently, this does not
+ * support placeholders because the TLS config is not provisioned on each
+ * connection, so a static value must be used. */
   server_name?: string;
-  /**
-   * TLS renegotiation level. TLS renegotiation is the act of performing
-   * subsequent handshakes on a connection after the first.
-   * The level can be:
-   *  - "never": (the default) disables renegotiation.
-   *  - "once": allows a remote server to request renegotiation once per connection.
-   *  - "freely": allows a remote server to repeatedly request renegotiation. */
+/**
+ * TLS renegotiation level. TLS renegotiation is the act of performing
+ * subsequent handshakes on a connection after the first.
+ * The level can be:
+ *  - "never": (the default) disables renegotiation.
+ *  - "once": allows a remote server to request renegotiation once per connection.
+ *  - "freely": allows a remote server to repeatedly request renegotiation. */
   renegotiation?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * The HTTPCertPool fetches the trusted root certificates from HTTP(S)
@@ -1325,16 +1420,20 @@ export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsTlsConfig {
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsHttpCertPool {
   endpoints?: Array<string>;
   tls?: IGithubComCaddyserverCaddyV2ModulesCaddytlsTlsConfig;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * InlineCAPool is a certificate authority pool provider coming from
  * a DER-encoded certificates in the config */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsInlineCaPool {
   trusted_ca_certs?: Array<string>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * LazyCertPool defers the generation of the certificate pool from the
@@ -1346,73 +1445,77 @@ export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsInlineCaPool {
  * to ensure the resources are available if `EagerValidation`/`eager_validation`
  * is set to `true`. The module also incurs performance cost at every demand. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsLazyCertPool {
-  ca: ISource;
-  /**
-   * Whether the validation step should try to load and provision the guest module to validate
-   * the correctness of the configuration. Depeneding on the type of the guest module,
-   * the resources may not be available at validation time. It is the
-   * operator's responsibility to ensure the resources are available if `EagerValidation`/`eager_validation`
-   * is set to `true`. */
+  ca?: ISource;
+/**
+ * Whether the validation step should try to load and provision the guest module to validate
+ * the correctness of the configuration. Depeneding on the type of the guest module,
+ * the resources may not be available at validation time. It is the
+ * operator's responsibility to ensure the resources are available if `EagerValidation`/`eager_validation`
+ * is set to `true`. */
   eager_validation?: boolean;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * PKIIntermediateCAPool extracts the trusted intermediate certificates from Caddy's native 'pki' app */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsPkiIntermediateCaPool {
   authority?: Array<string>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * PKIRootCAPool extracts the trusted root certificates from Caddy's native 'pki' app */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsPkiRootCaPool {
   authority?: Array<string>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * StoragePool extracts the trusted certificates root from Caddy storage */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsStoragePool {
-  storage: IStorage;
+  storage?: IStorage;
   pem_keys?: Array<string>;
-  [key: string]: any;
+[key: string]: any;
 }
 
-export type ISource =
-  | IGithubComCaddyserverCaddyV2ModulesCaddytlsFileCaPool
-  | IGithubComCaddyserverCaddyV2ModulesCaddytlsHttpCertPool
-  | IGithubComCaddyserverCaddyV2ModulesCaddytlsInlineCaPool
-  | IGithubComCaddyserverCaddyV2ModulesCaddytlsLazyCertPool
-  | IGithubComCaddyserverCaddyV2ModulesCaddytlsPkiIntermediateCaPool
-  | IGithubComCaddyserverCaddyV2ModulesCaddytlsPkiRootCaPool
-  | IGithubComCaddyserverCaddyV2ModulesCaddytlsStoragePool;
+
+
+export type ISource = IGithubComCaddyserverCaddyV2ModulesCaddytlsFileCaPool | IGithubComCaddyserverCaddyV2ModulesCaddytlsHttpCertPool | IGithubComCaddyserverCaddyV2ModulesCaddytlsInlineCaPool | IGithubComCaddyserverCaddyV2ModulesCaddytlsLazyCertPool | IGithubComCaddyserverCaddyV2ModulesCaddytlsPkiIntermediateCaPool | IGithubComCaddyserverCaddyV2ModulesCaddytlsPkiRootCaPool | IGithubComCaddyserverCaddyV2ModulesCaddytlsStoragePool;
+
 
 /**
  * Enables and configures TLS client authentication.
  * ClientAuthentication configures TLS client auth. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsClientAuthentication {
-  /**
-   * Certificate authority module which provides the certificate pool of trusted certificates */
+/**
+ * Certificate authority module which provides the certificate pool of trusted certificates */
   ca?: ISource;
   trusted_ca_certs?: Array<string>;
   trusted_ca_certs_pem_files?: Array<string>;
   trusted_leaf_certs?: Array<string>;
   verifiers?: Array<unknown>;
-  /**
-   * The mode for authenticating the client. Allowed values are:
-   * Mode | Description
-   * -----|---------------
-   * `request` | Ask clients for a certificate, but allow even if there isn't one; do not verify it
-   * `require` | Require clients to present a certificate, but do not verify it
-   * `verify_if_given` | Ask clients for a certificate; allow even if there isn't one, but verify it if there is
-   * `require_and_verify` | Require clients to present a valid certificate that is verified
-   * The default mode is `require_and_verify` if any
-   * TrustedCACerts or TrustedCACertPEMFiles or TrustedLeafCerts
-   * are provided; otherwise, the default mode is `require`. */
+/**
+ * The mode for authenticating the client. Allowed values are:
+ * Mode | Description
+ * -----|---------------
+ * `request` | Ask clients for a certificate, but allow even if there isn't one; do not verify it
+ * `require` | Require clients to present a certificate, but do not verify it
+ * `verify_if_given` | Ask clients for a certificate; allow even if there isn't one, but verify it if there is
+ * `require_and_verify` | Require clients to present a valid certificate that is verified
+ * The default mode is `require_and_verify` if any
+ * TrustedCACerts or TrustedCACertPEMFiles or TrustedLeafCerts
+ * are provided; otherwise, the default mode is `require`. */
   mode?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * How to handle TLS connections. At least one policy is
@@ -1421,56 +1524,58 @@ export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsClientAuthentication
  * ConnectionPolicy specifies the logic for handling a TLS handshake.
  * An empty policy is valid; safe and sensible defaults will be used. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsConnectionPolicy {
-  /**
-   * How to match this policy with a TLS ClientHello. If
-   * this policy is the first to match, it will be used.
-   * ModuleMap is a map that can contain multiple modules,
-   * where the map key is the module's name. (The namespace
-   * is usually read from an associated field's struct tag.)
-   * Because the module's name is given as the key in a
-   * module map, the name does not have to be given in the
-   * json.RawMessage. */
-  match: IHandshakeMatch;
+/**
+ * How to match this policy with a TLS ClientHello. If
+ * this policy is the first to match, it will be used.
+ * ModuleMap is a map that can contain multiple modules,
+ * where the map key is the module's name. (The namespace
+ * is usually read from an associated field's struct tag.)
+ * Because the module's name is given as the key in a
+ * module map, the name does not have to be given in the
+ * json.RawMessage. */
+  match?: IHandshakeMatch;
   certificate_selection?: IGithubComCaddyserverCaddyV2ModulesCaddytlsCustomCertSelectionPolicy;
   cipher_suites?: Array<string>;
   curves?: Array<string>;
   alpn?: Array<string>;
-  /**
-   * Minimum TLS protocol version to allow. Default: `tls1.2` */
+/**
+ * Minimum TLS protocol version to allow. Default: `tls1.2` */
   protocol_min?: string;
-  /**
-   * Maximum TLS protocol version to allow. Default: `tls1.3` */
+/**
+ * Maximum TLS protocol version to allow. Default: `tls1.3` */
   protocol_max?: string;
-  /**
-   * Reject TLS connections. EXPERIMENTAL: May change. */
+/**
+ * Reject TLS connections. EXPERIMENTAL: May change. */
   drop?: boolean;
   client_authentication?: IGithubComCaddyserverCaddyV2ModulesCaddytlsClientAuthentication;
-  /**
-   * DefaultSNI becomes the ServerName in a ClientHello if there
-   * is no policy configured for the empty SNI value. */
+/**
+ * DefaultSNI becomes the ServerName in a ClientHello if there
+ * is no policy configured for the empty SNI value. */
   default_sni?: string;
-  /**
-   * FallbackSNI becomes the ServerName in a ClientHello if
-   * the original ServerName doesn't match any certificates
-   * in the cache. The use cases for this are very niche;
-   * typically if a client is a CDN and passes through the
-   * ServerName of the downstream handshake but can accept
-   * a certificate with the origin's hostname instead, then
-   * you would set this to your origin's hostname. Note that
-   * Caddy must be managing a certificate for this name.
-   * This feature is EXPERIMENTAL and subject to change or removal. */
+/**
+ * FallbackSNI becomes the ServerName in a ClientHello if
+ * the original ServerName doesn't match any certificates
+ * in the cache. The use cases for this are very niche;
+ * typically if a client is a CDN and passes through the
+ * ServerName of the downstream handshake but can accept
+ * a certificate with the origin's hostname instead, then
+ * you would set this to your origin's hostname. Note that
+ * Caddy must be managing a certificate for this name.
+ * This feature is EXPERIMENTAL and subject to change or removal. */
   fallback_sni?: string;
-  /**
-   * Also known as "SSLKEYLOGFILE", TLS secrets will be written to
-   * this file in NSS key log format which can then be parsed by
-   * Wireshark and other tools. This is INSECURE as it allows other
-   * programs or tools to decrypt TLS connections. However, this
-   * capability can be useful for debugging and troubleshooting.
-   * **ENABLING THIS LOG COMPROMISES SECURITY!**
-   * This feature is EXPERIMENTAL and subject to change or removal. */
+/**
+ * Also known as "SSLKEYLOGFILE", TLS secrets will be written to
+ * this file in NSS key log format which can then be parsed by
+ * Wireshark and other tools. This is INSECURE as it allows other
+ * programs or tools to decrypt TLS connections. However, this
+ * capability can be useful for debugging and troubleshooting.
+ * **ENABLING THIS LOG COMPROMISES SECURITY!**
+ * This feature is EXPERIMENTAL and subject to change or removal. */
   insecure_secrets_log?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * AutoHTTPS configures or disables automatic HTTPS within this server.
@@ -1482,141 +1587,151 @@ export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsConnectionPolicy {
  * HTTPS is enabled automatically and by default when
  * qualifying hostnames are available from the config. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddyhttpAutoHttpsConfig {
-  /**
-   * If true, automatic HTTPS will be entirely disabled,
-   * including certificate management and redirects. */
+/**
+ * If true, automatic HTTPS will be entirely disabled,
+ * including certificate management and redirects. */
   disable?: boolean;
-  /**
-   * If true, only automatic HTTP->HTTPS redirects will
-   * be disabled, but other auto-HTTPS features will
-   * remain enabled. */
+/**
+ * If true, only automatic HTTP->HTTPS redirects will
+ * be disabled, but other auto-HTTPS features will
+ * remain enabled. */
   disable_redirects?: boolean;
-  /**
-   * If true, automatic certificate management will be
-   * disabled, but other auto-HTTPS features will
-   * remain enabled. */
+/**
+ * If true, automatic certificate management will be
+ * disabled, but other auto-HTTPS features will
+ * remain enabled. */
   disable_certificates?: boolean;
   skip?: Array<string>;
   skip_certificates?: Array<string>;
-  /**
-   * By default, automatic HTTPS will obtain and renew
-   * certificates for qualifying hostnames. However, if
-   * a certificate with a matching SAN is already loaded
-   * into the cache, certificate management will not be
-   * enabled. To force automated certificate management
-   * regardless of loaded certificates, set this to true. */
+/**
+ * By default, automatic HTTPS will obtain and renew
+ * certificates for qualifying hostnames. However, if
+ * a certificate with a matching SAN is already loaded
+ * into the cache, certificate management will not be
+ * enabled. To force automated certificate management
+ * regardless of loaded certificates, set this to true. */
   ignore_loaded_certificates?: boolean;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * CloudflareIPRange provides a range of IP address prefixes (CIDRs) retrieved from cloudflare. */
 export interface IGithubComWeidiDengCaddyCloudflareIpCloudflareIpRange {
-  /**
-   * refresh Interval
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * refresh Interval
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   interval?: IGithubComCaddyserverCaddyV2Duration;
-  /**
-   * request Timeout
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * request Timeout
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   timeout?: IGithubComCaddyserverCaddyV2Duration;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * StaticIPRange provides a static range of IP address prefixes (CIDRs). */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddyhttpStaticIpRange {
   ranges?: Array<string>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * BunnyIPRange provides a range of IP address prefixes (CIDRs) retrieved from https://api.bunny.net/system/edgeserverlist and https://api.bunny.net/system/edgeserverlist/ipv6. */
 export interface IGithubComDigilolnetCaddyBunnyIpBunnyIpRange {
-  /**
-   * refresh Interval
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * refresh Interval
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   interval?: IGithubComCaddyserverCaddyV2Duration;
-  /**
-   * request Timeout
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * request Timeout
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   timeout?: IGithubComCaddyserverCaddyV2Duration;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * This module combines the prefixes returned by several other IP source plugins.
  * In a caddyfile, you can specify these in the block following the "combine" tag. */
 export interface IGithubComFvbommelCaddyCombineIpRangesCombinedIpRange {
   parts?: Array<unknown>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * DNSRange provides a range of IP addresses associated with a DNS name.
  * Each range will only contain a single IP. */
 export interface IGithubComFvbommelCaddyDnsIpRangeDnsRange {
   hosts?: Array<string>;
-  /**
-   * The refresh interval. Defaults to DefaultInterval.
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * The refresh interval. Defaults to DefaultInterval.
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   interval?: IGithubComCaddyserverCaddyV2Duration;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * The module that auto trusted_proxies `AWS CloudFront EDGE servers` from CloudFront.
  * Doc: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/LocationsOfEdgeServers.html
  * Range from: https://d7uri8nf7uskq.cloudfront.net/tools/list-cloudfront-ips */
 export interface IGithubComXcaddypluginsCaddyTrustedCloudfrontCaddyTrustedCloudFront {
-  /**
-   * Interval to update the trusted proxies list. default: 1d
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * Interval to update the trusted proxies list. default: 1d
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   interval?: IGithubComCaddyserverCaddyV2Duration;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * The module auto trusted_proxies `GCP CloudCDN EDGE servers` from `_cloud-eoips.googleusercontent.com` TXT record
  * Doc: https://cloud.google.com/cdn/docs/set-up-external-backend-internet-neg
  * Range from: _cloud-eoips.googleusercontent.com */
 export interface IGithubComXcaddypluginsCaddyTrustedGcpCloudcdnCaddyTrustedGcpCloudCdn {
-  /**
-   * Interval to update the trusted proxies list. default: 1d
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * Interval to update the trusted proxies list. default: 1d
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   interval?: IGithubComCaddyserverCaddyV2Duration;
-  [key: string]: any;
+[key: string]: any;
 }
 
-export type IIpSources =
-  | IGithubComWeidiDengCaddyCloudflareIpCloudflareIpRange
-  | IGithubComCaddyserverCaddyV2ModulesCaddyhttpStaticIpRange
-  | IGithubComDigilolnetCaddyBunnyIpBunnyIpRange
-  | IGithubComFvbommelCaddyCombineIpRangesCombinedIpRange
-  | IGithubComFvbommelCaddyDnsIpRangeDnsRange
-  | IGithubComXcaddypluginsCaddyTrustedCloudfrontCaddyTrustedCloudFront
-  | IGithubComXcaddypluginsCaddyTrustedGcpCloudcdnCaddyTrustedGcpCloudCdn;
+
+
+export type IIpSources = IGithubComWeidiDengCaddyCloudflareIpCloudflareIpRange | IGithubComCaddyserverCaddyV2ModulesCaddyhttpStaticIpRange | IGithubComDigilolnetCaddyBunnyIpBunnyIpRange | IGithubComFvbommelCaddyCombineIpRangesCombinedIpRange | IGithubComFvbommelCaddyDnsIpRangeDnsRange | IGithubComXcaddypluginsCaddyTrustedCloudfrontCaddyTrustedCloudFront | IGithubComXcaddypluginsCaddyTrustedGcpCloudcdnCaddyTrustedGcpCloudCdn;
+
 
 /**
  * Enables access logging and configures how access logs are handled
@@ -1627,35 +1742,37 @@ export type IIpSources =
  * logged to the default logger; logger destinations may be
  * customized per-request-host. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddyhttpServerLogConfig {
-  /**
-   * The default logger name for all logs emitted by this server for
-   * hostnames that are not in the logger_names map. */
+/**
+ * The default logger name for all logs emitted by this server for
+ * hostnames that are not in the logger_names map. */
   default_logger_name?: string;
   logger_names?: Record<string, Array<string>>;
   skip_hosts?: Array<string>;
-  /**
-   * If true, requests to any host not appearing in the
-   * logger_names map will not be logged. */
+/**
+ * If true, requests to any host not appearing in the
+ * logger_names map will not be logged. */
   skip_unmapped_hosts?: boolean;
-  /**
-   * If true, credentials that are otherwise omitted, will be logged.
-   * The definition of credentials is defined by https://fetch.spec.whatwg.org/#credentials,
-   * and this includes some request and response headers, i.e `Cookie`,
-   * `Set-Cookie`, `Authorization`, and `Proxy-Authorization`. */
+/**
+ * If true, credentials that are otherwise omitted, will be logged.
+ * The definition of credentials is defined by https://fetch.spec.whatwg.org/#credentials,
+ * and this includes some request and response headers, i.e `Cookie`,
+ * `Set-Cookie`, `Authorization`, and `Proxy-Authorization`. */
   should_log_credentials?: boolean;
-  /**
-   * Log each individual handler that is invoked.
-   * Requires that the log emit at DEBUG level.
-   * NOTE: This may log the configuration of your
-   * HTTP handler modules; do not enable this in
-   * insecure contexts when there is sensitive
-   * data in the configuration.
-   * EXPERIMENTAL: Subject to change or removal. */
+/**
+ * Log each individual handler that is invoked.
+ * Requires that the log emit at DEBUG level.
+ * NOTE: This may log the configuration of your
+ * HTTP handler modules; do not enable this in
+ * insecure contexts when there is sensitive
+ * data in the configuration.
+ * EXPERIMENTAL: Subject to change or removal. */
   trace?: boolean;
-  [key: string]: any;
+[key: string]: any;
 }
 
-/**
+
+
+  /**
    * If set, metrics observations will be enabled.
 This setting is EXPERIMENTAL and subject to change.
 
@@ -1663,10 +1780,8 @@ This setting is EXPERIMENTAL and subject to change.
 Metrics configures metrics observations.
 EXPERIMENTAL and subject to change or removal.
    */
-export type IGithubComCaddyserverCaddyV2ModulesCaddyhttpMetrics = Record<
-  string,
-  any
->;
+export type IGithubComCaddyserverCaddyV2ModulesCaddyhttpMetrics = Record<string, any>;
+
 
 /**
  * Servers is the list of servers, keyed by arbitrary names chosen
@@ -1676,119 +1791,118 @@ export type IGithubComCaddyserverCaddyV2ModulesCaddyhttpMetrics = Record<
 export interface IGithubComCaddyserverCaddyV2ModulesCaddyhttpServer {
   listen?: Array<string>;
   listener_wrappers?: Array<unknown>;
-  /**
-   * How long to allow a read from a client's upload. Setting this
-   * to a short, non-zero value can mitigate slowloris attacks, but
-   * may also affect legitimately slow clients.
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * How long to allow a read from a client's upload. Setting this
+ * to a short, non-zero value can mitigate slowloris attacks, but
+ * may also affect legitimately slow clients.
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   read_timeout?: IGithubComCaddyserverCaddyV2Duration;
-  /**
-   * ReadHeaderTimeout is like ReadTimeout but for request headers.
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * ReadHeaderTimeout is like ReadTimeout but for request headers.
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   read_header_timeout?: IGithubComCaddyserverCaddyV2Duration;
-  /**
-   * WriteTimeout is how long to allow a write to a client. Note
-   * that setting this to a small value when serving large files
-   * may negatively affect legitimately slow clients.
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * WriteTimeout is how long to allow a write to a client. Note
+ * that setting this to a small value when serving large files
+ * may negatively affect legitimately slow clients.
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   write_timeout?: IGithubComCaddyserverCaddyV2Duration;
-  /**
-   * IdleTimeout is the maximum time to wait for the next request
-   * when keep-alives are enabled. If zero, a default timeout of
-   * 5m is applied to help avoid resource exhaustion.
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * IdleTimeout is the maximum time to wait for the next request
+ * when keep-alives are enabled. If zero, a default timeout of
+ * 5m is applied to help avoid resource exhaustion.
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   idle_timeout?: IGithubComCaddyserverCaddyV2Duration;
-  /**
-   * KeepAliveInterval is the interval at which TCP keepalive packets
-   * are sent to keep the connection alive at the TCP layer when no other
-   * data is being transmitted. The default is 15s.
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * KeepAliveInterval is the interval at which TCP keepalive packets
+ * are sent to keep the connection alive at the TCP layer when no other
+ * data is being transmitted. The default is 15s.
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   keepalive_interval?: IGithubComCaddyserverCaddyV2Duration;
-  /**
-   * MaxHeaderBytes is the maximum size to parse from a client's
-   * HTTP request headers. */
+/**
+ * MaxHeaderBytes is the maximum size to parse from a client's
+ * HTTP request headers. */
   max_header_bytes?: number;
-  /**
-   * Enable full-duplex communication for HTTP/1 requests.
-   * Only has an effect if Caddy was built with Go 1.21 or later.
-   * For HTTP/1 requests, the Go HTTP server by default consumes any
-   * unread portion of the request body before beginning to write the
-   * response, preventing handlers from concurrently reading from the
-   * request and writing the response. Enabling this option disables
-   * this behavior and permits handlers to continue to read from the
-   * request while concurrently writing the response.
-   * For HTTP/2 requests, the Go HTTP server always permits concurrent
-   * reads and responses, so this option has no effect.
-   * Test thoroughly with your HTTP clients, as some older clients may
-   * not support full-duplex HTTP/1 which can cause them to deadlock.
-   * See https://github.com/golang/go/issues/57786 for more info.
-   * TODO: This is an EXPERIMENTAL feature. Subject to change or removal. */
+/**
+ * Enable full-duplex communication for HTTP/1 requests.
+ * Only has an effect if Caddy was built with Go 1.21 or later.
+ * For HTTP/1 requests, the Go HTTP server by default consumes any
+ * unread portion of the request body before beginning to write the
+ * response, preventing handlers from concurrently reading from the
+ * request and writing the response. Enabling this option disables
+ * this behavior and permits handlers to continue to read from the
+ * request while concurrently writing the response.
+ * For HTTP/2 requests, the Go HTTP server always permits concurrent
+ * reads and responses, so this option has no effect.
+ * Test thoroughly with your HTTP clients, as some older clients may
+ * not support full-duplex HTTP/1 which can cause them to deadlock.
+ * See https://github.com/golang/go/issues/57786 for more info.
+ * TODO: This is an EXPERIMENTAL feature. Subject to change or removal. */
   enable_full_duplex?: boolean;
-  /**
-   * RouteList is a list of server routes that can
-   * create a middleware chain. */
+/**
+ * RouteList is a list of server routes that can
+ * create a middleware chain. */
   routes?: Array<IGithubComCaddyserverCaddyV2ModulesCaddyhttpRoute>;
   errors?: IGithubComCaddyserverCaddyV2ModulesCaddyhttpHttpErrorConfig;
-  named_routes?: Record<
-    string,
-    IGithubComCaddyserverCaddyV2ModulesCaddyhttpRoute
-  >;
-  /**
-   * ConnectionPolicies govern the establishment of TLS connections. It is
-   * an ordered group of connection policies; the first matching policy will
-   * be used to configure TLS connections at handshake-time. */
+  named_routes?: Record<string, IGithubComCaddyserverCaddyV2ModulesCaddyhttpRoute>;
+/**
+ * ConnectionPolicies govern the establishment of TLS connections. It is
+ * an ordered group of connection policies; the first matching policy will
+ * be used to configure TLS connections at handshake-time. */
   tls_connection_policies?: Array<IGithubComCaddyserverCaddyV2ModulesCaddytlsConnectionPolicy>;
   automatic_https?: IGithubComCaddyserverCaddyV2ModulesCaddyhttpAutoHttpsConfig;
-  /**
-   * If true, will require that a request's Host header match
-   * the value of the ServerName sent by the client's TLS
-   * ClientHello; often a necessary safeguard when using TLS
-   * client authentication. */
+/**
+ * If true, will require that a request's Host header match
+ * the value of the ServerName sent by the client's TLS
+ * ClientHello; often a necessary safeguard when using TLS
+ * client authentication. */
   strict_sni_host?: boolean;
-  /**
-   * A module which provides a source of IP ranges, from which
-   * requests should be trusted. By default, no proxies are
-   * trusted.
-   * On its own, this configuration will not do anything,
-   * but it can be used as a default set of ranges for
-   * handlers or matchers in routes to pick up, instead
-   * of needing to configure each of them. See the
-   * `reverse_proxy` handler for example, which uses this
-   * to trust sensitive incoming `X-Forwarded-*` headers. */
+/**
+ * A module which provides a source of IP ranges, from which
+ * requests should be trusted. By default, no proxies are
+ * trusted.
+ * On its own, this configuration will not do anything,
+ * but it can be used as a default set of ranges for
+ * handlers or matchers in routes to pick up, instead
+ * of needing to configure each of them. See the
+ * `reverse_proxy` handler for example, which uses this
+ * to trust sensitive incoming `X-Forwarded-*` headers. */
   trusted_proxies?: IIpSources;
   client_ip_headers?: Array<string>;
-  /**
-   * If greater than zero, enables strict ClientIPHeaders
-   * (default X-Forwarded-For) parsing. If enabled, the
-   * ClientIPHeaders will be parsed from right to left, and
-   * the first value that is both valid and doesn't match the
-   * trusted proxy list will be used as client IP. If zero,
-   * the ClientIPHeaders will be parsed from left to right,
-   * and the first value that is a valid IP address will be
-   * used as client IP.
-   * This depends on `trusted_proxies` being configured.
-   * This option is disabled by default. */
+/**
+ * If greater than zero, enables strict ClientIPHeaders
+ * (default X-Forwarded-For) parsing. If enabled, the
+ * ClientIPHeaders will be parsed from right to left, and
+ * the first value that is both valid and doesn't match the
+ * trusted proxy list will be used as client IP. If zero,
+ * the ClientIPHeaders will be parsed from left to right,
+ * and the first value that is a valid IP address will be
+ * used as client IP.
+ * This depends on `trusted_proxies` being configured.
+ * This option is disabled by default. */
   trusted_proxies_strict?: number;
   logs?: IGithubComCaddyserverCaddyV2ModulesCaddyhttpServerLogConfig;
   protocols?: Array<string>;
-  metrics: IGithubComCaddyserverCaddyV2ModulesCaddyhttpMetrics;
-  [key: string]: any;
+  metrics?: IGithubComCaddyserverCaddyV2ModulesCaddyhttpMetrics;
+[key: string]: any;
 }
+
+
 
 /**
  * App is a robust, production-ready HTTP server.
@@ -1856,67 +1970,71 @@ export interface IGithubComCaddyserverCaddyV2ModulesCaddyhttpServer {
  * `{http.shutting_down}` | True if the HTTP app is shutting down
  * `{http.time_until_shutdown}` | Time until HTTP server shutdown, if scheduled */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddyhttpApp {
-  /**
-   * HTTPPort specifies the port to use for HTTP (as opposed to HTTPS),
-   * which is used when setting up HTTP->HTTPS redirects or ACME HTTP
-   * challenge solvers. Default: 80. */
+/**
+ * HTTPPort specifies the port to use for HTTP (as opposed to HTTPS),
+ * which is used when setting up HTTP->HTTPS redirects or ACME HTTP
+ * challenge solvers. Default: 80. */
   http_port?: number;
-  /**
-   * HTTPSPort specifies the port to use for HTTPS, which is used when
-   * solving the ACME TLS-ALPN challenges, or whenever HTTPS is needed
-   * but no specific port number is given. Default: 443. */
+/**
+ * HTTPSPort specifies the port to use for HTTPS, which is used when
+ * solving the ACME TLS-ALPN challenges, or whenever HTTPS is needed
+ * but no specific port number is given. Default: 443. */
   https_port?: number;
-  /**
-   * GracePeriod is how long to wait for active connections when shutting
-   * down the servers. During the grace period, no new connections are
-   * accepted, idle connections are closed, and active connections will
-   * be given the full length of time to become idle and close.
-   * Once the grace period is over, connections will be forcefully closed.
-   * If zero, the grace period is eternal. Default: 0.
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * GracePeriod is how long to wait for active connections when shutting
+ * down the servers. During the grace period, no new connections are
+ * accepted, idle connections are closed, and active connections will
+ * be given the full length of time to become idle and close.
+ * Once the grace period is over, connections will be forcefully closed.
+ * If zero, the grace period is eternal. Default: 0.
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   grace_period?: IGithubComCaddyserverCaddyV2Duration;
-  /**
-   * ShutdownDelay is how long to wait before initiating the grace
-   * period. When this app is stopping (e.g. during a config reload or
-   * process exit), all servers will be shut down. Normally this immediately
-   * initiates the grace period. However, if this delay is configured, servers
-   * will not be shut down until the delay is over. During this time, servers
-   * continue to function normally and allow new connections. At the end, the
-   * grace period will begin. This can be useful to allow downstream load
-   * balancers time to move this instance out of the rotation without hiccups.
-   * When shutdown has been scheduled, placeholders {http.shutting_down} (bool)
-   * and {http.time_until_shutdown} (duration) may be useful for health checks.
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * ShutdownDelay is how long to wait before initiating the grace
+ * period. When this app is stopping (e.g. during a config reload or
+ * process exit), all servers will be shut down. Normally this immediately
+ * initiates the grace period. However, if this delay is configured, servers
+ * will not be shut down until the delay is over. During this time, servers
+ * continue to function normally and allow new connections. At the end, the
+ * grace period will begin. This can be useful to allow downstream load
+ * balancers time to move this instance out of the rotation without hiccups.
+ * When shutdown has been scheduled, placeholders {http.shutting_down} (bool)
+ * and {http.time_until_shutdown} (duration) may be useful for health checks.
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   shutdown_delay?: IGithubComCaddyserverCaddyV2Duration;
   servers?: Record<string, IGithubComCaddyserverCaddyV2ModulesCaddyhttpServer>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * The root certificate to use; if null, one will be generated.
  * KeyPair represents a public-private key pair, where the
  * public key is also called a certificate. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddypkiKeyPair {
-  /**
-   * The certificate. By default, this should be the path to
-   * a PEM file unless format is something else. */
+/**
+ * The certificate. By default, this should be the path to
+ * a PEM file unless format is something else. */
   certificate?: string;
-  /**
-   * The private key. By default, this should be the path to
-   * a PEM file unless format is something else. */
+/**
+ * The private key. By default, this should be the path to
+ * a PEM file unless format is something else. */
   private_key?: string;
-  /**
-   * The format in which the certificate and private
-   * key are provided. Default: pem_file */
+/**
+ * The format in which the certificate and private
+ * key are provided. Default: pem_file */
   format?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * The certificate authorities to manage. Each CA is keyed by an
@@ -1928,34 +2046,36 @@ export interface IGithubComCaddyserverCaddyV2ModulesCaddypkiKeyPair {
  * root/signing certificates and various settings pertaining
  * to the issuance of certificates and trusting them. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddypkiCa {
-  /**
-   * The user-facing name of the certificate authority. */
+/**
+ * The user-facing name of the certificate authority. */
   name?: string;
-  /**
-   * The name to put in the CommonName field of the
-   * root certificate. */
+/**
+ * The name to put in the CommonName field of the
+ * root certificate. */
   root_common_name?: string;
-  /**
-   * The name to put in the CommonName field of the
-   * intermediate certificates. */
+/**
+ * The name to put in the CommonName field of the
+ * intermediate certificates. */
   intermediate_common_name?: string;
-  /**
-   * The lifetime for the intermediate certificates
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * The lifetime for the intermediate certificates
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   intermediate_lifetime?: IGithubComCaddyserverCaddyV2Duration;
-  /**
-   * Whether Caddy will attempt to install the CA's root
-   * into the system trust store, as well as into Java
-   * and Mozilla Firefox trust stores. Default: true. */
+/**
+ * Whether Caddy will attempt to install the CA's root
+ * into the system trust store, as well as into Java
+ * and Mozilla Firefox trust stores. Default: true. */
   install_trust?: boolean;
   root?: IGithubComCaddyserverCaddyV2ModulesCaddypkiKeyPair;
-  intermediate: IGithubComCaddyserverCaddyV2ModulesCaddypkiKeyPair;
-  storage: IStorage;
-  [key: string]: any;
+  intermediate?: IGithubComCaddyserverCaddyV2ModulesCaddypkiKeyPair;
+  storage?: IStorage;
+[key: string]: any;
 }
+
+
 
 /**
  * PKI provides Public Key Infrastructure facilities for Caddy.
@@ -1964,50 +2084,55 @@ export interface IGithubComCaddyserverCaddyV2ModulesCaddypkiCa {
  * the CAs defined by this app for issuing certificates or getting
  * key information needed for establishing trust. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddypkiPki {
-  certificate_authorities?: Record<
-    string,
-    IGithubComCaddyserverCaddyV2ModulesCaddypkiCa
-  >;
-  [key: string]: any;
+  certificate_authorities?: Record<string, IGithubComCaddyserverCaddyV2ModulesCaddypkiCa>;
+[key: string]: any;
 }
+
+
 
 /**
  * CertKeyFilePair pairs certificate and key file names along with their
  * encoding format so that they can be loaded from disk. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsCertKeyFilePair {
-  /**
-   * Path to the certificate (public key) file. */
+/**
+ * Path to the certificate (public key) file. */
   certificate?: string;
-  /**
-   * Path to the private key file. */
+/**
+ * Path to the private key file. */
   key?: string;
-  /**
-   * The format of the cert and key. Can be "pem". Default: "pem" */
+/**
+ * The format of the cert and key. Can be "pem". Default: "pem" */
   format?: string;
   tags?: Array<string>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * CertKeyPEMPair pairs certificate and key PEM blocks. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsCertKeyPemPair {
-  /**
-   * The certificate (public key) in PEM format. */
+/**
+ * The certificate (public key) in PEM format. */
   certificate?: string;
-  /**
-   * The private key in PEM format. */
+/**
+ * The private key in PEM format. */
   key?: string;
   tags?: Array<string>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * StorageLoader loads certificates and their associated keys
  * from the globally configured storage module. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsStorageLoader {
   pairs?: Array<IGithubComCaddyserverCaddyV2ModulesCaddytlsCertKeyFilePair>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 export interface ICertificates {
   automate?: IGithubComCaddyserverCaddyV2ModulesCaddytlsAutomateLoader;
@@ -2017,6 +2142,7 @@ export interface ICertificates {
   load_storage?: IGithubComCaddyserverCaddyV2ModulesCaddytlsStorageLoader;
   [key: string]: any;
 }
+
 
 /**
  * The list of automation policies. The first policy matching
@@ -2031,70 +2157,74 @@ export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsAutomationPolicy {
   subjects?: Array<string>;
   issuers?: Array<unknown>;
   get_certificate?: Array<unknown>;
-  /**
-   * If true, certificates will be requested with MustStaple. Not all
-   * CAs support this, and there are potentially serious consequences
-   * of enabling this feature without proper threat modeling. */
+/**
+ * If true, certificates will be requested with MustStaple. Not all
+ * CAs support this, and there are potentially serious consequences
+ * of enabling this feature without proper threat modeling. */
   must_staple?: boolean;
-  /**
-   * How long before a certificate's expiration to try renewing it,
-   * as a function of its total lifetime. As a general and conservative
-   * rule, it is a good idea to renew a certificate when it has about
-   * 1/3 of its total lifetime remaining. This utilizes the majority
-   * of the certificate's lifetime while still saving time to
-   * troubleshoot problems. However, for extremely short-lived certs,
-   * you may wish to increase the ratio to ~1/2. */
+/**
+ * How long before a certificate's expiration to try renewing it,
+ * as a function of its total lifetime. As a general and conservative
+ * rule, it is a good idea to renew a certificate when it has about
+ * 1/3 of its total lifetime remaining. This utilizes the majority
+ * of the certificate's lifetime while still saving time to
+ * troubleshoot problems. However, for extremely short-lived certs,
+ * you may wish to increase the ratio to ~1/2. */
   renewal_window_ratio?: number;
-  /**
-   * The type of key to generate for certificates.
-   * Supported values: `ed25519`, `p256`, `p384`, `rsa2048`, `rsa4096`. */
+/**
+ * The type of key to generate for certificates.
+ * Supported values: `ed25519`, `p256`, `p384`, `rsa2048`, `rsa4096`. */
   key_type?: string;
-  storage: IStorage;
-  /**
-   * If true, certificates will be managed "on demand"; that is, during
-   * TLS handshakes or when needed, as opposed to at startup or config
-   * load. This enables On-Demand TLS for this policy. */
+  storage?: IStorage;
+/**
+ * If true, certificates will be managed "on demand"; that is, during
+ * TLS handshakes or when needed, as opposed to at startup or config
+ * load. This enables On-Demand TLS for this policy. */
   on_demand?: boolean;
-  /**
-   * If true, private keys already existing in storage
-   * will be reused. Otherwise, a new key will be
-   * created for every new certificate to mitigate
-   * pinning and reduce the scope of key compromise.
-   * TEMPORARY: Key pinning is against industry best practices.
-   * This property will likely be removed in the future.
-   * Do not rely on it forever; watch the release notes. */
+/**
+ * If true, private keys already existing in storage
+ * will be reused. Otherwise, a new key will be
+ * created for every new certificate to mitigate
+ * pinning and reduce the scope of key compromise.
+ * TEMPORARY: Key pinning is against industry best practices.
+ * This property will likely be removed in the future.
+ * Do not rely on it forever; watch the release notes. */
   reuse_private_keys?: boolean;
-  /**
-   * Disables OCSP stapling. Disabling OCSP stapling puts clients at
-   * greater risk, reduces their privacy, and usually lowers client
-   * performance. It is NOT recommended to disable this unless you
-   * are able to justify the costs.
-   * EXPERIMENTAL. Subject to change. */
+/**
+ * Disables OCSP stapling. Disabling OCSP stapling puts clients at
+ * greater risk, reduces their privacy, and usually lowers client
+ * performance. It is NOT recommended to disable this unless you
+ * are able to justify the costs.
+ * EXPERIMENTAL. Subject to change. */
   disable_ocsp_stapling?: boolean;
   ocsp_overrides?: Record<string, string>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * PermissionByHTTP determines permission for a TLS certificate by
  * making a request to an HTTP endpoint. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsPermissionByHttp {
-  /**
-   * The endpoint to access. It should be a full URL.
-   * A query string parameter "domain" will be added to it,
-   * containing the domain (or IP) for the desired certificate,
-   * like so: `?domain=example.com`. Generally, this endpoint
-   * is not exposed publicly to avoid a minor information leak
-   * (which domains are serviced by your application).
-   * The endpoint must return a 200 OK status if a certificate
-   * is allowed; anything else will cause it to be denied.
-   * Redirects are not followed. */
+/**
+ * The endpoint to access. It should be a full URL.
+ * A query string parameter "domain" will be added to it,
+ * containing the domain (or IP) for the desired certificate,
+ * like so: `?domain=example.com`. Generally, this endpoint
+ * is not exposed publicly to avoid a minor information leak
+ * (which domains are serviced by your application).
+ * The endpoint must return a 200 OK status if a certificate
+ * is allowed; anything else will cause it to be denied.
+ * Redirects are not followed. */
   endpoint?: string;
-  [key: string]: any;
+[key: string]: any;
 }
 
-export type IPermission =
-  IGithubComCaddyserverCaddyV2ModulesCaddytlsPermissionByHttp;
+
+
+export type IPermission = IGithubComCaddyserverCaddyV2ModulesCaddytlsPermissionByHttp;
+
 
 /**
  * DEPRECATED. An optional rate limit to throttle
@@ -2105,20 +2235,22 @@ export type IPermission =
  * Instead of using this rate limiter, use a proper tool such as a
  * level 3 or 4 firewall and/or a permission module to apply rate limits. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsRateLimit {
-  /**
-   * A duration value. Storage may be checked and a certificate may be
-   * obtained 'burst' times during this interval.
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * A duration value. Storage may be checked and a certificate may be
+ * obtained 'burst' times during this interval.
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   interval?: IGithubComCaddyserverCaddyV2Duration;
-  /**
-   * How many times during an interval storage can be checked or a
-   * certificate can be obtained. */
+/**
+ * How many times during an interval storage can be checked or a
+ * certificate can be obtained. */
   burst?: number;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * On-Demand TLS defers certificate operations to the
@@ -2138,17 +2270,19 @@ export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsRateLimit {
  * Caddy can "ask" if it should be allowed to manage
  * certificates for a given hostname. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsOnDemandConfig {
-  /**
-   * DEPRECATED. WILL BE REMOVED SOON. Use 'permission' instead. */
+/**
+ * DEPRECATED. WILL BE REMOVED SOON. Use 'permission' instead. */
   ask?: string;
-  /**
-   * REQUIRED. A module that will determine whether a
-   * certificate is allowed to be loaded from storage
-   * or obtained from an issuer on demand. */
+/**
+ * REQUIRED. A module that will determine whether a
+ * certificate is allowed to be loaded from storage
+ * or obtained from an issuer on demand. */
   permission?: IPermission;
   rate_limit?: IGithubComCaddyserverCaddyV2ModulesCaddytlsRateLimit;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Configures certificate automation.
@@ -2156,44 +2290,46 @@ export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsOnDemandConfig {
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsAutomationConfig {
   policies?: Array<IGithubComCaddyserverCaddyV2ModulesCaddytlsAutomationPolicy>;
   on_demand?: IGithubComCaddyserverCaddyV2ModulesCaddytlsOnDemandConfig;
-  /**
-   * Caddy staples OCSP (and caches the response) for all
-   * qualifying certificates by default. This setting
-   * changes how often it scans responses for freshness,
-   * and updates them if they are getting stale. Default: 1h
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * Caddy staples OCSP (and caches the response) for all
+ * qualifying certificates by default. This setting
+ * changes how often it scans responses for freshness,
+ * and updates them if they are getting stale. Default: 1h
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   ocsp_interval?: IGithubComCaddyserverCaddyV2Duration;
-  /**
-   * Every so often, Caddy will scan all loaded, managed
-   * certificates for expiration. This setting changes how
-   * frequently the scan for expiring certificates is
-   * performed. Default: 10m
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * Every so often, Caddy will scan all loaded, managed
+ * certificates for expiration. This setting changes how
+ * frequently the scan for expiring certificates is
+ * performed. Default: 10m
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   renew_interval?: IGithubComCaddyserverCaddyV2Duration;
-  /**
-   * How often to scan storage units for old or expired
-   * assets and remove them. These scans exert lots of
-   * reads (and list operations) on the storage module, so
-   * choose a longer interval for large deployments.
-   * Default: 24h
-   * Storage will always be cleaned when the process first
-   * starts. Then, a new cleaning will be started this
-   * duration after the previous cleaning started if the
-   * previous cleaning finished in less than half the time
-   * of this interval (otherwise next start will be skipped).
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * How often to scan storage units for old or expired
+ * assets and remove them. These scans exert lots of
+ * reads (and list operations) on the storage module, so
+ * choose a longer interval for large deployments.
+ * Default: 24h
+ * Storage will always be cleaned when the process first
+ * starts. Then, a new cleaning will be started this
+ * duration after the previous cleaning started if the
+ * previous cleaning finished in less than half the time
+ * of this interval (otherwise next start will be skipped).
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   storage_clean_interval?: IGithubComCaddyserverCaddyV2Duration;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider implements a distributed STEK provider. This
@@ -2201,120 +2337,131 @@ export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsAutomationConfig {
  * of generating STEKs internally. This allows STEKs to be
  * coordinated, improving TLS session resumption in a cluster. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsDistributedstekProvider {
-  storage: IStorage;
-  [key: string]: any;
+  storage?: IStorage;
+[key: string]: any;
 }
 
-/**
- * undefined
- */
-export type IGithubComCaddyserverCaddyV2ModulesCaddytlsStandardstekStandardStekProvider =
-  Record<string, any>;
 
-export type IStek =
-  | IGithubComCaddyserverCaddyV2ModulesCaddytlsDistributedstekProvider
-  | IGithubComCaddyserverCaddyV2ModulesCaddytlsStandardstekStandardStekProvider;
+
+  /**
+   * undefined
+   */
+export type IGithubComCaddyserverCaddyV2ModulesCaddytlsStandardstekStandardStekProvider = Record<string, any>;
+
+
+export type IStek = IGithubComCaddyserverCaddyV2ModulesCaddytlsDistributedstekProvider | IGithubComCaddyserverCaddyV2ModulesCaddytlsStandardstekStandardStekProvider;
+
 
 /**
  * Configures session ticket ephemeral keys (STEKs).
  * SessionTicketService configures and manages TLS session tickets. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsSessionTicketService {
-  /**
-   * KeySource is the method by which Caddy produces or obtains
-   * TLS session ticket keys (STEKs). By default, Caddy generates
-   * them internally using a secure pseudorandom source. */
+/**
+ * KeySource is the method by which Caddy produces or obtains
+ * TLS session ticket keys (STEKs). By default, Caddy generates
+ * them internally using a secure pseudorandom source. */
   key_source?: IStek;
-  /**
-   * How often Caddy rotates STEKs. Default: 12h.
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * How often Caddy rotates STEKs. Default: 12h.
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   rotation_interval?: IGithubComCaddyserverCaddyV2Duration;
-  /**
-   * The maximum number of keys to keep in rotation. Default: 4. */
+/**
+ * The maximum number of keys to keep in rotation. Default: 4. */
   max_keys?: number;
-  /**
-   * Disables STEK rotation. */
+/**
+ * Disables STEK rotation. */
   disable_rotation?: boolean;
-  /**
-   * Disables TLS session resumption by tickets. */
+/**
+ * Disables TLS session resumption by tickets. */
   disabled?: boolean;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Configures the in-memory certificate cache.
  * CertCacheOptions configures the certificate cache. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsCertCacheOptions {
-  /**
-   * Maximum number of certificates to allow in the
-   * cache. If reached, certificates will be randomly
-   * evicted to make room for new ones. Default: 10,000 */
+/**
+ * Maximum number of certificates to allow in the
+ * cache. If reached, certificates will be randomly
+ * evicted to make room for new ones. Default: 10,000 */
   capacity?: number;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * TLS provides TLS facilities including certificate
  * loading and management, client auth, and more. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddytlsTls {
-  /**
-   * Certificates to load into memory for quick recall during
-   * TLS handshakes. Each key is the name of a certificate
-   * loader module.
-   * The "automate" certificate loader module can be used to
-   * specify a list of subjects that need certificates to be
-   * managed automatically. The first matching automation
-   * policy will be applied to manage the certificate(s).
-   * All loaded certificates get pooled
-   * into the same cache and may be used to complete TLS
-   * handshakes for the relevant server names (SNI).
-   * Certificates loaded manually (anything other than
-   * "automate") are not automatically managed and will
-   * have to be refreshed manually before they expire.
-   * ModuleMap is a map that can contain multiple modules,
-   * where the map key is the module's name. (The namespace
-   * is usually read from an associated field's struct tag.)
-   * Because the module's name is given as the key in a
-   * module map, the name does not have to be given in the
-   * json.RawMessage. */
-  certificates: ICertificates;
+/**
+ * Certificates to load into memory for quick recall during
+ * TLS handshakes. Each key is the name of a certificate
+ * loader module.
+ * The "automate" certificate loader module can be used to
+ * specify a list of subjects that need certificates to be
+ * managed automatically. The first matching automation
+ * policy will be applied to manage the certificate(s).
+ * All loaded certificates get pooled
+ * into the same cache and may be used to complete TLS
+ * handshakes for the relevant server names (SNI).
+ * Certificates loaded manually (anything other than
+ * "automate") are not automatically managed and will
+ * have to be refreshed manually before they expire.
+ * ModuleMap is a map that can contain multiple modules,
+ * where the map key is the module's name. (The namespace
+ * is usually read from an associated field's struct tag.)
+ * Because the module's name is given as the key in a
+ * module map, the name does not have to be given in the
+ * json.RawMessage. */
+  certificates?: ICertificates;
   automation?: IGithubComCaddyserverCaddyV2ModulesCaddytlsAutomationConfig;
   session_tickets?: IGithubComCaddyserverCaddyV2ModulesCaddytlsSessionTicketService;
   cache?: IGithubComCaddyserverCaddyV2ModulesCaddytlsCertCacheOptions;
-  /**
-   * Disables OCSP stapling for manually-managed certificates only.
-   * To configure OCSP stapling for automated certificates, use an
-   * automation policy instead.
-   * Disabling OCSP stapling puts clients at greater risk, reduces their
-   * privacy, and usually lowers client performance. It is NOT recommended
-   * to disable this unless you are able to justify the costs.
-   * EXPERIMENTAL. Subject to change. */
+/**
+ * Disables OCSP stapling for manually-managed certificates only.
+ * To configure OCSP stapling for automated certificates, use an
+ * automation policy instead.
+ * Disabling OCSP stapling puts clients at greater risk, reduces their
+ * privacy, and usually lowers client performance. It is NOT recommended
+ * to disable this unless you are able to justify the costs.
+ * EXPERIMENTAL. Subject to change. */
   disable_ocsp_stapling?: boolean;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Workers configures the worker scripts to start. */
 export interface IGithubComDunglasFrankenphpCaddyWorkerConfig {
-  /**
-   * FileName sets the path to the worker script. */
+/**
+ * FileName sets the path to the worker script. */
   file_name?: string;
-  /**
-   * Num sets the number of workers to start. */
+/**
+ * Num sets the number of workers to start. */
   num?: number;
   env?: Record<string, string>;
-  [key: string]: any;
+[key: string]: any;
 }
 
+
+
 export interface IGithubComDunglasFrankenphpCaddyFrankenPhpApp {
-  /**
-   * NumThreads sets the number of PHP threads to start. Default: 2x the number of available CPUs. */
+/**
+ * NumThreads sets the number of PHP threads to start. Default: 2x the number of available CPUs. */
   num_threads?: number;
   workers?: Array<IGithubComDunglasFrankenphpCaddyWorkerConfig>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Generic represents username and password credentials, with optional
@@ -2324,15 +2471,19 @@ export interface IGithubComGreenpauGoAuthcrunchPkgCredentialsGeneric {
   username?: string;
   password?: string;
   domain?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Config represents a collection of various credentials. */
 export interface IGithubComGreenpauGoAuthcrunchPkgCredentialsConfig {
   generic?: Array<IGithubComGreenpauGoAuthcrunchPkgCredentialsGeneric>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Link represents a single HTML link. */
@@ -2345,16 +2496,20 @@ export interface IGithubComGreenpauGoAuthcrunchPkgAuthnUiLink {
   target_enabled?: boolean;
   icon_name?: string;
   icon_enabled?: boolean;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * UserRealm represents a single authentication realm/domain. */
 export interface IGithubComGreenpauGoAuthcrunchPkgAuthnUiUserRealm {
   name?: string;
   label?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * UI holds the configuration for the user interface.
@@ -2373,45 +2528,49 @@ export interface IGithubComGreenpauGoAuthcrunchPkgAuthnUiParameters {
   password_recovery_enabled?: boolean;
   custom_css_path?: string;
   custom_js_path?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * UserRegistrationConfig holds the configuration for the user registration.
  * Config represents a common set of configuration settings for user registration */
 export interface IGithubComGreenpauGoAuthcrunchPkgAuthnRegistrationConfig {
-  /**
-   * The switch determining whether the registration is enabled/disabled. */
+/**
+ * The switch determining whether the registration is enabled/disabled. */
   disabled?: boolean;
-  /**
-   * The title of the registration page */
+/**
+ * The title of the registration page */
   title?: string;
-  /**
-   * The mandatory registration code. It is possible adding multiple
-   * codes, comma separated. */
+/**
+ * The mandatory registration code. It is possible adding multiple
+ * codes, comma separated. */
   code?: string;
-  /**
-   * The file path to registration database. */
+/**
+ * The file path to registration database. */
   dropbox?: string;
-  /**
-   * The switch determining whether a user must accept terms and conditions */
+/**
+ * The switch determining whether a user must accept terms and conditions */
   require_accept_terms?: boolean;
-  /**
-   * The switch determining whether the domain associated with an email has
-   * a valid MX DNS record. */
+/**
+ * The switch determining whether the domain associated with an email has
+ * a valid MX DNS record. */
   require_domain_mx?: boolean;
-  /**
-   * The link to terms and conditions document. */
+/**
+ * The link to terms and conditions document. */
   terms_conditions_link?: string;
-  /**
-   * The link to privacy policy document. */
+/**
+ * The link to privacy policy document. */
   privacy_policy_link?: string;
-  /**
-   * The email provider used for the notifications. */
+/**
+ * The email provider used for the notifications. */
   email_provider?: string;
   admin_emails?: Array<string>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * UserTransformerConfig holds the configuration for the user transformer.
@@ -2420,8 +2579,10 @@ export interface IGithubComGreenpauGoAuthcrunchPkgAuthnRegistrationConfig {
 export interface IGithubComGreenpauGoAuthcrunchPkgAuthnTransformerConfig {
   matchers?: Array<string>;
   actions?: Array<string>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * DomainConfig represents a common set of configuration settings
@@ -2433,24 +2594,25 @@ export interface IGithubComGreenpauGoAuthcrunchPkgAuthnCookieDomainConfig {
   lifetime?: number;
   insecure?: boolean;
   same_site?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * CookieConfig holds the configuration for the cookies issues by Authenticator.
  * Config represents a common set of configuration settings
  * applicable to the cookies issued by authn.Authenticator. */
 export interface IGithubComGreenpauGoAuthcrunchPkgAuthnCookieConfig {
-  domains?: Record<
-    string,
-    IGithubComGreenpauGoAuthcrunchPkgAuthnCookieDomainConfig
-  >;
+  domains?: Record<string, IGithubComGreenpauGoAuthcrunchPkgAuthnCookieDomainConfig>;
   path?: string;
   lifetime?: number;
   insecure?: boolean;
   same_site?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * AccessListConfigs hold the configurations for the ACL of the token validator.
@@ -2459,8 +2621,10 @@ export interface IGithubComGreenpauGoAuthcrunchPkgAclRuleConfiguration {
   comment?: string;
   conditions?: Array<string>;
   action?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * TokenValidatorOptions holds the configuration for the token validator.
@@ -2470,80 +2634,88 @@ export interface IGithubComGreenpauGoAuthcrunchPkgAuthzOptionsTokenValidatorOpti
   validate_bearer_header?: boolean;
   validate_method_path?: boolean;
   validate_access_list_path_claim?: boolean;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * CryptoKeyConfigs hold the configurations for the keys used to issue and validate user tokens.
  * CryptoKeyConfig is common token-related configuration settings. */
 export interface IGithubComGreenpauGoAuthcrunchPkgKmsCryptoKeyConfig {
-  /**
-   * Seq is the order in which a key would be processed. */
+/**
+ * Seq is the order in which a key would be processed. */
   seq?: number;
-  /**
-   * ID is the key ID, aka kid. */
+/**
+ * ID is the key ID, aka kid. */
   id?: string;
-  /**
-   * Usage is the intended key usage. The values are: sign, verify, both,
-   * or auto. */
+/**
+ * Usage is the intended key usage. The values are: sign, verify, both,
+ * or auto. */
   usage?: string;
-  /**
-   * TokenName is the token name associated with the key. */
+/**
+ * TokenName is the token name associated with the key. */
   token_name?: string;
-  /**
-   * Source is either config or env. */
+/**
+ * Source is either config or env. */
   source?: string;
-  /**
-   * Algorithm is either hmac, rsa, or ecdsa. */
+/**
+ * Algorithm is either hmac, rsa, or ecdsa. */
   algorithm?: string;
-  /**
-   * EnvVarName is the name of environment variables holding either the value of
-   * a key or the path a directory or file containing a key. */
+/**
+ * EnvVarName is the name of environment variables holding either the value of
+ * a key or the path a directory or file containing a key. */
   env_var_name?: string;
-  /**
-   * EnvVarType indicates how to interpret the value found in the EnvVarName. If
-   * it is blank, then the assumption is the environment variable value
-   * contains either public or private key. */
+/**
+ * EnvVarType indicates how to interpret the value found in the EnvVarName. If
+ * it is blank, then the assumption is the environment variable value
+ * contains either public or private key. */
   env_var_type?: string;
-  /**
-   * EnvVarValue is the value associated with the environment variable set by EnvVarName. */
+/**
+ * EnvVarValue is the value associated with the environment variable set by EnvVarName. */
   env_var_value?: string;
-  /**
-   * FilePath is the path of a file containing either private or public key. */
+/**
+ * FilePath is the path of a file containing either private or public key. */
   file_path?: string;
-  /**
-   * DirPath is the path to a directory containing crypto keys. */
+/**
+ * DirPath is the path to a directory containing crypto keys. */
   dir_path?: string;
-  /**
-   * TokenLifetime is the expected token grant lifetime in seconds. */
+/**
+ * TokenLifetime is the expected token grant lifetime in seconds. */
   token_lifetime?: number;
-  /**
-   * Secret is the shared key used with HMAC algorithm. */
+/**
+ * Secret is the shared key used with HMAC algorithm. */
   token_secret?: string;
-  /**
-   * PreferredSignMethod is the preferred method to sign tokens, e.g.
-   * all HMAC keys could use HS256, HS384, and HS512 methods. By default,
-   * the preferred method is HS512. However, one may prefer using HS256. */
+/**
+ * PreferredSignMethod is the preferred method to sign tokens, e.g.
+ * all HMAC keys could use HS256, HS384, and HS512 methods. By default,
+ * the preferred method is HS512. However, one may prefer using HS256. */
   token_sign_method?: string;
   token_eval_expr?: Array<string>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * TokenGrantorOptions holds the configuration for the tokens issues by Authenticator.
  * TokenGrantorOptions provides options for TokenGrantor. */
 export interface IGithubComGreenpauGoAuthcrunchPkgAuthzOptionsTokenGrantorOptions {
   enable_source_address?: boolean;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * API holds the configuration for API endpoints.
  * APIConfig holds the configuration for API endpoints. */
 export interface IGithubComGreenpauGoAuthcrunchPkgAuthnApiConfig {
   enabled?: boolean;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * PortalConfig represents Portal configuration. */
@@ -2561,8 +2733,10 @@ export interface IGithubComGreenpauGoAuthcrunchPkgAuthnPortalConfig {
   crypto_key_store_config?: Record<string, unknown>;
   token_grantor_options?: IGithubComGreenpauGoAuthcrunchPkgAuthzOptionsTokenGrantorOptions;
   api?: IGithubComGreenpauGoAuthcrunchPkgAuthnApiConfig;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * The list of URI prefixes which bypass authorization.
@@ -2570,8 +2744,10 @@ export interface IGithubComGreenpauGoAuthcrunchPkgAuthnPortalConfig {
 export interface IGithubComGreenpauGoAuthcrunchPkgAuthzBypassConfig {
   match_type?: string;
   uri?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * The list of mappings between header names and field names.
@@ -2579,24 +2755,30 @@ export interface IGithubComGreenpauGoAuthcrunchPkgAuthzBypassConfig {
 export interface IGithubComGreenpauGoAuthcrunchPkgAuthzInjectorConfig {
   header?: string;
   field?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * BasicAuthConfig is a config for basic authentication. */
 export interface IGithubComGreenpauGoAuthcrunchPkgAuthproxyBasicAuthConfig {
   enabled?: boolean;
   realms?: Record<string, unknown>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * APIKeyAuthConfig is a config for API key-based authentication. */
 export interface IGithubComGreenpauGoAuthcrunchPkgAuthproxyApiKeyAuthConfig {
   enabled?: boolean;
   realms?: Record<string, unknown>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Config is a config for an identity provider. */
@@ -2604,8 +2786,10 @@ export interface IGithubComGreenpauGoAuthcrunchPkgAuthproxyConfig {
   portal_name?: string;
   basic_auth?: IGithubComGreenpauGoAuthcrunchPkgAuthproxyBasicAuthConfig;
   api_key_auth?: IGithubComGreenpauGoAuthcrunchPkgAuthproxyApiKeyAuthConfig;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * PolicyConfig is Gatekeeper configuration. */
@@ -2615,11 +2799,11 @@ export interface IGithubComGreenpauGoAuthcrunchPkgAuthzPolicyConfig {
   disable_auth_redirect?: boolean;
   disable_auth_redirect_query?: boolean;
   auth_redirect_query_param?: string;
-  /**
-   * The status code for the HTTP redirect for non-authorized users. */
+/**
+ * The status code for the HTTP redirect for non-authorized users. */
   auth_redirect_status_code?: number;
-  /**
-   * Enable the redirect with Javascript, as opposed to HTTP redirect. */
+/**
+ * Enable the redirect with Javascript, as opposed to HTTP redirect. */
   redirect_with_javascript?: boolean;
   bypass_configs?: Array<IGithubComGreenpauGoAuthcrunchPkgAuthzBypassConfig>;
   header_injection_configs?: Array<IGithubComGreenpauGoAuthcrunchPkgAuthzInjectorConfig>;
@@ -2631,24 +2815,26 @@ export interface IGithubComGreenpauGoAuthcrunchPkgAuthzPolicyConfig {
   strip_token_enabled?: boolean;
   forbidden_url?: string;
   user_identity_field?: string;
-  /**
-   * Validate HTTP Authorization header. */
+/**
+ * Validate HTTP Authorization header. */
   validate_bearer_header?: boolean;
-  /**
-   * Validate HTTP method and path. */
+/**
+ * Validate HTTP method and path. */
   validate_method_path?: boolean;
-  /**
-   * Validate HTTP path derived from JWT token. */
+/**
+ * Validate HTTP path derived from JWT token. */
   validate_access_list_path_claim?: boolean;
-  /**
-   * Validate source address matches between HTTP request and JWT token. */
+/**
+ * Validate source address matches between HTTP request and JWT token. */
   validate_source_address?: boolean;
-  /**
-   * Pass claims from JWT token via HTTP X- headers. */
+/**
+ * Pass claims from JWT token via HTTP X- headers. */
   pass_claims_with_headers?: boolean;
   login_hint_validators?: Array<string>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * EmailProvider represents email messaging provider. */
@@ -2662,8 +2848,10 @@ export interface IGithubComGreenpauGoAuthcrunchPkgMessagingEmailProvider {
   templates?: Record<string, string>;
   passwordless?: boolean;
   blind_carbon_copy?: Array<string>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * FileProvider represents file messaging provider which writes messages
@@ -2672,16 +2860,20 @@ export interface IGithubComGreenpauGoAuthcrunchPkgMessagingFileProvider {
   name?: string;
   root_dir?: string;
   templates?: Record<string, string>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Config represents a collection of various messaging providers. */
 export interface IGithubComGreenpauGoAuthcrunchPkgMessagingConfig {
   email_providers?: Array<IGithubComGreenpauGoAuthcrunchPkgMessagingEmailProvider>;
   file_providers?: Array<IGithubComGreenpauGoAuthcrunchPkgMessagingFileProvider>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * IdentityStoreConfig represents an identity store configuration. */
@@ -2689,8 +2881,10 @@ export interface IGithubComGreenpauGoAuthcrunchPkgIdsIdentityStoreConfig {
   name?: string;
   kind?: string;
   params?: Record<string, unknown>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * IdentityProviderConfig represents an identity provider configuration. */
@@ -2698,8 +2892,10 @@ export interface IGithubComGreenpauGoAuthcrunchPkgIdpIdentityProviderConfig {
   name?: string;
   kind?: string;
   params?: Record<string, unknown>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Config is a configuration of Server. */
@@ -2710,15 +2906,19 @@ export interface IGithubComGreenpauGoAuthcrunchConfig {
   messaging?: IGithubComGreenpauGoAuthcrunchPkgMessagingConfig;
   identity_stores?: Array<IGithubComGreenpauGoAuthcrunchPkgIdsIdentityStoreConfig>;
   identity_providers?: Array<IGithubComGreenpauGoAuthcrunchPkgIdpIdentityProviderConfig>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * App implements security manager. */
 export interface IGithubComGreenpauCaddySecurityApp {
   config?: IGithubComGreenpauGoAuthcrunchConfig;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * CrowdSec is a Caddy App that functions as a CrowdSec bouncer. It acts
@@ -2726,205 +2926,199 @@ export interface IGithubComGreenpauCaddySecurityApp {
  * which can be used by the HTTP handler and Layer4 matcher to decide if
  * a request or connection is allowed or not. */
 export interface IGithubComHslatmanCaddyCrowdsecBouncerCrowdsecCrowdSec {
-  /**
-   * APIKey for the CrowdSec Local API */
+/**
+ * APIKey for the CrowdSec Local API */
   api_key?: string;
-  /**
-   * APIUrl for the CrowdSec Local API. Defaults to http://127.0.0.1:8080/ */
+/**
+ * APIUrl for the CrowdSec Local API. Defaults to http://127.0.0.1:8080/ */
   api_url?: string;
-  /**
-   * TickerInterval is the interval the StreamBouncer uses for querying
-   * the CrowdSec Local API. Defaults to "10s". */
+/**
+ * TickerInterval is the interval the StreamBouncer uses for querying
+ * the CrowdSec Local API. Defaults to "10s". */
   ticker_interval?: string;
-  /**
-   * EnableStreaming indicates whether the StreamBouncer should be used.
-   * If it's false, the LiveBouncer is used. The StreamBouncer keeps
-   * CrowdSec decisions in memory, resulting in quicker lookups. The
-   * LiveBouncer will perform an API call to your CrowdSec instance.
-   * Defaults to true. */
+/**
+ * EnableStreaming indicates whether the StreamBouncer should be used.
+ * If it's false, the LiveBouncer is used. The StreamBouncer keeps
+ * CrowdSec decisions in memory, resulting in quicker lookups. The
+ * LiveBouncer will perform an API call to your CrowdSec instance.
+ * Defaults to true. */
   enable_streaming?: boolean;
-  /**
-   * EnableHardFails indicates whether calls to the CrowdSec API should
-   * result in hard failures, resulting in Caddy quitting vs.
-   * Caddy continuing operation (with a chance of not performing)
-   * validations. Defaults to false. */
+/**
+ * EnableHardFails indicates whether calls to the CrowdSec API should
+ * result in hard failures, resulting in Caddy quitting vs.
+ * Caddy continuing operation (with a chance of not performing)
+ * validations. Defaults to false. */
   enable_hard_fails?: boolean;
-  [key: string]: any;
+[key: string]: any;
 }
 
-/**
+
+
+  /**
    * Allow is PortForwardingAsker module which always allows the session
 
    */
-export type IGithubComKadeesshKadeesshInternalLocalforwardAllow = Record<
-  string,
-  any
->;
+export type IGithubComKadeesshKadeesshInternalLocalforwardAllow = Record<string, any>;
 
-/**
+
+  /**
    * Allow is PortForwardingAsker module which always rejects the session
 
    */
-export type IGithubComKadeesshKadeesshInternalLocalforwardDeny = Record<
-  string,
-  any
->;
+export type IGithubComKadeesshKadeesshInternalLocalforwardDeny = Record<string, any>;
 
-export type ILocalforward =
-  | IGithubComKadeesshKadeesshInternalLocalforwardAllow
-  | IGithubComKadeesshKadeesshInternalLocalforwardDeny;
 
-/**
- * undefined
- */
-export type IGithubComKadeesshKadeesshInternalReverseforwardAllow = Record<
-  string,
-  any
->;
+export type ILocalforward = IGithubComKadeesshKadeesshInternalLocalforwardAllow | IGithubComKadeesshKadeesshInternalLocalforwardDeny;
 
-/**
- * undefined
- */
-export type IGithubComKadeesshKadeesshInternalReverseforwardDeny = Record<
-  string,
-  any
->;
 
-export type IReverseforward =
-  | IGithubComKadeesshKadeesshInternalReverseforwardAllow
-  | IGithubComKadeesshKadeesshInternalReverseforwardDeny;
+  /**
+   * undefined
+   */
+export type IGithubComKadeesshKadeesshInternalReverseforwardAllow = Record<string, any>;
 
-/**
+
+  /**
+   * undefined
+   */
+export type IGithubComKadeesshKadeesshInternalReverseforwardDeny = Record<string, any>;
+
+
+export type IReverseforward = IGithubComKadeesshKadeesshInternalReverseforwardAllow | IGithubComKadeesshKadeesshInternalReverseforwardDeny;
+
+
+  /**
    * Allow is PtyAsker module which always allows the PTY session
 
    */
 export type IGithubComKadeesshKadeesshInternalPtyAllow = Record<string, any>;
 
-/**
+
+  /**
    * Allow is PtyAsker module which always rejects the PTY session
 
    */
 export type IGithubComKadeesshKadeesshInternalPtyDeny = Record<string, any>;
 
-export type IPty =
-  | IGithubComKadeesshKadeesshInternalPtyAllow
-  | IGithubComKadeesshKadeesshInternalPtyDeny;
+
+export type IPty = IGithubComKadeesshKadeesshInternalPtyAllow | IGithubComKadeesshKadeesshInternalPtyDeny;
+
 
 /**
  * Chained is a multi-authorizer module that authorizes a session against multiple authorizers */
 export interface IGithubComKadeesshKadeesshInternalAuthorizationChained {
   authorize?: Array<unknown>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * MaxSession is an authorizer that permits sessions so long as the
  * number of active sessions is below the specified maximum. */
 export interface IGithubComKadeesshKadeesshInternalAuthorizationMaxSession {
-  /**
-   * The maximum number of active sessions */
+/**
+ * The maximum number of active sessions */
   max_sessions?: number;
-  [key: string]: any;
+[key: string]: any;
 }
 
-/**
+
+
+  /**
    * Public authorizes all sessions
 
    */
-export type IGithubComKadeesshKadeesshInternalAuthorizationPublic = Record<
-  string,
-  any
->;
+export type IGithubComKadeesshKadeesshInternalAuthorizationPublic = Record<string, any>;
 
-/**
+
+  /**
    * Reject rejects all sessions
 
    */
-export type IGithubComKadeesshKadeesshInternalAuthorizationReject = Record<
-  string,
-  any
->;
+export type IGithubComKadeesshKadeesshInternalAuthorizationReject = Record<string, any>;
 
-export type IAuthorizers =
-  | IGithubComKadeesshKadeesshInternalAuthorizationChained
-  | IGithubComKadeesshKadeesshInternalAuthorizationMaxSession
-  | IGithubComKadeesshKadeesshInternalAuthorizationPublic
-  | IGithubComKadeesshKadeesshInternalAuthorizationReject;
 
-/**
+export type IAuthorizers = IGithubComKadeesshKadeesshInternalAuthorizationChained | IGithubComKadeesshKadeesshInternalAuthorizationMaxSession | IGithubComKadeesshKadeesshInternalAuthorizationPublic | IGithubComKadeesshKadeesshInternalAuthorizationReject;
+
+
+  /**
    * InMemSFTP is an in-memory SFTP server allowing shared space
 between all users. It starts with an empty space.
 Warning: For illustration purposes only!
 
    */
-export type IGithubComKadeesshKadeesshInternalSubsystemInMemSftp = Record<
-  string,
-  any
->;
+export type IGithubComKadeesshKadeesshInternalSubsystemInMemSftp = Record<string, any>;
+
 
 export interface ISubsystem {
   inmem_sftp?: IGithubComKadeesshKadeesshInternalSubsystemInMemSftp;
   [key: string]: any;
 }
 
+
 /**
  * Fallback signer checks if the RSA, Ed25519, and ECDSA private keys exist in the storage to load. If they're absent,
  * RSA-4096 and Ed25519 keys are generated and stored. The ECDSA key is only loaded, not generated.
  * It is the default signer. */
 export interface IGithubComKadeesshKadeesshInternalSignerFallback {
-  storage: IStorage;
-  [key: string]: any;
+  storage?: IStorage;
+[key: string]: any;
 }
+
+
 
 /**
  * The `git` filesystem module uses a git repository as the
  * virtual filesystem. */
 export interface IGithubComMohammed90CaddyGitFsRepo {
-  /**
-   * The URL of the git repository */
+/**
+ * The URL of the git repository */
   url?: string;
-  /**
-   * The reference to clone the repository at.
-   * An empty value means HEAD. */
+/**
+ * The reference to clone the repository at.
+ * An empty value means HEAD. */
   ref?: string;
-  /**
-   * The period between ref refreshes
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * The period between ref refreshes
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   refresh_period?: IGithubComCaddyserverCaddyV2Duration;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * FS is a Caddy virtual filesystem module for AWS S3 (and compatible) object store. */
 export interface IGithubComSagikazarmarkCaddyFsS3Fs {
-  /**
-   * The name of the S3 bucket. */
+/**
+ * The name of the S3 bucket. */
   bucket?: string;
-  /**
-   * The AWS region the bucket is hosted in. */
+/**
+ * The AWS region the bucket is hosted in. */
   region?: string;
-  /**
-   * The AWS profile to use if mulitple profiles are specified. */
+/**
+ * The AWS profile to use if mulitple profiles are specified. */
   profile?: string;
-  /**
-   * Use non-standard endpoint for S3. */
+/**
+ * Use non-standard endpoint for S3. */
   endpoint?: string;
-  /**
-   * Set this to `true` to enable the client to use path-style addressing. */
+/**
+ * Set this to `true` to enable the client to use path-style addressing. */
   use_path_style?: boolean;
-  /**
-   * DEPRECATED: please use 'use_path_style' instead.
-   * Set this to `true` to force the request to use path-style addressing. */
+/**
+ * DEPRECATED: please use 'use_path_style' instead.
+ * Set this to `true` to force the request to use path-style addressing. */
   force_path_style?: boolean;
-  [key: string]: any;
+[key: string]: any;
 }
 
-export type IFs =
-  | IGithubComMohammed90CaddyGitFsRepo
-  | IGithubComSagikazarmarkCaddyFsS3Fs;
+
+
+export type IFs = IGithubComMohammed90CaddyGitFsRepo | IGithubComSagikazarmarkCaddyFsS3Fs;
+
 
 /**
  * The collection of `signer.Key` resources.
@@ -2937,142 +3131,157 @@ export type IFs =
  * - OPENSSH PRIVATE KEY: RSA, ed25519, ECDSA
  * Key is a generic holder of the location and passphrase of key (abstract) files */
 export interface IGithubComKadeesshKadeesshInternalSignerKey {
-  /**
-   * Source is the identifying path of the key depending on the source. In the case of `file` signer,
-   * `Source` refers to the path to the file on disk in relative or absolute path forms. Other signers
-   * are free to define the semantics of the field. */
+/**
+ * Source is the identifying path of the key depending on the source. In the case of `file` signer,
+ * `Source` refers to the path to the file on disk in relative or absolute path forms. Other signers
+ * are free to define the semantics of the field. */
   source?: string;
-  /**
-   * A non-empty value means the key is protected with a passphrase */
+/**
+ * A non-empty value means the key is protected with a passphrase */
   passphrase?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * File is a session signer that uses pre-existing keys, which may be backed
  * as files */
 export interface IGithubComKadeesshKadeesshInternalSignerFile {
-  /**
-   * The file system implementation to use. The default is the local disk file system.
-   * File system modules used here must implement the fs.FS interface */
+/**
+ * The file system implementation to use. The default is the local disk file system.
+ * File system modules used here must implement the fs.FS interface */
   file_system?: IFs;
   keys?: Array<IGithubComKadeesshKadeesshInternalSignerKey>;
-  [key: string]: any;
+[key: string]: any;
 }
 
-export type ISigners =
-  | IGithubComKadeesshKadeesshInternalSignerFallback
-  | IGithubComKadeesshKadeesshInternalSignerFile;
 
-/**
+
+export type ISigners = IGithubComKadeesshKadeesshInternalSignerFallback | IGithubComKadeesshKadeesshInternalSignerFile;
+
+
+  /**
    * BcryptHash implements the bcrypt hash.
 
    */
-export type IGithubComCaddyserverCaddyV2ModulesCaddyhttpCaddyauthBcryptHash =
-  Record<string, any>;
+export type IGithubComCaddyserverCaddyV2ModulesCaddyhttpCaddyauthBcryptHash = Record<string, any>;
+
 
 /**
  * ScryptHash implements the scrypt KDF as a hash.
  * DEPRECATED, please use 'bcrypt' instead. */
 export interface IGithubComCaddyserverCaddyV2ModulesCaddyhttpCaddyauthScryptHash {
-  /**
-   * scrypt's N parameter. If unset or 0, a safe default is used. */
+/**
+ * scrypt's N parameter. If unset or 0, a safe default is used. */
   N?: number;
-  /**
-   * scrypt's r parameter. If unset or 0, a safe default is used. */
+/**
+ * scrypt's r parameter. If unset or 0, a safe default is used. */
   r?: number;
-  /**
-   * scrypt's p parameter. If unset or 0, a safe default is used. */
+/**
+ * scrypt's p parameter. If unset or 0, a safe default is used. */
   p?: number;
-  /**
-   * scrypt's key length parameter (in bytes). If unset or 0, a
-   * safe default is used. */
+/**
+ * scrypt's key length parameter (in bytes). If unset or 0, a
+ * safe default is used. */
   key_length?: number;
-  [key: string]: any;
+[key: string]: any;
 }
 
-export type IHashes =
-  | IGithubComCaddyserverCaddyV2ModulesCaddyhttpCaddyauthBcryptHash
-  | IGithubComCaddyserverCaddyV2ModulesCaddyhttpCaddyauthScryptHash;
+
+
+export type IHashes = IGithubComCaddyserverCaddyV2ModulesCaddyhttpCaddyauthBcryptHash | IGithubComCaddyserverCaddyV2ModulesCaddyhttpCaddyauthScryptHash;
+
 
 /**
  * The list of accounts to authenticate.
  * Account contains a username, password, and salt (if applicable). */
 export interface IGithubComKadeesshKadeesshInternalAuthenticationStaticAccount {
-  /**
-   * The ID for the user to be identified with. If empty, UUID will be generated at provision-time. */
+/**
+ * The ID for the user to be identified with. If empty, UUID will be generated at provision-time. */
   id?: string;
-  /**
-   * A user's username. */
+/**
+ * A user's username. */
   name?: string;
-  /**
-   * The user's hashed password, base64-encoded. */
+/**
+ * The user's hashed password, base64-encoded. */
   password?: string;
-  /**
-   * The user's password salt, base64-encoded; for
-   * algorithms where external salt is needed. */
+/**
+ * The user's password salt, base64-encoded; for
+ * algorithms where external salt is needed. */
   salt?: string;
-  /**
-   * The $HOME directory of the user. If empty, the app defaults to `C:\Users\Public` on Windows and `/var/empty` otherwise. */
+/**
+ * The $HOME directory of the user. If empty, the app defaults to `C:\Users\Public` on Windows and `/var/empty` otherwise. */
   home?: string;
   custom?: Record<string, unknown>;
-  [key: string]: any;
+[key: string]: any;
 }
 
+
+
 export interface IGithubComKadeesshKadeesshInternalAuthenticationStaticStatic {
-  /**
-   * The algorithm with which the passwords are hashed. Default: bcrypt */
+/**
+ * The algorithm with which the passwords are hashed. Default: bcrypt */
   hash?: IHashes;
   accounts?: Array<IGithubComKadeesshKadeesshInternalAuthenticationStaticAccount>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 export interface IPassword {
   static?: IGithubComKadeesshKadeesshInternalAuthenticationStaticStatic;
   [key: string]: any;
 }
 
+
 /**
  * UsernamePassword holds the configuration of the password-based
  * authentication flow. nil value disables the authentication flow.
  * // PasswordAuthFlow holds the password-based authentication providers */
 export interface IGithubComKadeesshKadeesshInternalAuthenticationPasswordAuthFlow {
-  /**
-   * A set of authentication providers implementing the UserPasswordAuthenticator interface. If none are specified,
-   * all requests will always be unauthenticated.
-   * ModuleMap is a map that can contain multiple modules,
-   * where the map key is the module's name. (The namespace
-   * is usually read from an associated field's struct tag.)
-   * Because the module's name is given as the key in a
-   * module map, the name does not have to be given in the
-   * json.RawMessage. */
-  providers: IPassword;
+/**
+ * A set of authentication providers implementing the UserPasswordAuthenticator interface. If none are specified,
+ * all requests will always be unauthenticated.
+ * ModuleMap is a map that can contain multiple modules,
+ * where the map key is the module's name. (The namespace
+ * is usually read from an associated field's struct tag.)
+ * Because the module's name is given as the key in a
+ * module map, the name does not have to be given in the
+ * json.RawMessage. */
+  providers?: IPassword;
   permit_empty_passwords?: boolean;
-  [key: string]: any;
+[key: string]: any;
 }
 
-/**
+
+
+  /**
    * PublicKey is an authenticator that authenticates the user based on the `.ssh/authorized_keys` in
 the user's $HOME
 
    */
-export type IGithubComKadeesshKadeesshInternalAuthenticationOsPublicKey =
-  Record<string, any>;
+export type IGithubComKadeesshKadeesshInternalAuthenticationOsPublicKey = Record<string, any>;
+
 
 /**
  * the user list along ith their keys sources */
 export interface IGithubComKadeesshKadeesshInternalAuthenticationStaticUser {
-  /**
-   * the login username identifying the user */
+/**
+ * the login username identifying the user */
   username?: string;
   keys?: Array<string>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 export interface IGithubComKadeesshKadeesshInternalAuthenticationStaticStaticPublicKeyProvider {
   users?: Array<IGithubComKadeesshKadeesshInternalAuthenticationStaticUser>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 export interface IPublicKey {
   os?: IGithubComKadeesshKadeesshInternalAuthenticationOsPublicKey;
@@ -3080,32 +3289,37 @@ export interface IPublicKey {
   [key: string]: any;
 }
 
+
 /**
  * PublicKey holds the configuration of the public-key-based
  * authentication flow. nil value disables the authentication flow.
  * PublicKeyFlow holds the public key authentication providers */
 export interface IGithubComKadeesshKadeesshInternalAuthenticationPublicKeyFlow {
-  /**
-   * A set of authentication providers implementing the UserPublicKeyAuthenticator interface. If none are specified,
-   * all requests will always be unauthenticated.
-   * ModuleMap is a map that can contain multiple modules,
-   * where the map key is the module's name. (The namespace
-   * is usually read from an associated field's struct tag.)
-   * Because the module's name is given as the key in a
-   * module map, the name does not have to be given in the
-   * json.RawMessage. */
-  providers: IPublicKey;
-  [key: string]: any;
+/**
+ * A set of authentication providers implementing the UserPublicKeyAuthenticator interface. If none are specified,
+ * all requests will always be unauthenticated.
+ * ModuleMap is a map that can contain multiple modules,
+ * where the map key is the module's name. (The namespace
+ * is usually read from an associated field's struct tag.)
+ * Because the module's name is given as the key in a
+ * module map, the name does not have to be given in the
+ * json.RawMessage. */
+  providers?: IPublicKey;
+[key: string]: any;
 }
+
+
 
 /**
  * Interactive holds the configuration of the interactive-based
  * authentication flow. nil value disables the authentication flow.
  * InteractiveFlow holds the interactive authentication providers */
 export interface IGithubComKadeesshKadeesshInternalAuthenticationInteractiveFlow {
-  providers: Record<string, any>; // namespace not found: ssh.providers.interactive
-  [key: string]: any;
+  providers?: Record<string, any>; // namespace not found: ssh.providers.interactive
+[key: string]: any;
 }
+
+
 
 /**
  * This holds the authentication suite for the various flows
@@ -3119,71 +3333,80 @@ export interface IGithubComKadeesshKadeesshInternalAuthenticationConfig {
   username_password?: IGithubComKadeesshKadeesshInternalAuthenticationPasswordAuthFlow;
   public_key?: IGithubComKadeesshKadeesshInternalAuthenticationPublicKeyFlow;
   interactive?: IGithubComKadeesshKadeesshInternalAuthenticationInteractiveFlow;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Lifted and merged from golang.org/x/crypto/ssh
  * ProvidedConfig holds server specific configuration data. */
 export interface IGithubComKadeesshKadeesshInternalProvidedConfig {
-  /**
-   * The session signers to be loaded. The field takes the form:
-   * "signer": {
-   * 		"module": "<signer module name>"
-   * 		... signer module config
-   * }
-   * If empty, the default module is "fallback", which will load existing keys, or generates and stores them if non-existent. */
+/**
+ * The session signers to be loaded. The field takes the form:
+ * "signer": {
+ * 		"module": "<signer module name>"
+ * 		... signer module config
+ * }
+ * If empty, the default module is "fallback", which will load existing keys, or generates and stores them if non-existent. */
   signer?: ISigners;
   key_exchanges?: Array<string>;
   ciphers?: Array<string>;
   ma_cs?: Array<string>;
-  /**
-   * NoClientAuth is true if clients are allowed to connect without
-   * authenticating. */
+/**
+ * NoClientAuth is true if clients are allowed to connect without
+ * authenticating. */
   no_client_auth?: boolean;
-  /**
-   * MaxAuthTries specifies the maximum number of authentication attempts
-   * permitted per connection. If set to a negative number, the number of
-   * attempts are unlimited. If set to zero, the number of attempts are limited
-   * to 6. */
+/**
+ * MaxAuthTries specifies the maximum number of authentication attempts
+ * permitted per connection. If set to a negative number, the number of
+ * attempts are unlimited. If set to zero, the number of attempts are limited
+ * to 6. */
   max_auth_tries?: number;
   authentication?: IGithubComKadeesshKadeesshInternalAuthenticationConfig;
-  /**
-   * ServerVersion is the version identification string to announce in
-   * the public handshake.
-   * If empty, a reasonable default is used.
-   * Note that RFC 4253 section 4.2 requires that this string start with
-   * "SSH-2.0-". */
+/**
+ * ServerVersion is the version identification string to announce in
+ * the public handshake.
+ * If empty, a reasonable default is used.
+ * Note that RFC 4253 section 4.2 requires that this string start with
+ * "SSH-2.0-". */
   server_version?: string;
-  [key: string]: any;
+[key: string]: any;
 }
 
+
+
 export type ILoaders = IGithubComKadeesshKadeesshInternalProvidedConfig;
+
 
 /**
  * List of configurators that could configure the server per matchers and config providers
  * Configurator holds the set of matchers and configurators that will apply custom server
  * configurations if matched */
 export interface IGithubComKadeesshKadeesshInternalConfigurator {
-  /**
-   * RawConfigMatcherSet is a group of matcher sets in their raw, JSON form. */
+/**
+ * RawConfigMatcherSet is a group of matcher sets in their raw, JSON form. */
   match?: Array<unknown>;
-  /**
-   * The config provider that shall configure the server for the matched session.
-   * "config": {
-   * 		"loader": "<actor name>"
-   * 		... config loader config
-   * } */
+/**
+ * The config provider that shall configure the server for the matched session.
+ * "config": {
+ * 		"loader": "<actor name>"
+ * 		... config loader config
+ * } */
   config?: ILoaders;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * StaticResponse is an actor that writes a static value to the client */
 export interface IGithubComKadeesshKadeesshInternalActorsStaticResponse {
   response?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Shell is an `ssh.actors` module providing "shell" to a session. The module spawns a process
@@ -3192,134 +3415,141 @@ export interface IGithubComKadeesshKadeesshInternalActorsStaticResponse {
  * user details and caches them for future logins. On Windows, the module uses the
  * [`os/user` package](https://pkg.go.dev/os/user?GOOS=windows) from the Go standard library. */
 export interface IGithubComKadeesshKadeesshInternalPtyShell {
-  /**
-   * Executes the designated command using the user's default shell, regardless of
-   * the supplied command. It follows the OpenSSH semantics specified for
-   * the [`ForceCommand`](https://man.openbsd.org/OpenBSD-current/man5/sshd_config.5#ForceCommand) except for
-   * the part about `internal-sftp`. */
+/**
+ * Executes the designated command using the user's default shell, regardless of
+ * the supplied command. It follows the OpenSSH semantics specified for
+ * the [`ForceCommand`](https://man.openbsd.org/OpenBSD-current/man5/sshd_config.5#ForceCommand) except for
+ * the part about `internal-sftp`. */
   force_command?: string;
   env?: Record<string, string>;
-  /**
-   * whether the server should check for explicit pty request */
+/**
+ * whether the server should check for explicit pty request */
   force_pty?: boolean;
-  [key: string]: any;
+[key: string]: any;
 }
 
-export type IActors =
-  | IGithubComKadeesshKadeesshInternalActorsStaticResponse
-  | IGithubComKadeesshKadeesshInternalPtyShell;
+
+
+export type IActors = IGithubComKadeesshKadeesshInternalActorsStaticResponse | IGithubComKadeesshKadeesshInternalPtyShell;
+
 
 /**
  * The actors that can act on a session per the matching criteria
  * Actor is a collection of actor matchers and actors of an ssh session */
 export interface IGithubComKadeesshKadeesshInternalActor {
-  /**
-   * RawActorMatcherSet is a group of matcher sets in their raw, JSON form. */
+/**
+ * RawActorMatcherSet is a group of matcher sets in their raw, JSON form. */
   match?: Array<unknown>;
-  /**
-   * The actor that shall act on the matched session.
-   * "act": {
-   * 		"action": "<actor name>"
-   * 		... actor config
-   * } */
+/**
+ * The actor that shall act on the matched session.
+ * "act": {
+ * 		"action": "<actor name>"
+ * 		... actor config
+ * } */
   act?: IActors;
-  /**
-   * Whether the session shoul be closed upon execution of the actor */
+/**
+ * Whether the session shoul be closed upon execution of the actor */
   final?: boolean;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * The set of ssh servers keyed by custom names */
 export interface IGithubComKadeesshKadeesshInternalServer {
-  /**
-   * Socket addresses to which to bind listeners. Accepts
-   * [network addresses](/docs/conventions#network-addresses)
-   * that may include port ranges. Listener addresses must
-   * be unique; they cannot be repeated across all defined
-   * servers. TCP is the only acceptable network (for now, perhaps). */
+/**
+ * Socket addresses to which to bind listeners. Accepts
+ * [network addresses](/docs/conventions#network-addresses)
+ * that may include port ranges. Listener addresses must
+ * be unique; they cannot be repeated across all defined
+ * servers. TCP is the only acceptable network (for now, perhaps). */
   address?: string;
-  /**
-   * The configuration of local-forward permission module. The config structure is:
-   * "localforward": {
-   * 		"forward": "<module name>"
-   * 		... config
-   * }
-   * defaults to: { "forward": "deny" } */
+/**
+ * The configuration of local-forward permission module. The config structure is:
+ * "localforward": {
+ * 		"forward": "<module name>"
+ * 		... config
+ * }
+ * defaults to: { "forward": "deny" } */
   localforward?: ILocalforward;
-  /**
-   * The configuration of reverse-forward permission module. The config structure is:
-   * "reverseforward": {
-   * 		"forward": "<module name>"
-   * 		... config
-   * }
-   * defaults to: { "reverseforward": "deny" } */
+/**
+ * The configuration of reverse-forward permission module. The config structure is:
+ * "reverseforward": {
+ * 		"forward": "<module name>"
+ * 		... config
+ * }
+ * defaults to: { "reverseforward": "deny" } */
   reverseforward?: IReverseforward;
-  /**
-   * The configuration of PTY permission module. The config structure is:
-   * "pty": {
-   * 		"pty": "<module name>"
-   * 		... config
-   * }
-   * defaults to: { "forward": "deny" } */
+/**
+ * The configuration of PTY permission module. The config structure is:
+ * "pty": {
+ * 		"pty": "<module name>"
+ * 		... config
+ * }
+ * defaults to: { "forward": "deny" } */
   pty?: IPty;
-  /**
-   * connection timeout when no activity, none if empty
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * connection timeout when no activity, none if empty
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   idle_timeout?: IGithubComCaddyserverCaddyV2Duration;
-  /**
-   * absolute connection timeout, none if empty
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * absolute connection timeout, none if empty
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   max_timeout?: IGithubComCaddyserverCaddyV2Duration;
-  /**
-   * The configuration of the authorizer module. The config structure is:
-   * "authorize": {
-   * 		"authorizer": "<module name>"
-   * 		... config
-   * }
-   * default to: { "authorizer": "public" }. */
+/**
+ * The configuration of the authorizer module. The config structure is:
+ * "authorize": {
+ * 		"authorizer": "<module name>"
+ * 		... config
+ * }
+ * default to: { "authorizer": "public" }. */
   authorize?: IAuthorizers;
-  /**
-   * The list of defined subsystems in a json structure keyed by the arbitrary name of the subsystem.
-   * TODO: The current implementation is naive and can be expanded to follow the Authorzation and Actors model
-   * ModuleMap is a map that can contain multiple modules,
-   * where the map key is the module's name. (The namespace
-   * is usually read from an associated field's struct tag.)
-   * Because the module's name is given as the key in a
-   * module map, the name does not have to be given in the
-   * json.RawMessage. */
-  subsystems: ISubsystem;
-  /**
-   * ConfigList is a list of server config providers that can
-   * custom configure the server based on the session */
+/**
+ * The list of defined subsystems in a json structure keyed by the arbitrary name of the subsystem.
+ * TODO: The current implementation is naive and can be expanded to follow the Authorzation and Actors model
+ * ModuleMap is a map that can contain multiple modules,
+ * where the map key is the module's name. (The namespace
+ * is usually read from an associated field's struct tag.)
+ * Because the module's name is given as the key in a
+ * module map, the name does not have to be given in the
+ * json.RawMessage. */
+  subsystems?: ISubsystem;
+/**
+ * ConfigList is a list of server config providers that can
+ * custom configure the server based on the session */
   configs?: Array<IGithubComKadeesshKadeesshInternalConfigurator>;
-  /**
-   * ActorList is a list of server actors that can
-   * take an action on a session */
+/**
+ * ActorList is a list of server actors that can
+ * take an action on a session */
   actors?: Array<IGithubComKadeesshKadeesshInternalActor>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * SSH is the app providing ssh services */
 export interface IGithubComKadeesshKadeesshInternalSsh {
-  /**
-   * GracePeriod is the duration a server should wait for open connections to close during shutdown
-   * before closing them forcefully
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * GracePeriod is the duration a server should wait for open connections to close during shutdown
+ * before closing them forcefully
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   grace_period?: IGithubComCaddyserverCaddyV2Duration;
   servers?: Record<string, IGithubComKadeesshKadeesshInternalServer>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
@@ -3327,8 +3557,10 @@ export interface IGithubComAnxuanziCaddyDnsClouDnsProvider {
   auth_id?: string;
   sub_auth_id?: string;
   auth_password?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider.Configs defines a map from domain string to
@@ -3340,97 +3572,109 @@ export interface IGithubComLibdnsAcmednsDomainConfig {
   subdomain?: string;
   fulldomain?: string;
   server_url?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
 export interface IGithubComCaddyDnsAcmednsProvider {
   config?: Record<string, IGithubComLibdnsAcmednsDomainConfig>;
-  /**
-   * ACME-DNS account username as returned by ACME-DNS API /register endpoint. */
+/**
+ * ACME-DNS account username as returned by ACME-DNS API /register endpoint. */
   username?: string;
-  /**
-   * ACME-DNS account password as returned by ACME-DNS API /register endpoint. */
+/**
+ * ACME-DNS account password as returned by ACME-DNS API /register endpoint. */
   password?: string;
-  /**
-   * ACME-DNS account subdomain as returned by ACME-DNS API /register endpoint. */
+/**
+ * ACME-DNS account subdomain as returned by ACME-DNS API /register endpoint. */
   subdomain?: string;
-  /**
-   * ACME-DNS API base URL. For example, https://auth.acme-dns.io */
+/**
+ * ACME-DNS API base URL. For example, https://auth.acme-dns.io */
   server_url?: string;
   config_file_path?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface IGithubComCaddyDnsAcmeproxyProvider {
   username?: string;
   password?: string;
-  /**
-   * Endpoint is the URL of the ACMEProxy server. */
+/**
+ * Endpoint is the URL of the ACMEProxy server. */
   endpoint?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface IGithubComCaddyDnsAlidnsProvider {
-  /**
-   * The API Key ID Required by Aliyun's for accessing the Aliyun's API */
+/**
+ * The API Key ID Required by Aliyun's for accessing the Aliyun's API */
   access_key_id?: string;
-  /**
-   * The API Key Secret Required by Aliyun's for accessing the Aliyun's API */
+/**
+ * The API Key Secret Required by Aliyun's for accessing the Aliyun's API */
   access_key_secret?: string;
-  /**
-   * Optional for identifing the region of the Aliyun's Service,The default is zh-hangzhou */
+/**
+ * Optional for identifing the region of the Aliyun's Service,The default is zh-hangzhou */
   region_id?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface IGithubComCaddyDnsAzureProvider {
-  /**
-   * Subscription ID is the ID of the subscription in which the DNS zone is located. Required. */
+/**
+ * Subscription ID is the ID of the subscription in which the DNS zone is located. Required. */
   subscription_id?: string;
-  /**
-   * Resource Group Name is the name of the resource group in which the DNS zone is located. Required. */
+/**
+ * Resource Group Name is the name of the resource group in which the DNS zone is located. Required. */
   resource_group_name?: string;
-  /**
-   * (Optional)
-   * Tenant ID is the ID of the tenant of the Microsoft Entra ID in which the application is located.
-   * Required only when authenticating using a service principal with a secret.
-   * Do not set any value to authenticate using a managed identity. */
+/**
+ * (Optional)
+ * Tenant ID is the ID of the tenant of the Microsoft Entra ID in which the application is located.
+ * Required only when authenticating using a service principal with a secret.
+ * Do not set any value to authenticate using a managed identity. */
   tenant_id?: string;
-  /**
-   * (Optional)
-   * Client ID is the ID of the application.
-   * Required only when authenticating using a service principal with a secret.
-   * Do not set any value to authenticate using a managed identity. */
+/**
+ * (Optional)
+ * Client ID is the ID of the application.
+ * Required only when authenticating using a service principal with a secret.
+ * Do not set any value to authenticate using a managed identity. */
   client_id?: string;
-  /**
-   * (Optional)
-   * Client Secret is the client secret of the application.
-   * Required only when authenticating using a service principal with a secret.
-   * Do not set any value to authenticate using a managed identity. */
+/**
+ * (Optional)
+ * Client Secret is the client secret of the application.
+ * Required only when authenticating using a service principal with a secret.
+ * Do not set any value to authenticate using a managed identity. */
   client_secret?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface IGithubComCaddyDnsCloudflareProvider {
-  /**
-   * API token is used for authentication. Make sure to use a
-   * scoped API **token**, NOT a global API **key**. It will
-   * need two permissions: Zone-Zone-Read and Zone-DNS-Edit,
-   * unless you are only using `GetRecords()`, in which case
-   * the second can be changed to Read. */
+/**
+ * API token is used for authentication. Make sure to use a
+ * scoped API **token**, NOT a global API **key**. It will
+ * need two permissions: Zone-Zone-Read and Zone-DNS-Edit,
+ * unless you are only using `GetRecords()`, in which case
+ * the second can be changed to Read. */
   api_token?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
@@ -3438,141 +3682,170 @@ export interface IGithubComCaddyDnsDdnssProvider {
   api_token?: string;
   username?: string;
   password?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
 export interface IGithubComCaddyDnsDesecProvider {
-  /**
-   * Token is a token created on https://desec.io/tokens. A basic token without the permission
-   * to manage tokens is sufficient. */
+/**
+ * Token is a token created on https://desec.io/tokens. A basic token without the permission
+ * to manage tokens is sufficient. */
   token?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface IGithubComCaddyDnsDigitaloceanProvider {
-  /**
-   * auth_token is the DigitalOcean API token - see https://www.digitalocean.com/docs/apis-clis/api/create-personal-access-token/ */
+/**
+ * auth_token is the DigitalOcean API token - see https://www.digitalocean.com/docs/apis-clis/api/create-personal-access-token/ */
   auth_token?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
 export interface IGithubComCaddyDnsDinahostingProvider {
   username?: string;
   password?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface IGithubComCaddyDnsDnspodProvider {
-  /**
-   * auth_token is the DNSPOD API token - see https://www.dnspod.cn/docs/info.html#common-parameters */
+/**
+ * auth_token is the DNSPOD API token - see https://www.dnspod.cn/docs/info.html#common-parameters */
   auth_token?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface IGithubComCaddyDnsDuckdnsProvider {
   api_token?: string;
   override_domain?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface IGithubComCaddyDnsGandiProvider {
   bearer_token?: string;
-  [key: string]: any;
+[key: string]: any;
 }
 
-/**
+
+
+  /**
    * Provider wraps the provider implementation as a Caddy module.
 
    */
 export type IGithubComCaddyDnsGodaddyProvider = Record<string, any>;
+
 
 /**
  * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
 export interface IGithubComCaddyDnsGoogleDomainsProvider {
   access_token?: string;
   keep_expired_records?: boolean;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
 export interface IGithubComCaddyDnsGoogleclouddnsProvider {
   gcp_project?: string;
   gcp_application_default?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface IGithubComCaddyDnsHetznerProvider {
-  /**
-   * auth_api_token is the Hetzner Auth API token - see https://dns.hetzner.com/api-docs#section/Authentication/Auth-API-Token */
+/**
+ * auth_api_token is the Hetzner Auth API token - see https://dns.hetzner.com/api-docs#section/Authentication/Auth-API-Token */
   auth_api_token?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface IGithubComCaddyDnsHexonetProvider {
   username?: string;
   password?: string;
-  /**
-   * Debug - can set this to stdout or stderr to dump
-   * debugging information about the API interaction with
-   * hexonet.  This will dump your auth token in plain text
-   * so be careful. */
+/**
+ * Debug - can set this to stdout or stderr to dump
+ * debugging information about the API interaction with
+ * hexonet.  This will dump your auth token in plain text
+ * so be careful. */
   debug?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
 export interface IGithubComCaddyDnsInfomaniakProvider {
-  /**
-   * infomaniak API token */
+/**
+ * infomaniak API token */
   api_token?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider lets Caddy read and manipulate DNS records hosted by INWX. */
 export interface IGithubComCaddyDnsInwxProvider {
-  /**
-   * Username of your INWX account. */
+/**
+ * Username of your INWX account. */
   username?: string;
-  /**
-   * Password of your INWX account. */
+/**
+ * Password of your INWX account. */
   password?: string;
-  /**
-   * The shared secret is used to generate a TAN if you have activated "Mobile TAN" for your INWX account. */
+/**
+ * The shared secret is used to generate a TAN if you have activated "Mobile TAN" for your INWX account. */
   shared_secret?: string;
-  /**
-   * URL of the JSON-RPC API endpoint. It defaults to the production endpoint. */
+/**
+ * URL of the JSON-RPC API endpoint. It defaults to the production endpoint. */
   endpoint_url?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface IGithubComCaddyDnsIonosProvider {
-  /**
-   * AuthAPIToken is the IONOS Auth API token -
-   * see https://dns.ionos.com/api-docs#section/Authentication/Auth-API-Token */
+/**
+ * AuthAPIToken is the IONOS Auth API token -
+ * see https://dns.ionos.com/api-docs#section/Authentication/Auth-API-Token */
   auth_api_token?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 export type ILeaseweb = Record<string, any>;
 
@@ -3590,42 +3863,48 @@ export type ILeaseweb = Record<string, any>;
  * make use of the libdns APIs: https://github.com/libdns */
 export interface IGithubComCaddyDnsLegoDeprecatedLegoDeprecated {
   provider_name?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
 export interface IGithubComCaddyDnsLinodeProvider {
-  /**
-   * APIToken is the Linode Personal Access Token, see https://cloud.linode.com/profile/tokens. */
+/**
+ * APIToken is the Linode Personal Access Token, see https://cloud.linode.com/profile/tokens. */
   api_token?: string;
-  /**
-   * APIURL is the Linode API hostname, i.e. "api.linode.com". */
+/**
+ * APIURL is the Linode API hostname, i.e. "api.linode.com". */
   api_url?: string;
-  /**
-   * APIVersion is the Linode API version, i.e. "v4". */
+/**
+ * APIVersion is the Linode API version, i.e. "v4". */
   api_version?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
 export interface IGithubComCaddyDnsMailinaboxProvider {
-  /**
-   * APIURL is the URL provided by the mailinabox admin interface, found
-   * on your box here: https://box.[your-domain.com]/admin#custom_dns
-   * https://box.[your-domain.com]/admin/dns/custom */
+/**
+ * APIURL is the URL provided by the mailinabox admin interface, found
+ * on your box here: https://box.[your-domain.com]/admin#custom_dns
+ * https://box.[your-domain.com]/admin/dns/custom */
   api_url?: string;
-  /**
-   * EmailAddress of an admin account.
-   * It's recommended that a dedicated account
-   * be created especially for managing DNS. */
+/**
+ * EmailAddress of an admin account.
+ * It's recommended that a dedicated account
+ * be created especially for managing DNS. */
   email_address?: string;
-  /**
-   * Password of the admin account that corresponds to the email. */
+/**
+ * Password of the admin account that corresponds to the email. */
   password?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider wraps the provider implementation as a Caddy module. */
@@ -3633,33 +3912,37 @@ export interface IGithubComCaddyDnsMetanameProvider {
   api_key?: string;
   account_reference?: string;
   endpoint?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface IGithubComCaddyDnsNamecheapProvider {
-  /**
-   * APIKey is your namecheap API key.
-   * See: https://www.namecheap.com/support/api/intro/
-   * for more details. */
+/**
+ * APIKey is your namecheap API key.
+ * See: https://www.namecheap.com/support/api/intro/
+ * for more details. */
   api_key?: string;
-  /**
-   * User is your namecheap API user. This can be the same as your username. */
+/**
+ * User is your namecheap API user. This can be the same as your username. */
   user?: string;
-  /**
-   * APIEndpoint to use. If testing, you can use the "sandbox" endpoint
-   * instead of the production one. */
+/**
+ * APIEndpoint to use. If testing, you can use the "sandbox" endpoint
+ * instead of the production one. */
   api_endpoint?: string;
-  /**
-   * ClientIP is the IP address of the requesting client.
-   * If this is not set, a discovery service will be
-   * used to determine the public ip of the machine.
-   * You must first whitelist your IP in the namecheap console
-   * before using the API. */
+/**
+ * ClientIP is the IP address of the requesting client.
+ * If this is not set, a discovery service will be
+ * used to determine the public ip of the machine.
+ * You must first whitelist your IP in the namecheap console
+ * before using the API. */
   client_ip?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider wraps the provider implementation as a Caddy module. */
@@ -3667,15 +3950,19 @@ export interface IGithubComCaddyDnsNamedotcomProvider {
   api_token?: string;
   user?: string;
   server?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
 export interface IGithubComCaddyDnsNamesiloProvider {
   api_token?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
@@ -3683,25 +3970,31 @@ export interface IGithubComCaddyDnsNetcupProvider {
   customer_number?: string;
   api_key?: string;
   api_password?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface IGithubComCaddyDnsNetlifyProvider {
-  /**
-   * Personal Access Token is required to Authenticate
-   * yourself to Netlify's API */
+/**
+ * Personal Access Token is required to Authenticate
+ * yourself to Netlify's API */
   personal_access_token?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
 export interface IGithubComCaddyDnsNjallaProvider {
   api_token?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * AuthOpenStack contains credentials for OpenStack Designate. */
@@ -3714,15 +4007,19 @@ export interface IGithubComLibdnsOpenstackDesignateAuthOpenStack {
   username?: string;
   tenant_name?: string;
   endpoint_type?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface IGithubComCaddyDnsOpenstackDesignateProvider {
   auth_open_stack?: IGithubComLibdnsOpenstackDesignateAuthOpenStack;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider wraps the provider implementation as a Caddy module. */
@@ -3731,121 +4028,96 @@ export interface IGithubComCaddyDnsOvhProvider {
   application_key?: string;
   application_secret?: string;
   consumer_key?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
 export interface IGithubComCaddyDnsPorkbunProvider {
   api_key?: string;
   api_secret_key?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface IGithubComCaddyDnsPowerdnsProvider {
-  /**
-   * ServerURL is the location of the pdns server. */
+/**
+ * ServerURL is the location of the pdns server. */
   server_url?: string;
-  /**
-   * ServerID is the id of the server.  localhost will be used
-   * if this is omitted. */
+/**
+ * ServerID is the id of the server.  localhost will be used
+ * if this is omitted. */
   server_id?: string;
-  /**
-   * APIToken is the auth token. */
+/**
+ * APIToken is the auth token. */
   api_token?: string;
-  /**
-   * Debug - can set this to stdout or stderr to dump
-   * debugging information about the API interaction with
-   * powerdns.  This will dump your auth token in plain text
-   * so be careful. */
+/**
+ * Debug - can set this to stdout or stderr to dump
+ * debugging information about the API interaction with
+ * powerdns.  This will dump your auth token in plain text
+ * so be careful. */
   debug?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 export interface IGithubComCaddyDnsRfc2136Provider {
   key_name?: string;
   key_alg?: string;
   key?: string;
   server?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface IGithubComCaddyDnsRoute53Provider {
   max_retries?: number;
-  [key: string]: any;
+[key: string]: any;
 }
 
-/**
+
+
+  /**
    * Provider wraps the provider implementation as a Caddy module.
 
    */
 export type IGithubComCaddyDnsTencentcloudProvider = Record<string, any>;
 
+
 /**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface IGithubComCaddyDnsVercelProvider {
-  /**
-   * AuthAPIToken is the Vercel Authentication Token - see https://vercel.com/docs/api#api-basics/authentication */
+/**
+ * AuthAPIToken is the Vercel Authentication Token - see https://vercel.com/docs/api#api-basics/authentication */
   auth_api_token?: string;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface IGithubComCaddyDnsVultrProvider {
-  /**
-   * auth_token is the Vultr API token
-   * see https://my.vultr.com/settings/#settingsapi */
+/**
+ * auth_token is the Vultr API token
+ * see https://my.vultr.com/settings/#settingsapi */
   auth_token?: string;
-  [key: string]: any;
+[key: string]: any;
 }
 
-export type IProviders =
-  | IGithubComAnxuanziCaddyDnsClouDnsProvider
-  | IGithubComCaddyDnsAcmednsProvider
-  | IGithubComCaddyDnsAcmeproxyProvider
-  | IGithubComCaddyDnsAlidnsProvider
-  | IGithubComCaddyDnsAzureProvider
-  | IGithubComCaddyDnsCloudflareProvider
-  | IGithubComCaddyDnsDdnssProvider
-  | IGithubComCaddyDnsDesecProvider
-  | IGithubComCaddyDnsDigitaloceanProvider
-  | IGithubComCaddyDnsDinahostingProvider
-  | IGithubComCaddyDnsDnspodProvider
-  | IGithubComCaddyDnsDuckdnsProvider
-  | IGithubComCaddyDnsGandiProvider
-  | IGithubComCaddyDnsGodaddyProvider
-  | IGithubComCaddyDnsGoogleDomainsProvider
-  | IGithubComCaddyDnsGoogleclouddnsProvider
-  | IGithubComCaddyDnsHetznerProvider
-  | IGithubComCaddyDnsHexonetProvider
-  | IGithubComCaddyDnsInfomaniakProvider
-  | IGithubComCaddyDnsInwxProvider
-  | IGithubComCaddyDnsIonosProvider
-  | ILeaseweb
-  | IGithubComCaddyDnsLegoDeprecatedLegoDeprecated
-  | IGithubComCaddyDnsLinodeProvider
-  | IGithubComCaddyDnsMailinaboxProvider
-  | IGithubComCaddyDnsMetanameProvider
-  | IGithubComCaddyDnsNamecheapProvider
-  | IGithubComCaddyDnsNamedotcomProvider
-  | IGithubComCaddyDnsNamesiloProvider
-  | IGithubComCaddyDnsNetcupProvider
-  | IGithubComCaddyDnsNetlifyProvider
-  | IGithubComCaddyDnsNjallaProvider
-  | IGithubComCaddyDnsOpenstackDesignateProvider
-  | IGithubComCaddyDnsOvhProvider
-  | IGithubComCaddyDnsPorkbunProvider
-  | IGithubComCaddyDnsPowerdnsProvider
-  | IGithubComCaddyDnsRfc2136Provider
-  | IGithubComCaddyDnsRoute53Provider
-  | IGithubComCaddyDnsTencentcloudProvider
-  | IGithubComCaddyDnsVercelProvider
-  | IGithubComCaddyDnsVultrProvider;
+
+
+export type IProviders = IGithubComAnxuanziCaddyDnsClouDnsProvider | IGithubComCaddyDnsAcmednsProvider | IGithubComCaddyDnsAcmeproxyProvider | IGithubComCaddyDnsAlidnsProvider | IGithubComCaddyDnsAzureProvider | IGithubComCaddyDnsCloudflareProvider | IGithubComCaddyDnsDdnssProvider | IGithubComCaddyDnsDesecProvider | IGithubComCaddyDnsDigitaloceanProvider | IGithubComCaddyDnsDinahostingProvider | IGithubComCaddyDnsDnspodProvider | IGithubComCaddyDnsDuckdnsProvider | IGithubComCaddyDnsGandiProvider | IGithubComCaddyDnsGodaddyProvider | IGithubComCaddyDnsGoogleDomainsProvider | IGithubComCaddyDnsGoogleclouddnsProvider | IGithubComCaddyDnsHetznerProvider | IGithubComCaddyDnsHexonetProvider | IGithubComCaddyDnsInfomaniakProvider | IGithubComCaddyDnsInwxProvider | IGithubComCaddyDnsIonosProvider | ILeaseweb | IGithubComCaddyDnsLegoDeprecatedLegoDeprecated | IGithubComCaddyDnsLinodeProvider | IGithubComCaddyDnsMailinaboxProvider | IGithubComCaddyDnsMetanameProvider | IGithubComCaddyDnsNamecheapProvider | IGithubComCaddyDnsNamedotcomProvider | IGithubComCaddyDnsNamesiloProvider | IGithubComCaddyDnsNetcupProvider | IGithubComCaddyDnsNetlifyProvider | IGithubComCaddyDnsNjallaProvider | IGithubComCaddyDnsOpenstackDesignateProvider | IGithubComCaddyDnsOvhProvider | IGithubComCaddyDnsPorkbunProvider | IGithubComCaddyDnsPowerdnsProvider | IGithubComCaddyDnsRfc2136Provider | IGithubComCaddyDnsRoute53Provider | IGithubComCaddyDnsTencentcloudProvider | IGithubComCaddyDnsVercelProvider | IGithubComCaddyDnsVultrProvider;
+
 
 /**
  * The IP versions to enable. By default, both "ipv4" and "ipv6" will be enabled.
@@ -3855,40 +4127,44 @@ export type IProviders =
 export interface IGithubComMholtCaddyDynamicdnsIpVersions {
   ipv4?: boolean;
   ipv6?: boolean;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * App is a Caddy app that keeps your DNS records updated with the public
  * IP address of your instance. It updates A and AAAA records. */
 export interface IGithubComMholtCaddyDynamicdnsApp {
   ip_sources?: Array<unknown>;
-  /**
-   * The configuration for the DNS provider with which the DNS
-   * records will be updated. */
+/**
+ * The configuration for the DNS provider with which the DNS
+ * records will be updated. */
   dns_provider?: IProviders;
   domains?: Record<string, Array<string>>;
-  /**
-   * If enabled, the "http" app's config will be scanned to assemble the list
-   * of domains for which to enable dynamic DNS updates. */
+/**
+ * If enabled, the "http" app's config will be scanned to assemble the list
+ * of domains for which to enable dynamic DNS updates. */
   dynamic_domains?: boolean;
   versions?: IGithubComMholtCaddyDynamicdnsIpVersions;
-  /**
-   * How frequently to check the public IP address. Default: 30m
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * How frequently to check the public IP address. Default: 30m
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   check_interval?: IGithubComCaddyserverCaddyV2Duration;
-  /**
-   * The TTL to set on DNS records.
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * The TTL to set on DNS records.
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   ttl?: IGithubComCaddyserverCaddyV2Duration;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Route represents a collection of handlers that are gated
@@ -3896,26 +4172,32 @@ export interface IGithubComMholtCaddyDynamicdnsApp {
 export interface IGithubComMholtCaddyL4Layer4Route {
   match?: Array<unknown>;
   handle?: Array<unknown>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * Server represents a Caddy layer4 server. */
 export interface IGithubComMholtCaddyL4Layer4Server {
   listen?: Array<string>;
-  /**
-   * RouteList is a list of connection routes that can create
-   * a middleware chain. */
+/**
+ * RouteList is a list of connection routes that can create
+ * a middleware chain. */
   routes?: Array<IGithubComMholtCaddyL4Layer4Route>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * App is a Caddy app that operates closest to layer 4 of the OSI model. */
 export interface IGithubComMholtCaddyL4Layer4App {
   servers?: Record<string, IGithubComMholtCaddyL4Layer4Server>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * The profiling parameters to be reported to Profefe.
@@ -3924,94 +4206,102 @@ export interface IGithubComMholtCaddyL4Layer4App {
  * If `profefe` is configured as an app, all the parameters are instated as-is.
  * Common profiling paramters */
 export interface IGithubComMohammed90CaddyProfilingParameters {
-  /**
-   * The hertz rate for CPU profiling, as accepted by the [`SetCPUProfileRate`](https://pkg.go.dev/runtime#SetCPUProfileRate) function. */
+/**
+ * The hertz rate for CPU profiling, as accepted by the [`SetCPUProfileRate`](https://pkg.go.dev/runtime#SetCPUProfileRate) function. */
   cpu_profile_rate?: number;
-  /**
-   * The hertz rate for CPU profiling, as accepted by the [`SetBlockProfileRate`](https://pkg.go.dev/runtime#SetBlockProfileRate) function. */
+/**
+ * The hertz rate for CPU profiling, as accepted by the [`SetBlockProfileRate`](https://pkg.go.dev/runtime#SetBlockProfileRate) function. */
   block_profile_rate?: number;
-  /**
-   * The the fraction of mutex contention events, as accepted by the [`SetMutexProfileFraction`](https://pkg.go.dev/runtime#SetMutexProfileFraction) function. */
+/**
+ * The the fraction of mutex contention events, as accepted by the [`SetMutexProfileFraction`](https://pkg.go.dev/runtime#SetMutexProfileFraction) function. */
   mutex_profile_fraction?: number;
   profile_types?: Array<string>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * The `profefe` app collects profiling data during the life-time of the process
  * and uploads them to the profefe server. */
 export interface IGithubComMohammed90CaddyProfilingProfefeApp {
-  /**
-   * The URL of the Profefe service. The config value may be a [placeholder](https://caddyserver.com/docs/conventions#placeholders). */
+/**
+ * The URL of the Profefe service. The config value may be a [placeholder](https://caddyserver.com/docs/conventions#placeholders). */
   address?: string;
-  /**
-   * The service name reported to Profefe. The config value may be a [placeholder](https://caddyserver.com/docs/conventions#placeholders). */
+/**
+ * The service name reported to Profefe. The config value may be a [placeholder](https://caddyserver.com/docs/conventions#placeholders). */
   service?: string;
-  /**
-   * The timeout for the upload call. Setting the value to `0` disables the timeout and the call waits indefinitely until the upload is finished.
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * The timeout for the upload call. Setting the value to `0` disables the timeout and the call waits indefinitely until the upload is finished.
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   timeout?: IGithubComCaddyserverCaddyV2Duration;
   parameters?: IGithubComMohammed90CaddyProfilingParameters;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * The `profiling` app hosts the collection of push-based profiling agents with common profiling parameters acorss the Caddy instance. */
 export interface IGithubComMohammed90CaddyProfilingProfilingApp {
-  /**
-   * The hertz rate for CPU profiling, as accepted by the [`SetCPUProfileRate`](https://pkg.go.dev/runtime#SetCPUProfileRate) function. */
+/**
+ * The hertz rate for CPU profiling, as accepted by the [`SetCPUProfileRate`](https://pkg.go.dev/runtime#SetCPUProfileRate) function. */
   cpu_profile_rate?: number;
-  /**
-   * The hertz rate for CPU profiling, as accepted by the [`SetBlockProfileRate`](https://pkg.go.dev/runtime#SetBlockProfileRate) function. */
+/**
+ * The hertz rate for CPU profiling, as accepted by the [`SetBlockProfileRate`](https://pkg.go.dev/runtime#SetBlockProfileRate) function. */
   block_profile_rate?: number;
-  /**
-   * The the fraction of mutex contention events, as accepted by the [`SetMutexProfileFraction`](https://pkg.go.dev/runtime#SetMutexProfileFraction) function. */
+/**
+ * The the fraction of mutex contention events, as accepted by the [`SetMutexProfileFraction`](https://pkg.go.dev/runtime#SetMutexProfileFraction) function. */
   mutex_profile_fraction?: number;
   profile_types?: Array<string>;
   profilers?: Array<unknown>;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 /**
  * The `pyroscope` app collects profiling data during the life-time of the process
  * and uploads them to the Pyroscope server. */
 export interface IGithubComMohammed90CaddyProfilingPyroscopeApp {
-  /**
-   * The application name reported to Pyroscope. The config value may be a [placeholder](https://caddyserver.com/docs/conventions#placeholders). */
+/**
+ * The application name reported to Pyroscope. The config value may be a [placeholder](https://caddyserver.com/docs/conventions#placeholders). */
   application_name?: string;
-  /**
-   * The URL of the Pyroscope service. The config value may be a [placeholder](https://caddyserver.com/docs/conventions#placeholders). */
+/**
+ * The URL of the Pyroscope service. The config value may be a [placeholder](https://caddyserver.com/docs/conventions#placeholders). */
   server_address?: string;
-  /**
-   * The token for Pyroscope Cloud. The config value may be a [placeholder](https://caddyserver.com/docs/conventions#placeholders). */
+/**
+ * The token for Pyroscope Cloud. The config value may be a [placeholder](https://caddyserver.com/docs/conventions#placeholders). */
   auth_token?: string;
-  /**
-   * The Basic Auth username of the Phlare server */
+/**
+ * The Basic Auth username of the Phlare server */
   basic_auth_user?: string;
-  /**
-   * The Basic Auth  of the Phlare server */
+/**
+ * The Basic Auth  of the Phlare server */
   basic_auth_password?: string;
-  /**
-   * The tenant ID to support the case of multi-tenant Phlare server */
+/**
+ * The tenant ID to support the case of multi-tenant Phlare server */
   tenant_id?: string;
-  /**
-   * Disable automatic runtime.GC runs between getting the heap profiles */
+/**
+ * Disable automatic runtime.GC runs between getting the heap profiles */
   disable_gc_runs?: boolean;
-  /**
-   * The frequency of upload to the Phlare server
-   * Duration can be an integer or a string. An integer is
-   * interpreted as nanoseconds. If a string, it is a Go
-   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
-   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+/**
+ * The frequency of upload to the Phlare server
+ * Duration can be an integer or a string. An integer is
+ * interpreted as nanoseconds. If a string, it is a Go
+ * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+ * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
   upload_rate?: IGithubComCaddyserverCaddyV2Duration;
-  parameters: IGithubComMohammed90CaddyProfilingParameters;
-  [key: string]: any;
+  parameters?: IGithubComMohammed90CaddyProfilingParameters;
+[key: string]: any;
 }
 
-/**
+
+
+  /**
    * SCION implements a caddy module. Currently, it is used to initialize the
 logger for the global network. In the future, additional configuration can be
 parsed with this component.
@@ -4019,36 +4309,39 @@ parsed with this component.
    */
 export type IGithubComScionprotoContribCaddyScionScion = Record<string, any>;
 
+
 /**
  * geoip2 is global caddy app with http.handlers.geoip2
  * it update geoip2 data automatically by the params */
 export interface IGithubComZhangjiayinCaddyGeoip2GeoIp2State {
-  /**
-   * Your MaxMind account ID. This was formerly known as UserId. */
+/**
+ * Your MaxMind account ID. This was formerly known as UserId. */
   accountId?: number;
-  /**
-   * The directory to store the database files. Defaults to DATADIR */
+/**
+ * The directory to store the database files. Defaults to DATADIR */
   databaseDirectory?: string;
-  /**
-   * Your case-sensitive MaxMind license key. */
+/**
+ * Your case-sensitive MaxMind license key. */
   licenseKey?: string;
-  /**
-   * The lock file to use. This ensures only one geoipupdate process can run at a
-   * time.
-   * Note: Once created, this lockfile is not removed from the filesystem. */
+/**
+ * The lock file to use. This ensures only one geoipupdate process can run at a
+ * time.
+ * Note: Once created, this lockfile is not removed from the filesystem. */
   lockFile?: string;
-  /**
-   * Enter the edition IDs of the databases you would like to update.
-   * Should be  GeoLite2-City */
+/**
+ * Enter the edition IDs of the databases you would like to update.
+ * Should be  GeoLite2-City */
   editionID?: string;
-  /**
-   * update url to use. Defaults to https://updates.maxmind.com */
+/**
+ * update url to use. Defaults to https://updates.maxmind.com */
   updateUrl?: string;
-  /**
-   * The Frequency in seconds to run update. Default to 0, only update On Start */
+/**
+ * The Frequency in seconds to run update. Default to 0, only update On Start */
   updateFrequency?: number;
-  [key: string]: any;
+[key: string]: any;
 }
+
+
 
 export interface IApps {
   exec?: IGithubComAbiosoftCaddyExecApp;
@@ -4072,6 +4365,7 @@ export interface IApps {
   [key: string]: any;
 }
 
+
 /**
  * Config is the top (or beginning) of the Caddy configuration structure.
  * Caddy config is expressed natively as a JSON document. If you prefer
@@ -4094,17 +4388,18 @@ export interface IApps {
 export interface IGithubComCaddyserverCaddyV2Config {
   admin?: IGithubComCaddyserverCaddyV2AdminConfig;
   logging?: IGithubComCaddyserverCaddyV2Logging;
-  storage: IStorage;
-  /**
-   * AppsRaw are the apps that Caddy will load and run. The
-   * app module name is the key, and the app's config is the
-   * associated value.
-   * ModuleMap is a map that can contain multiple modules,
-   * where the map key is the module's name. (The namespace
-   * is usually read from an associated field's struct tag.)
-   * Because the module's name is given as the key in a
-   * module map, the name does not have to be given in the
-   * json.RawMessage. */
-  apps: IApps;
-  [key: string]: any;
+  storage?: IStorage;
+/**
+ * AppsRaw are the apps that Caddy will load and run. The
+ * app module name is the key, and the app's config is the
+ * associated value.
+ * ModuleMap is a map that can contain multiple modules,
+ * where the map key is the module's name. (The namespace
+ * is usually read from an associated field's struct tag.)
+ * Because the module's name is given as the key in a
+ * module map, the name does not have to be given in the
+ * json.RawMessage. */
+  apps?: IApps;
+[key: string]: any;
 }
+

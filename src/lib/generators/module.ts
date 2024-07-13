@@ -25,11 +25,11 @@ export default async function GeneratorModule(
       `Namespace "${module_namespace}" required by module ${path}${key} not found`
     );
     // type of the key defaults to unknown as a fallback
-    return `  ${key}: Record<string, any>;\n`;
+    return `  ${wrapKeyIfNeeded(key)}?: Record<string, any>;\n`;
   }
   const namespaceInterfaceName = getNameSpaceInterfaceName(module_namespace);
   if (ctx.interfaceSet.has(namespaceInterfaceName)) {
-    return `  ${key}: ${namespaceInterfaceName};\n`;
+    return `  ${wrapKeyIfNeeded(key)}?: ${namespaceInterfaceName};\n`;
   }
   ctx.interfaceSet.add(namespaceInterfaceName);
 
