@@ -3,7 +3,6 @@ import { CaddyDocConfigStructureModule } from "../../../interfaces/index.ts";
 import { getDoc } from "../fetch.ts";
 import { getInterfaceName } from "../tools/getInterfaceName.ts";
 import { join } from "jsr:@std/path";
-import { getNameSpaceInterfaceName } from "../tools/getNameSpaceInterfaceName.ts";
 import { wrapKeyIfNeeded } from "../tools/wrapKeyIfNeeded.ts";
 import { changeDocStringToJsDoc } from "../tools/docGenerator.ts";
 
@@ -27,7 +26,7 @@ export default async function GeneratorModule(
     // type of the key defaults to unknown as a fallback
     return `  ${wrapKeyIfNeeded(key)}?: Record<string, any>;\n`;
   }
-  const namespaceInterfaceName = getNameSpaceInterfaceName(module_namespace);
+  const namespaceInterfaceName = getInterfaceName(module_namespace);
   if (ctx.interfaceSet.has(namespaceInterfaceName)) {
     return `  ${wrapKeyIfNeeded(key)}?: ${namespaceInterfaceName};\n`;
   }

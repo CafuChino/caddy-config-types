@@ -17,7 +17,13 @@ export default async function GeneratorArray(
   const { elems } = s;
   const typeName = getPlainTypeStr(elems);
   // if elems is a struct, we need to generate an interface for it
-  if (elems.type === "struct") {
+  if (
+    elems.type === "struct" ||
+    elems.type === "module" ||
+    elems.type === "array" ||
+    elems.type === "map" ||
+    elems.type === "module_map"
+  ) {
     await InterfaceGenerator(ctx, `${path}${key}/`, key, elems);
   }
   result += `  ${wrapKeyIfNeeded(key)}?: Array<${typeName}>;\n`;

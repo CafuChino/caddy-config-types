@@ -28,7 +28,10 @@ export default async function GeneratorStruct(
   interfaceResult += `export interface ${interfaceName} {\n`;
   // Add it to the set
   ctx.interfaceSet.add(interfaceName);
-  if (!s.struct_fields || s.struct_fields?.length === 0) {
+  if (
+    (!s.struct_fields || s.struct_fields?.length === 0) &&
+    !s.module_inline_key
+  ) {
     let interfaceResult = "";
     // add doc
     interfaceResult += `  /**\n`;
@@ -40,7 +43,10 @@ export default async function GeneratorStruct(
     return `  ${wrapKeyIfNeeded(key)}?: ${interfaceName};\n`;
   }
   // Add fields
-  for (const field of s.struct_fields) {
+  if (s.module_inline_key) {
+    interfaceResult += `  ${s.module_inline_key}: '${key}';\n`;
+  }
+  for (const field of s.struct_fields || []) {
     interfaceResult += await InterfaceGenerator(
       ctx,
       join(path, `/${key}/`),

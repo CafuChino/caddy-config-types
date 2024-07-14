@@ -5,7 +5,6 @@ import { getInterfaceName } from "../tools/getInterfaceName.ts";
 import { wrapKeyIfNeeded } from "../tools/wrapKeyIfNeeded.ts";
 import { CaddyDocConfigStructureModuleMap } from "../../../interfaces/index.ts";
 import { getDoc } from "../fetch.ts";
-import { getNameSpaceInterfaceName } from "../tools/getNameSpaceInterfaceName.ts";
 import { changeDocStringToJsDoc } from "../tools/docGenerator.ts";
 
 export default async function GeneratorModuleMap(
@@ -25,9 +24,7 @@ export default async function GeneratorModuleMap(
       key
     )}?: Record<string, any>; // namespace not found: ${module_namespace}\n`;
   }
-  const namespaceInterfaceName = getNameSpaceInterfaceName(
-    module_namespace || key
-  );
+  const namespaceInterfaceName = getInterfaceName(module_namespace || key);
   if (ctx.interfaceSet.has(namespaceInterfaceName)) {
     return `  ${key}: ${namespaceInterfaceName};\n`;
   }

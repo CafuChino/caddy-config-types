@@ -60,6 +60,7 @@ export interface CaddyDocConfigStructureStruct
   type: CaddyDocConfigStructureType.STRUCT;
   type_name: string;
   struct_fields: CaddyDocConfigStructureFiled[];
+  module_inline_key?: string;
 }
 
 export interface CaddyDocConfigStructureString

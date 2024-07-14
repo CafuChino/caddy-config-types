@@ -21,6 +21,10 @@ export function getPlainTypeStr(type: CaddyDocConfigStructure): string {
       return `Array<${getPlainTypeStr(type.elems)}>`;
     case "struct":
       return getInterfaceName(type.type_name);
+    case "module_map":
+      return getInterfaceName(type.module_namespace);
+    case "module":
+      return getInterfaceName(type.module_namespace);
     default:
       return "unknown";
   }
