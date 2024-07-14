@@ -8,7 +8,7 @@ export default async function GeneratorArray(
   ctx: GeneratorCtx,
   path: string,
   key: string,
-  s: CaddyDocConfigStructureArray
+  s: CaddyDocConfigStructureArray,
 ) {
   let result = "";
   // Insert doc as multiline comment

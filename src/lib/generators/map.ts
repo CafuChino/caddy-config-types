@@ -8,7 +8,7 @@ export default async function GeneratorMap(
   ctx: GeneratorCtx,
   path: string,
   key: string,
-  s: CaddyDocConfigStructureMap
+  s: CaddyDocConfigStructureMap,
 ) {
   /**
    * A map should be defined as a Record
@@ -23,8 +23,10 @@ export default async function GeneratorMap(
   let result = "";
   // Insert doc as multiline comment
   result += changeDocStringToJsDoc(s.doc);
-  result += `  ${wrapKeyIfNeeded(
-    key
-  )}?: Record<string, ${recordValueTypeName}>;\n`;
+  result += `  ${
+    wrapKeyIfNeeded(
+      key,
+    )
+  }?: Record<string, ${recordValueTypeName}>;\n`;
   return result;
 }

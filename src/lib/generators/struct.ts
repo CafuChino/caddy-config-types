@@ -10,7 +10,7 @@ export default async function GeneratorStruct(
   ctx: GeneratorCtx,
   path: string,
   key: string,
-  s: CaddyDocConfigStructureStruct
+  s: CaddyDocConfigStructureStruct,
 ) {
   const interfaceName = getInterfaceName(s.type_name || key);
   // Check if the interface is already defined
@@ -44,6 +44,7 @@ export default async function GeneratorStruct(
   }
   // Add fields
   if (s.module_inline_key) {
+    // module_inline_key is required
     interfaceResult += `  ${s.module_inline_key}: '${key}';\n`;
   }
   for (const field of s.struct_fields || []) {
@@ -51,7 +52,7 @@ export default async function GeneratorStruct(
       ctx,
       join(path, `/${key}/`),
       field.key,
-      field.value
+      field.value,
     );
   }
   interfaceResult += `[key: string]: any;\n`;

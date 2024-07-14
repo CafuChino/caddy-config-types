@@ -11,18 +11,20 @@ export default async function GeneratorModuleMap(
   ctx: GeneratorCtx,
   path: string,
   key: string,
-  s: CaddyDocConfigStructureModuleMap
+  s: CaddyDocConfigStructureModuleMap,
 ) {
   const { module_namespace } = s;
 
   const nameSpaceItem = ctx.namespaces[module_namespace];
   if (!nameSpaceItem) {
     console.error(
-      `[GeneratorModuleMap]: namespace not found: ${module_namespace}`
+      `[GeneratorModuleMap]: namespace not found: ${module_namespace}`,
     );
-    return `  ${wrapKeyIfNeeded(
-      key
-    )}?: Record<string, any>; // namespace not found: ${module_namespace}\n`;
+    return `  ${
+      wrapKeyIfNeeded(
+        key,
+      )
+    }?: Record<string, any>; // namespace not found: ${module_namespace}\n`;
   }
   const namespaceInterfaceName = getInterfaceName(module_namespace || key);
   if (ctx.interfaceSet.has(namespaceInterfaceName)) {
@@ -42,7 +44,7 @@ export default async function GeneratorModuleMap(
   for (let item of nameSpaceItem) {
     if (uniqueNames.has(item.name)) {
       console.warn(
-        `[GeneratorModuleMap]: duplicate interface name: ${item.name}`
+        `[GeneratorModuleMap]: duplicate interface name: ${item.name}`,
       );
       continue;
     }

@@ -15,7 +15,7 @@ export default async function GeneratorInt(
   s:
     | CaddyDocConfigStructureInt
     | CaddyDocConfigStructureUint
-    | CaddyDocConfigStructureFloat
+    | CaddyDocConfigStructureFloat,
 ) {
   const { doc, type_name } = s;
   let result = "";

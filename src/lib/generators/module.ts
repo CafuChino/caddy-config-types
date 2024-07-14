@@ -11,7 +11,7 @@ export default async function GeneratorModule(
   ctx: GeneratorCtx,
   path: string,
   key: string,
-  s: CaddyDocConfigStructureModule
+  s: CaddyDocConfigStructureModule,
 ) {
   let result = "";
   // Insert doc as multiline comment
@@ -21,7 +21,7 @@ export default async function GeneratorModule(
   // target namespace not found
   if (!namespace) {
     console.warn(
-      `Namespace "${module_namespace}" required by module ${path}${key} not found`
+      `Namespace "${module_namespace}" required by module ${path}${key} not found`,
     );
     // type of the key defaults to unknown as a fallback
     return `  ${wrapKeyIfNeeded(key)}?: Record<string, any>;\n`;
@@ -33,7 +33,7 @@ export default async function GeneratorModule(
   ctx.interfaceSet.add(namespaceInterfaceName);
 
   console.log(
-    `[Module ${path}${key}] Generating namespace interface ${namespaceInterfaceName}`
+    `[Module ${path}${key}] Generating namespace interface ${namespaceInterfaceName}`,
   );
 
   const interfaceNames = new Set<string>();
@@ -45,10 +45,9 @@ export default async function GeneratorModule(
         .split("/")
         .filter((item) => item)
         .pop();
-      const docApiPath =
-        lastPath === key
-          ? join(path, item.name, "/")
-          : join(path, key, item.name, "/");
+      const docApiPath = lastPath === key
+        ? join(path, item.name, "/")
+        : join(path, key, item.name, "/");
       console.log(`[Module ${path}${key}] Generating interface ${item.name}`);
       const res = await getDoc(docApiPath);
       const { result } = res;
@@ -62,13 +61,13 @@ export default async function GeneratorModule(
     } catch (e) {
       console.error(
         `[Module ${path}${key}] Error fetching interface ${item.name}:`,
-        e
+        e,
       );
       const name = getInterfaceName(item.name);
       interfaceNames.add(name);
       ctx.interfaceMap.set(name, `export type ${name} = Record<string, any>;`);
       console.error(
-        `[Module ${path}${key}] Fallback: Generating interface ${name} as unknown`
+        `[Module ${path}${key}] Fallback: Generating interface ${name} as unknown`,
       );
     }
   }

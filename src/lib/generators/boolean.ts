@@ -7,7 +7,7 @@ export default async function GeneratorBoolean(
   ctx: GeneratorCtx,
   path: string,
   key: string,
-  s: CaddyDocConfigStructureBool
+  s: CaddyDocConfigStructureBool,
 ) {
   let result = "";
   // Insert doc as multiline comment

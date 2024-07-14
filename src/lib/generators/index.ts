@@ -30,7 +30,7 @@ export default function InterfaceGenerator(
   ctx: GeneratorCtx,
   path: string,
   key: string,
-  s: CaddyDocConfigStructure
+  s: CaddyDocConfigStructure,
 ) {
   switch (s.type) {
     case CaddyDocConfigStructureType.BOOL: {

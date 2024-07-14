@@ -6,5 +6,8 @@ import * as changeCase from "npm:change-case";
  * @returns Interface name like "IConfig": "I" stands for "Interface" and "Config" is the type name excluding the package name
  */
 export function getInterfaceName(typeName: string) {
-  return `I${changeCase.pascalCase(typeName)}`;
+  return `I${changeCase.pascalCase(typeName)}`.replace(
+    "GithubComCaddyserverCaddyV2",
+    "",
+  ).replace("GithubCom", "");
 }
