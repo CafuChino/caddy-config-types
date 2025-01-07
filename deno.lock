@@ -2,21 +2,44 @@
   "version": "3",
   "packages": {
     "specifiers": {
+      "jsr:@deno-library/logger": "jsr:@deno-library/logger@1.1.8",
       "jsr:@std/assert@^0.226.0": "jsr:@std/assert@0.226.0",
+      "jsr:@std/fmt@1.0.3": "jsr:@std/fmt@1.0.3",
+      "jsr:@std/fs@^1.0.6": "jsr:@std/fs@1.0.8",
       "jsr:@std/path": "jsr:@std/path@0.225.2",
+      "jsr:@std/path@^1.0.8": "jsr:@std/path@1.0.8",
       "npm:@types/node": "npm:@types/node@18.16.19",
       "npm:change-case": "npm:change-case@5.4.4",
       "npm:got": "npm:got@14.4.1"
     },
     "jsr": {
+      "@deno-library/logger@1.1.8": {
+        "integrity": "a7378a6aa0abec05381900a4119530abb67c97cd5813d43ee84b5b80088d40f8",
+        "dependencies": [
+          "jsr:@std/fmt@1.0.3",
+          "jsr:@std/fs@^1.0.6"
+        ]
+      },
       "@std/assert@0.226.0": {
         "integrity": "0dfb5f7c7723c18cec118e080fec76ce15b4c31154b15ad2bd74822603ef75b3"
+      },
+      "@std/fmt@1.0.3": {
+        "integrity": "97765c16aa32245ff4e2204ecf7d8562496a3cb8592340a80e7e554e0bb9149f"
+      },
+      "@std/fs@1.0.8": {
+        "integrity": "161c721b6f9400b8100a851b6f4061431c538b204bb76c501d02c508995cffe0",
+        "dependencies": [
+          "jsr:@std/path@^1.0.8"
+        ]
       },
       "@std/path@0.225.2": {
         "integrity": "0f2db41d36b50ef048dcb0399aac720a5348638dd3cb5bf80685bf2a745aa506",
         "dependencies": [
           "jsr:@std/assert@^0.226.0"
         ]
+      },
+      "@std/path@1.0.8": {
+        "integrity": "548fa456bb6a04d3c1a1e7477986b6cffbce95102d0bb447c67c4ee70e0364be"
       }
     },
     "npm": {

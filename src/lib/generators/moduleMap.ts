@@ -6,6 +6,7 @@ import { wrapKeyIfNeeded } from "../tools/wrapKeyIfNeeded.ts";
 import { CaddyDocConfigStructureModuleMap } from "../../../interfaces/index.ts";
 import { getDoc } from "../fetch.ts";
 import { changeDocStringToJsDoc } from "../tools/docGenerator.ts";
+import logger from "../logger.ts";
 
 export default async function GeneratorModuleMap(
   ctx: GeneratorCtx,
@@ -17,7 +18,7 @@ export default async function GeneratorModuleMap(
 
   const nameSpaceItem = ctx.namespaces[module_namespace];
   if (!nameSpaceItem) {
-    console.error(
+    logger.error(
       `[GeneratorModuleMap]: namespace not found: ${module_namespace}`,
     );
     return `  ${
@@ -43,14 +44,14 @@ export default async function GeneratorModuleMap(
 
   for (let item of nameSpaceItem) {
     if (uniqueNames.has(item.name)) {
-      console.warn(
+      logger.warn(
         `[GeneratorModuleMap]: duplicate interface name: ${item.name}`,
       );
       continue;
     }
     uniqueNames.add(item.name);
     const docApiPath = join(path, key, item.name, "/");
-    console.log(`[GeneratorModuleMap]: Generating interface ${item.name}`);
+    logger.info(`[GeneratorModuleMap]: Generating interface ${item.name}`);
     const { result } = await getDoc(docApiPath);
     ctx.namespaces = {
       ...ctx.namespaces,

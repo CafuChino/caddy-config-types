@@ -10,7 +10,7 @@ getDoc().then(async (res) => {
     namespaces: result.namespaces,
   };
   await InterfaceGenerator(ctx, "", "", result.structure);
-  let generatedInterfaces = Array.from(ctx.interfaceMap.values()).join("\n\n");
+  const generatedInterfaces = Array.from(ctx.interfaceMap.values()).join("\n\n");
   // prettify the generated interfaces
   //generatedInterfaces = await prettier.format(generatedInterfaces, { parser: 'typescript' });
   // create the types folder if it doesn't exist

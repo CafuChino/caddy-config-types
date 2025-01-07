@@ -5,6 +5,7 @@ import { getInterfaceName } from "../tools/getInterfaceName.ts";
 import { join } from "jsr:@std/path";
 import { wrapKeyIfNeeded } from "../tools/wrapKeyIfNeeded.ts";
 import { changeDocStringToJsDoc } from "../tools/docGenerator.ts";
+import logger from "../logger.ts";
 
 // A module should be defined as a bunch of interfaces, and a type unions of them. Type of the key should be the union of the interfaces
 export default async function GeneratorModule(
@@ -20,7 +21,7 @@ export default async function GeneratorModule(
   const namespace = ctx.namespaces[module_namespace];
   // target namespace not found
   if (!namespace) {
-    console.warn(
+    logger.warn(
       `Namespace "${module_namespace}" required by module ${path}${key} not found`,
     );
     // type of the key defaults to unknown as a fallback
@@ -32,7 +33,7 @@ export default async function GeneratorModule(
   }
   ctx.interfaceSet.add(namespaceInterfaceName);
 
-  console.log(
+  logger.info(
     `[Module ${path}${key}] Generating namespace interface ${namespaceInterfaceName}`,
   );
 
@@ -48,7 +49,7 @@ export default async function GeneratorModule(
       const docApiPath = lastPath === key
         ? join(path, item.name, "/")
         : join(path, key, item.name, "/");
-      console.log(`[Module ${path}${key}] Generating interface ${item.name}`);
+      logger.info(`[Module ${path}${key}] Generating interface ${item.name}`);
       const res = await getDoc(docApiPath);
       const { result } = res;
       ctx.namespaces = {
@@ -59,14 +60,14 @@ export default async function GeneratorModule(
       interfaceNames.add(name);
       await InterfaceGenerator(ctx, docApiPath, item.name, result.structure);
     } catch (e) {
-      console.error(
+      logger.error(
         `[Module ${path}${key}] Error fetching interface ${item.name}:`,
         e,
       );
       const name = getInterfaceName(item.name);
       interfaceNames.add(name);
       ctx.interfaceMap.set(name, `export type ${name} = Record<string, any>;`);
-      console.error(
+      logger.error(
         `[Module ${path}${key}] Fallback: Generating interface ${name} as unknown`,
       );
     }

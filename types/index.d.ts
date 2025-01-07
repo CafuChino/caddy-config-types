@@ -417,15 +417,7 @@ export interface IModulesCaddytlsTlsalpnChallengeConfig {
   [key: string]: any;
 }
 
-/**
- * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
-export interface IAnxuanziCaddyDnsClouDnsProvider {
-  name: "cloudns";
-  auth_id?: string;
-  sub_auth_id?: string;
-  auth_password?: string;
-  [key: string]: any;
-}
+export type ICloudns = Record<string, any>;
 
 /**
  * Provider.Configs defines a map from domain string to
@@ -521,6 +513,24 @@ export interface ICaddyDnsAzureProvider {
 }
 
 /**
+ * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
+export interface ICaddyDnsBunnyProvider {
+  name: "bunny";
+  /**
+   * AccessKey is the Bunny.net API key - see https://docs.bunny.net/reference/bunnynet-api-overview */
+  access_key?: string;
+  [key: string]: any;
+}
+
+/**
+ * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
+export interface ICaddyDnsCivoProvider {
+  name: "civo";
+  api_token?: string;
+  [key: string]: any;
+}
+
+/**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface ICaddyDnsCloudflareProvider {
   name: "cloudflare";
@@ -575,12 +585,62 @@ export interface ICaddyDnsDinahostingProvider {
 }
 
 /**
+ * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
+export interface ICaddyDnsDirectadminProvider {
+  name: "directadmin";
+  /**
+   * ServerURL should be the hostname (with port if necessary) of the DirectAdmin instance
+   * you are trying to use */
+  host?: string;
+  /**
+   * User should be the DirectAdmin username that the Login Key is created under */
+  user?: string;
+  /**
+   * LoginKey is used for authentication
+   * The key will need two permissions:
+   * `CMD_API_SHOW_DOMAINS`
+   * `CMD_API_DNS_CONTROL`
+   * Unless you are only using `GetRecords()`, in which case `CMD_API_DNS_CONTROL`
+   * can be omitted */
+  login_key?: string;
+  /**
+   * InsecureRequests is an optional parameter used to ignore SSL related errors on the
+   * DirectAdmin host */
+  insecure_requests?: boolean;
+  /**
+   * Debug - can set this to stdout or stderr to dump
+   * debugging information about the API interaction with
+   * powerdns.  This will dump your auth token in plain text
+   * so be careful. */
+  debug?: string;
+  [key: string]: any;
+}
+
+/**
+ * Provider wraps the provider implementation as a Caddy module. */
+export interface ICaddyDnsDnsmadeeasyProvider {
+  name: "dnsmadeeasy";
+  api_key?: string;
+  secret_key?: string;
+  api_endpoint?: string;
+  [key: string]: any;
+}
+
+/**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface ICaddyDnsDnspodProvider {
   name: "dnspod";
   /**
    * auth_token is the DNSPOD API token - see https://www.dnspod.cn/docs/info.html#common-parameters */
   auth_token?: string;
+  [key: string]: any;
+}
+
+/**
+ * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
+export interface ICaddyDnsDreamhostProvider {
+  name: "dreamhost";
+  api_key?: string;
   [key: string]: any;
 }
 
@@ -594,10 +654,46 @@ export interface ICaddyDnsDuckdnsProvider {
 }
 
 /**
+ * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
+export interface ICaddyDnsDynuProvider {
+  name: "dynu";
+  /**
+   * config fields (with snake_case json struct tags on exported fields) */
+  api_token?: string;
+  own_domain?: string;
+  [key: string]: any;
+}
+
+/**
+ * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
+export interface ICaddyDnsEasydnsProvider {
+  name: "easydns";
+  /**
+   * EasyDNS API Token (required) */
+  api_token?: string;
+  /**
+   * EasyDNS API Key (required) */
+  api_key?: string;
+  /**
+   * EasyDNS API URL (defaults to https://rest.easydns.net) */
+  api_url?: string;
+  [key: string]: any;
+}
+
+/**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface ICaddyDnsGandiProvider {
   name: "gandi";
   bearer_token?: string;
+  [key: string]: any;
+}
+
+/**
+ * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
+export interface ICaddyDnsGlesysProvider {
+  name: "glesys";
+  project?: string;
+  api_key?: string;
   [key: string]: any;
 }
 
@@ -627,6 +723,16 @@ export interface ICaddyDnsGoogleclouddnsProvider {
 }
 
 /**
+ * Provider lets Caddy read and manipulate DNS records hosted by Hurricane Electric. */
+export interface ICaddyDnsHeProvider {
+  name: "he";
+  /**
+   * Hurricane Electric DDNS key to use for authentication when modifying DNS records. */
+  api_key?: string;
+  [key: string]: any;
+}
+
+/**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface ICaddyDnsHetznerProvider {
   name: "hetzner";
@@ -648,6 +754,14 @@ export interface ICaddyDnsHexonetProvider {
    * hexonet.  This will dump your auth token in plain text
    * so be careful. */
   debug?: string;
+  [key: string]: any;
+}
+
+/**
+ * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
+export interface ICaddyDnsHosttechProvider {
+  name: "hosttech";
+  api_token?: string;
   [key: string]: any;
 }
 
@@ -724,6 +838,14 @@ export interface ICaddyDnsLinodeProvider {
   /**
    * APIVersion is the Linode API version, i.e. "v4". */
   api_version?: string;
+  [key: string]: any;
+}
+
+export interface ICaddyDnsLoopiaProvider {
+  name: "loopia";
+  username?: string;
+  password?: string;
+  customer?: string;
   [key: string]: any;
 }
 
@@ -913,6 +1035,15 @@ export interface ICaddyDnsRoute53Provider {
 }
 
 /**
+ * Provider lets Caddy read and manipulate DNS records hosted by this DNS provider. */
+export interface ICaddyDnsScalewayProvider {
+  name: "scaleway";
+  secret_key?: string;
+  organization_id?: string;
+  [key: string]: any;
+}
+
+/**
  * Provider wraps the provider implementation as a Caddy module. */
 export interface ICaddyDnsTencentcloudProvider {
   name: "tencentcloud";
@@ -941,30 +1072,41 @@ export interface ICaddyDnsVultrProvider {
 }
 
 export type IDnsProviders =
-  | IAnxuanziCaddyDnsClouDnsProvider
+  | ICloudns
   | ICaddyDnsAcmednsProvider
   | ICaddyDnsAcmeproxyProvider
   | ICaddyDnsAlidnsProvider
   | ICaddyDnsAzureProvider
+  | ICaddyDnsBunnyProvider
+  | ICaddyDnsCivoProvider
   | ICaddyDnsCloudflareProvider
   | ICaddyDnsDdnssProvider
   | ICaddyDnsDesecProvider
   | ICaddyDnsDigitaloceanProvider
   | ICaddyDnsDinahostingProvider
+  | ICaddyDnsDirectadminProvider
+  | ICaddyDnsDnsmadeeasyProvider
   | ICaddyDnsDnspodProvider
+  | ICaddyDnsDreamhostProvider
   | ICaddyDnsDuckdnsProvider
+  | ICaddyDnsDynuProvider
+  | ICaddyDnsEasydnsProvider
   | ICaddyDnsGandiProvider
+  | ICaddyDnsGlesysProvider
   | ICaddyDnsGodaddyProvider
   | ICaddyDnsGoogleDomainsProvider
   | ICaddyDnsGoogleclouddnsProvider
+  | ICaddyDnsHeProvider
   | ICaddyDnsHetznerProvider
   | ICaddyDnsHexonetProvider
+  | ICaddyDnsHosttechProvider
   | ICaddyDnsInfomaniakProvider
   | ICaddyDnsInwxProvider
   | ICaddyDnsIonosProvider
   | ILeaseweb
   | ICaddyDnsLegoDeprecatedLegoDeprecated
   | ICaddyDnsLinodeProvider
+  | ICaddyDnsLoopiaProvider
   | ICaddyDnsMailinaboxProvider
   | ICaddyDnsMetanameProvider
   | ICaddyDnsNamecheapProvider
@@ -979,6 +1121,7 @@ export type IDnsProviders =
   | ICaddyDnsPowerdnsProvider
   | ICaddyDnsRfc2136Provider
   | ICaddyDnsRoute53Provider
+  | ICaddyDnsScalewayProvider
   | ICaddyDnsTencentcloudProvider
   | ICaddyDnsVercelProvider
   | ICaddyDnsVultrProvider;
@@ -1787,6 +1930,8 @@ export interface ICaddyserverTransformEncoderTransformEncoder {
   [key: string]: any;
 }
 
+export type IFormatted = Record<string, any>;
+
 export interface IFirecowCaddyElasticEncoderElasticEncoder {
   format: "elastic";
   message_key?: string;
@@ -1811,6 +1956,7 @@ export type ICaddyLoggingEncoders =
   | IModulesLoggingSingleFieldEncoder
   | ICaddyserverTransformEncoderCompat
   | ICaddyserverTransformEncoderTransformEncoder
+  | IFormatted
   | IFirecowCaddyElasticEncoderElasticEncoder;
 
 /**
@@ -2013,6 +2159,19 @@ export interface IBaldinofCaddySupervisorApp {
   [key: string]: any;
 }
 
+export interface IKmpmCaddyEventsNatsNatsHandler {
+  handler: "nats";
+  must_publish?: string;
+  server_url?: string;
+  subject?: string;
+  auth_user?: string;
+  auth_password?: string;
+  auth_token?: string;
+  auth_nkey?: string;
+  auth_creds?: string;
+  [key: string]: any;
+}
+
 /**
  * Handler implements an event handler that runs a command/program.
  * By default, commands are run in the background so as to not
@@ -2045,7 +2204,9 @@ export interface IMholtCaddyEventsExecHandler {
   [key: string]: any;
 }
 
-export type IEventsHandlers = IMholtCaddyEventsExecHandler;
+export type IEventsHandlers =
+  | IKmpmCaddyEventsNatsNatsHandler
+  | IMholtCaddyEventsExecHandler;
 
 /**
  * Subscriptions bind handlers to one or more events
@@ -2319,12 +2480,33 @@ export interface IMohammed90CaddyNgrokListenerNgrok {
   [key: string]: any;
 }
 
+/**
+ * The `throttle` listener limits the bandwidth of the connection to the
+ * given values. */
+export interface IMohammed90CaddyThrottleListenerListener {
+  wrapper: "throttle";
+  /**
+   * Up is the maximum upload speed. If not set, there is no limit.
+   * The value is parsed using the `go-humanize` package and accepts
+   * both the SI and the IEC prefixes. Values without units are interepreted
+   * as bytes. */
+  up?: string;
+  /**
+   * Down is the maximum upload speed. If not set, there is no limit.
+   * The value is parsed using the `go-humanize` package and accepts
+   * both the SI and the IEC prefixes. Values without units are interepreted
+   * as bytes. */
+  down?: string;
+  [key: string]: any;
+}
+
 export type ICaddyListeners =
   | IModulesCaddyhttpHttpRedirectListenerWrapper
   | IModulesCaddyhttpTlsPlaceholderWrapper
   | IModulesCaddyhttpProxyprotocolListenerWrapper
   | IImgkCaddyTrojanListenerListenerWrapper
-  | IMohammed90CaddyNgrokListenerNgrok;
+  | IMohammed90CaddyNgrokListenerNgrok
+  | IMohammed90CaddyThrottleListenerListener;
 
 /**
  * Fail2Ban implements an HTTP handler that checks a specified file for banned
@@ -2351,6 +2533,12 @@ export interface IAbiosoftCaddyExecNoOpMatcher {
  * Limitation of Caddyfile config. JSON/API config do not need this. */
 export interface IAbiosoftCaddyExecNopMatcher {
   label?: string;
+  [key: string]: any;
+}
+
+export interface IAnthemakerCaddyDnsFetcherDnsFetcher {
+  type?: string;
+  name?: string;
   [key: string]: any;
 }
 
@@ -2729,6 +2917,17 @@ export interface IPorechCaddyMaxmindGeolocationMaxmindGeolocation {
 }
 
 /**
+ * CronMatcher matches requests based on multiple sets of cron expressions.
+ * It allows you to define multiple time windows during which requests should be matched.
+ * The matcher becomes active after any of the time windows specified by EnableAt
+ * and inactive after any corresponding DisableAt. */
+export interface ISteffenbuschCaddyCronMatcherCronMatcher {
+  enable_at?: Array<string>;
+  disable_at?: Array<string>;
+  [key: string]: any;
+}
+
+/**
  * MatchDynamicClientIP matchers the requests by the client IP address.
  * The IP ranges are provided by modules to allow for dynamic ranges. */
 export interface ITuzzmaniandevilCaddyDynamicClientipMatchDynamicClientIp {
@@ -2740,6 +2939,7 @@ export interface IHttpMatchers {
   fail2ban?: IJavexCaddyFail2banFail2Ban;
   exec_noop?: IAbiosoftCaddyExecNoOpMatcher;
   execnopmatch?: IAbiosoftCaddyExecNopMatcher;
+  dnsfetcher?: IAnthemakerCaddyDnsFetcherDnsFetcher;
   signed?: IAnthemakerCaddySignedUrlsSigned;
   client_ip?: IModulesCaddyhttpMatchClientIp;
   expression?: IModulesCaddyhttpMatchExpression;
@@ -2760,7 +2960,14 @@ export interface IHttpMatchers {
   conneg?: IMpilhltCaddyConnegMatchConneg;
   remote_host?: IMuetyCaddyRemoteHostMatchRemoteHost;
   maxmind_geolocation?: IPorechCaddyMaxmindGeolocationMaxmindGeolocation;
+  cron?: ISteffenbuschCaddyCronMatcherCronMatcher;
   dynamic_client_ip?: ITuzzmaniandevilCaddyDynamicClientipMatchDynamicClientIp;
+  [key: string]: any;
+}
+
+export interface IGitMadhouseProjectOrgAlgernonCaddyXClacksOverheadMiddleware {
+  handler: "x_clacks_overhead";
+  gnu?: Array<string>;
   [key: string]: any;
 }
 
@@ -2887,6 +3094,15 @@ export interface IScarszCaddySaveSave {
 
 export interface ITasudoCaddyJailbaitV2Jailbait {
   handler: "jailbait";
+  [key: string]: any;
+}
+
+/**
+ * CaddyWAF implements an HTTP handler for WAF. */
+export interface IW0n9CaddyWafT1kCaddyWaf {
+  handler: "waf_chaitin";
+  waf_engine_addr?: string;
+  pool_size?: number;
   [key: string]: any;
 }
 
@@ -4834,6 +5050,22 @@ export interface IModulesCaddyhttpReverseproxySrvUpstreams {
 }
 
 /**
+ * EtcdProxy is a Caddy module that integrates etcd with reverse_proxy. */
+export interface IDeanchouCaddyEtcdEtcdProxy {
+  source: "etcd";
+  endpoints?: Array<string>;
+  key?: string;
+  version_key?: string;
+  /**
+   * Duration can be an integer or a string. An integer is
+   * interpreted as nanoseconds. If a string, it is a Go
+   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+  timeout?: IDuration;
+  [key: string]: any;
+}
+
+/**
  * Upstreams provides upstreams from the docker host. */
 export interface IInvzhiCaddyDockerUpstreamsUpstreams {
   source: "docker";
@@ -4844,6 +5076,7 @@ export type IHttpReverseProxyUpstreams =
   | IModulesCaddyhttpReverseproxyAUpstreams
   | IModulesCaddyhttpReverseproxyMultiUpstreams
   | IModulesCaddyhttpReverseproxySrvUpstreams
+  | IDeanchouCaddyEtcdEtcdProxy
   | IInvzhiCaddyDockerUpstreamsUpstreams;
 
 /**
@@ -5607,6 +5840,25 @@ export interface IDbaggettCaddyOloSignatureAuthorizationOloSignature {
   [key: string]: any;
 }
 
+export interface IDeanchouCaddyIpFilterIpFilter {
+  handler: "ip_filter";
+  /**
+   * Duration can be an integer or a string. An integer is
+   * interpreted as nanoseconds. If a string, it is a Go
+   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+  interval?: IDuration;
+  /**
+   * Duration can be an integer or a string. An integer is
+   * interpreted as nanoseconds. If a string, it is a Go
+   * time.Duration value such as `300ms`, `1.5h`, or `2h45m`;
+   * valid units are `ns`, `us`/`µs`, `ms`, `s`, `m`, `h`, and `d`. */
+  timeout?: IDuration;
+  block_ip_list?: string;
+  allow_ip_list?: string;
+  [key: string]: any;
+}
+
 export interface IDevetekCaddyserverMinifierMiddleware {
   handler: "minifier";
   [key: string]: any;
@@ -5727,6 +5979,27 @@ export interface IDunglasVulcainCaddyVulcain {
  * or https://github.com/enum-gg/caddy-discord */
 export interface IEnumGgCaddyDiscordDiscordAuthPlugin {
   handler: "discord";
+  [key: string]: any;
+}
+
+export interface IEwenLbhCaddyI18nI18n {
+  handler: "i18n";
+  /**
+   * The directory where the .po files are stored. The files must be named LANGUAGE.po, where LANGUAGE is the language code (see the languages field). */
+  translations?: string;
+  /**
+   * The HTML attribute used to mark inner content of the tag it is placed on as translatable strings. Defaults to i18n. */
+  html_attribute?: string;
+  /**
+   * The HTML tag used to mark inner content of the tag it is placed on as translatable strings. Defaults to i18n. */
+  html_tag?: string;
+  /**
+   * The language code of the content the original responses are written in. Defaults to en. */
+  source_language?: string;
+  languages?: Array<string>;
+  /**
+   * Update the .po files with new translatable strings found in the HTML responses. Disabled by default. */
+  update_translations?: boolean;
   [key: string]: any;
 }
 
@@ -6631,6 +6904,15 @@ export interface IMholtCaddyWebdavWebDav {
   [key: string]: any;
 }
 
+/**
+ * Handler implements an HTTP handler that proxies requests internally to a PocketBase server.
+ * It can be used in conjunction with the PocketBase app. If the PocketBase app is not explicitly configured,
+ * a PocketBase app with default config is used. */
+export interface IMohammed90CaddyPocketbaseHandler {
+  handler: "pocketbase";
+  [key: string]: any;
+}
+
 export interface IMuetyCaddyPirschPluginPirschPlugin {
   handler: "pirsch";
   client_id?: string;
@@ -6777,6 +7059,122 @@ export interface ISjtugCaddy2FilterMiddleware {
 }
 
 /**
+ * BasicAuthTOTP is a Caddy module that enhances Caddy's `basic_auth` directive by adding
+ * Time-based One-Time Password (TOTP) two-factor authentication (2FA). This module supplements
+ * `basic_auth` and does not replace it; therefore, `basic_auth` must be configured and active
+ * for BasicAuthTOTP to function correctly. Together, these two directives provide an additional
+ * security layer for sensitive routes by requiring both standard credentials and a valid TOTP
+ * code from a compatible authenticator app.
+ * This module is suitable for scenarios where extra security is necessary but may not be
+ * intended for production environments without additional testing, as it is in an experimental phase.
+ * Key features include:
+ *   - Session-based TOTP authentication with configurable inactivity timeouts.
+ *   - IP binding for session validation, requiring re-authentication if the user's IP changes.
+ *   - Customizable session cookie options, including name and path scope.
+ * Configuration options in BasicAuthTOTP provide flexibility in securing routes, managing
+ * session behavior, and allowing users to log out via a dedicated logout path. Secrets are
+ * loaded from a specified JSON file that maps usernames to TOTP secrets.
+ * Example use case:
+ * BasicAuthTOTP is ideal for protecting sensitive or restricted resources by requiring an
+ * additional TOTP code, making it a good fit for applications where higher assurance of
+ * identity is required. */
+export interface ISteffenbuschCaddyBasicauthTotpBasicAuthTotp {
+  handler: "basicauthtotp";
+  /**
+   * SessionInactivityTimeout defines the maximum allowed period of inactivity before
+   * a 2FA session expires and requires re-authentication. Default is 60 minutes.
+   * A Duration represents the elapsed time between two instants
+   * as an int64 nanosecond count. The representation limits the
+   * largest representable duration to approximately 290 years. */
+  session_inactivity_timeout?: ITimeDuration;
+  /**
+   * SecretsFilePath specifies the path to the JSON file containing TOTP secrets for each user.
+   * This file should contain usernames and their corresponding TOTP secrets. */
+  secrets_file_path?: string;
+  /**
+   * CookieName defines the name of the cookie used to store the session token for 2FA.
+   * Default is `basicauthtotp_session`. */
+  cookie_name?: string;
+  /**
+   * CookiePath specifies the path scope of the session cookie.
+   * This restricts where the cookie is sent on the server. Default is `/`. */
+  cookie_path?: string;
+  /**
+   * LogoutSessionPath defines the URL path that triggers a session logout.
+   * When this path is accessed, the 2FA session will be terminated and the cookie will be removed.
+   * Default is `/logout-session`. */
+  logout_session_path?: string;
+  /**
+   * LogoutRedirectURL specifies the URL to redirect the user to after they log out of their 2FA session.
+   * This can be a landing page or login page where the user can re-authenticate. Default is `/`. */
+  logout_redirect_url?: string;
+  [key: string]: any;
+}
+
+/**
+ * ExtraPlaceholders provides additional placeholders that can be used within Caddy configurations:
+ * Placeholder | Description
+ * ------------|-------------
+ * `{extra.caddy.version.simple}` | Simple version information of the Caddy server.
+ * `{extra.caddy.version.full}` | Full version information of the Caddy server.
+ * `{extra.rand.float}` | Random float value between 0.0 and 1.0.
+ * `{extra.rand.int}` | Random integer value between the configured min and max (default is 0 to 100).
+ * `{extra.loadavg.1}` | System load average over the last 1 minute.
+ * `{extra.loadavg.5}` | System load average over the last 5 minutes.
+ * `{extra.loadavg.15}` | System load average over the last 15 minutes.
+ * `{extra.hostinfo.uptime}` | System uptime in a human-readable format.
+ * Current local time placeholders:
+ * Placeholder | Description
+ * ------------|-------------
+ * `{extra.time.now.month}` | Current month as an integer (e.g., 10 for October).
+ * `{extra.time.now.month_padded}` | Current month as a zero-padded string (e.g., "05" for May).
+ * `{extra.time.now.day}` | Current day of the month as an integer.
+ * `{extra.time.now.day_padded}` | Current day of the month as a zero-padded string.
+ * `{extra.time.now.hour}` | Current hour in 24-hour format as an integer.
+ * `{extra.time.now.hour_padded}` | Current hour in 24-hour format as a zero-padded string.
+ * `{extra.time.now.minute}` | Current minute as an integer.
+ * `{extra.time.now.minute_padded}` | Current minute as a zero-padded string.
+ * `{extra.time.now.second}` | Current second as an integer.
+ * `{extra.time.now.second_padded}` | Current second as a zero-padded string.
+ * `{extra.time.now.timezone_offset}` | Current timezone offset from UTC (e.g., +0200).
+ * `{extra.time.now.timezone_name}` | Current timezone abbreviation (e.g., CEST).
+ * `{extra.time.now.iso_week}` | Current ISO week number of the year.
+ * `{extra.time.now.iso_year}` | ISO year corresponding to the current ISO week.
+ * `{extra.time.now.custom}` | Current time in a custom format, configurable via the `time_format_custom` directive.
+ * UTC equivalents of the current time placeholders (with `.utc` added):
+ * Placeholder | Description
+ * ------------|-------------
+ * `{extra.time.now.utc.month}` | Current month in UTC as an integer (e.g., 10 for October).
+ * `{extra.time.now.utc.month_padded}` | Current month in UTC as a zero-padded string (e.g., "05" for May).
+ * `{extra.time.now.utc.day}` | Current day of the month in UTC as an integer.
+ * `{extra.time.now.utc.day_padded}` | Current day of the month in UTC as a zero-padded string.
+ * `{extra.time.now.utc.hour}` | Current hour in UTC in 24-hour format as an integer.
+ * `{extra.time.now.utc.hour_padded}` | Current hour in UTC in 24-hour format as a zero-padded string.
+ * `{extra.time.now.utc.minute}` | Current minute in UTC as an integer.
+ * `{extra.time.now.utc.minute_padded}` | Current minute in UTC as a zero-padded string.
+ * `{extra.time.now.utc.second}` | Current second in UTC as an integer.
+ * `{extra.time.now.utc.second_padded}` | Current second in UTC as a zero-padded string.
+ * `{extra.time.now.utc.timezone_offset}` | UTC timezone offset (always +0000).
+ * `{extra.time.now.utc.timezone_name}` | UTC timezone abbreviation (always UTC).
+ * `{extra.time.now.utc.iso_week}` | Current ISO week number of the year in UTC.
+ * `{extra.time.now.utc.iso_year}` | ISO year corresponding to the current ISO week in UTC.
+ * `{extra.time.now.utc.custom}` | Current UTC time in a custom format, configurable via the `time_format_custom` directive. */
+export interface ISteffenbuschCaddyExtraPlaceholdersExtraPlaceholders {
+  handler: "extra_placeholders";
+  /**
+   * RandIntMin defines the minimum value (inclusive) for the `{extra.rand.int}` placeholder. */
+  rand_int_min?: number;
+  /**
+   * RandIntMax defines the maximum value (inclusive) for the `{extra.rand.int}` placeholder. */
+  rand_int_max?: number;
+  /**
+   * TimeFormatCustom specifies a custom time format for the `{extra.time.now.custom}` and `{extra.time.now.utc.custom}` placeholder.
+   * If left empty, a default format of "2006-01-02 15:04:05" is used. */
+  time_format_custom?: string;
+  [key: string]: any;
+}
+
+/**
  * Argsort sort the query arguments after optionally lowercasing them.
  * Syntax:
  * 	argsort [lowercase] */
@@ -6798,6 +7196,37 @@ export interface ITeodorescuserbanCaddyArgsortArgsort {
 export interface ITeodorescuserbanCaddyCookieflagCookieFlag {
   handler: "cookieflag";
   flags?: Array<string>;
+  [key: string]: any;
+}
+
+/**
+ * Mappings from IP / Subnet source values (inputs) to destination values (outputs).
+ * The first matching, non-nil mapping will be applied.
+ * Mapping describes a mapping from input to outputs. */
+export interface ITeodorescuserbanCaddyIpMapMapping {
+  /**
+   * The input value to match. Must be distinct from other mappings.
+   * Needs to be an IP / Subnet */
+  input?: string;
+  outputs?: Array<unknown>;
+  [key: string]: any;
+}
+
+/**
+ * Handler implements a middleware that maps IP / Subnets as inputs to outputs.
+ * Specifically, it compares a source value against the map inputs, and for one
+ * that matches, it applies the output values to each destination. Destinations
+ * become placeholder names.
+ * Mapped placeholders are not evaluated until they are used, so even for very
+ * large mappings, this handler is quite efficient. */
+export interface ITeodorescuserbanCaddyIpMapHandler {
+  handler: "ipmap";
+  /**
+   * Source is the placeholder from which to get the input value. */
+  source?: string;
+  destinations?: Array<string>;
+  mappings?: Array<ITeodorescuserbanCaddyIpMapMapping>;
+  defaults?: Array<string>;
   [key: string]: any;
 }
 
@@ -6904,6 +7333,21 @@ export interface IXico42CaddyLuraLura {
 }
 
 /**
+ * Guard is an elegant IPQS plugin for Caddy. */
+export interface IZ3ntl3CaddyguardGuard {
+  handler: "guard";
+  /**
+   * A Duration represents the elapsed time between two instants
+   * as an int64 nanosecond count. The representation limits the
+   * largest representable duration to approximately 290 years. */
+  timeout?: ITimeDuration;
+  ip_headers?: Array<string>;
+  rotating_proxy?: string;
+  pass_thru?: boolean;
+  [key: string]: any;
+}
+
+/**
  * http.handlers.geoip2 is an GeoIP2 server handler.
  * it uses GeoIP2 Data to identify the location of the IP */
 export interface IZhangjiayinCaddyGeoip2GeoIp2 {
@@ -6955,6 +7399,7 @@ export interface IWillnorrisComGoImageproxyCaddyImageProxy {
 }
 
 export type IHttpHandlers =
+  | IGitMadhouseProjectOrgAlgernonCaddyXClacksOverheadMiddleware
   | IBraveRoyCaddyWafCaddyWaf
   | IHeavenVolkoffCaddyAutheliaPluginAuthelia
   | IOdyssey346ListenCaddyListenCaddy
@@ -6964,6 +7409,7 @@ export type IHttpHandlers =
   | IOlaf
   | IScarszCaddySaveSave
   | ITasudoCaddyJailbaitV2Jailbait
+  | IW0n9CaddyWafT1kCaddyWaf
   | IWafrisWafrisCaddyWafrisCaddy
   | IWingLimCaddyWebhookWebHook
   | IAbiosoftCaddyExecMiddleware
@@ -6971,6 +7417,7 @@ export type IHttpHandlers =
   | IAbiosoftCaddyJsonParseJsonParse
   | IAcouvreurSablierPluginsCaddySablierMiddleware
   | IAksdbCaddyCgiV2Cgi
+  | IAnthemakerCaddyDnsFetcherDnsFetcher
   | IArgamiRedirDnsRedirDns
   | IBploetzCaddyOauth2TokenIntrospectionOAuth2TokenIntrospection
   | ICaddyserverCacheHandlerSouinCaddyMiddleware
@@ -7007,12 +7454,14 @@ export type IHttpHandlers =
   | ICubic3dCaddyQuantityLimiterQuantityLimiter
   | IDarkweakGoEsiMiddlewareCaddyEsi
   | IDbaggettCaddyOloSignatureAuthorizationOloSignature
+  | IDeanchouCaddyIpFilterIpFilter
   | IDevetekCaddyserverMinifierMiddleware
   | IDulliCaddyWolMiddleware
   | IDunglasFrankenphpCaddyFrankenPhpModule
   | IDunglasMercureCaddyMercure
   | IDunglasVulcainCaddyVulcain
   | IEnumGgCaddyDiscordDiscordAuthPlugin
+  | IEwenLbhCaddyI18nI18n
   | IFirecowCaddyForwardAuthForwardAuth
   | IGboxProxyGboxHandler
   | IGit001Caddyv2UploadUpload
@@ -7037,6 +7486,7 @@ export type IHttpHandlers =
   | IMholtCaddyGrpcWebHandler
   | IMholtCaddyPslHandler
   | IMholtCaddyWebdavWebDav
+  | IMohammed90CaddyPocketbaseHandler
   | IMuetyCaddyPirschPluginPirschPlugin
   | INeodymeLabsUserAgentParseUserAgentParse
   | IProtomapsGoPmtilesCaddyMiddleware
@@ -7045,10 +7495,14 @@ export type IHttpHandlers =
   | IShift72CaddyGeoIpGeoIp
   | ISillygodCdpCacheHandler
   | ISjtugCaddy2FilterMiddleware
+  | ISteffenbuschCaddyBasicauthTotpBasicAuthTotp
+  | ISteffenbuschCaddyExtraPlaceholdersExtraPlaceholders
   | ITeodorescuserbanCaddyArgsortArgsort
   | ITeodorescuserbanCaddyCookieflagCookieFlag
+  | ITeodorescuserbanCaddyIpMapHandler
   | IImageFilter
   | IXico42CaddyLuraLura
+  | IZ3ntl3CaddyguardGuard
   | IZhangjiayinCaddyGeoip2GeoIp2
   | IMagnaxCaCaddyGopkgGoPackage
   | IWillnorrisComGoImageproxyCaddyImageProxy;
@@ -7197,11 +7651,15 @@ export interface IModulesCaddytlsLeafCertClientAuth {
   [key: string]: any;
 }
 
-export type ISanDns = Record<string, any>;
+export interface IExanteCaddyTlsSanDnsVerifier {
+  verifier: "san_dns";
+  names?: Array<string>;
+  [key: string]: any;
+}
 
 export type ITlsClientAuthVerifier =
   | IModulesCaddytlsLeafCertClientAuth
-  | ISanDns;
+  | IExanteCaddyTlsSanDnsVerifier;
 
 /**
  * Enables and configures TLS client authentication.
@@ -8995,6 +9453,8 @@ export interface IKadeesshKadeesshInternalActorsStaticResponse {
   [key: string]: any;
 }
 
+export type IShell = Record<string, any>;
+
 /**
  * Shell is an `ssh.actors` module providing "shell" to a session. The module spawns a process
  * using the user's default shell, as defined in the OS. On *nix, except for macOS, the module parses `/etc/passwd`,
@@ -9018,6 +9478,7 @@ export interface IKadeesshKadeesshInternalPtyShell {
 
 export type ISshActors =
   | IKadeesshKadeesshInternalActorsStaticResponse
+  | IShell
   | IKadeesshKadeesshInternalPtyShell;
 
 /**
@@ -9581,6 +10042,45 @@ export interface IMholtCaddyL4Layer4App {
 }
 
 /**
+ * App is a Caddy module that provides an embedded PocketBase server.
+ * The module provides admin API endpoints under `/pocketbase/`:
+ * - `POST /pocketbase/superuser` - Create a new superuser
+ * - `PUT /pocketbase/superuser` - Upsert a superuser
+ * - `PATCH /pocketbase/superuser` - Update superuser password
+ * - `DELETE /pocketbase/superuser` - Delete a superuser
+ * - `POST /pocketbase/superuser/{email}/otp` - Generate OTP for superuser
+ * All the above endpoints require a JSON payload, except for the OTP endpoint. The
+ * JSON payload for the superuser endpoints is as follows:
+ * 	{
+ * 		"email_address": "...",
+ * 		"password": "..."
+ * 	}
+ * The `DELETE` endpoint does not expect the `password` field.
+ * Although PocketBase prints a URL in the logs to create the first superuser, the host
+ * part of the URL is not correct. You can either replace the host part with the host defined in
+ * your Caddy configuration, or use the admin API endpoint to create the first superuser.
+ * The app can be configured in the Caddyfile through the `pocketbase` block in the global options section. Syntax:
+ * 	pocketbase {
+ * 	    data_dir <path>
+ * 	    listen   <addr>
+ * 	    origins  <origin...>
+ * 	}
+ * If the block is omitted, the default values are used. */
+export interface IMohammed90CaddyPocketbaseApp {
+  /**
+   * The listen address of the PocketBase server. If empty, a free port on
+   * 127.0.0.1 will be used. */
+  listen?: string;
+  /**
+   * The data directory of PocketBase. If empty, a directory named `pb_data` in
+   * the Caddy data directory will be used. Refer to [Caddy data directory](https://caddyserver.com/docs/conventions#data-directory)
+   * for more information. */
+  data_dir?: string;
+  origins?: Array<string>;
+  [key: string]: any;
+}
+
+/**
  * The profiling parameters to be reported to Profefe.
  * The paramters cpu_profile_rate, block_profile_rate, and mutex_profile_fraction are inherited from the `profiling` app if `profefe`
  * is configured as a child module. The `profile_types` field is inherited if not configured explicitly.
@@ -9788,6 +10288,7 @@ export interface IApps {
   ssh?: IKadeesshKadeesshInternalSsh;
   dynamic_dns?: IMholtCaddyDynamicdnsApp;
   layer4?: IMholtCaddyL4Layer4App;
+  pocketbase?: IMohammed90CaddyPocketbaseApp;
   profefe?: IMohammed90CaddyProfilingProfefeApp;
   profiling?: IMohammed90CaddyProfilingProfilingApp;
   pyroscope?: IMohammed90CaddyProfilingPyroscopeApp;
